@@ -46,12 +46,12 @@ void main(List<String> arguments) {
 
   //Question 7
   print('7. Write a dart program to generate multiplication tables of 1-9.');
-  int product;
+  int product1;
   for(int i = 1; i < 10; i++){
     print('Multiplication Table of $i');
     for(int j = 0; j <= 10; j++){
-      product = i * j;
-      print('$i * $j = $product');
+      product1 = i * j;
+      print('$i * $j = $product1');
     }
   }
 
