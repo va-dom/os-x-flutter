@@ -26,3 +26,14 @@ double getInterest(){
   double interest = (p * t * r) / 100;
   return interest;
 }
+
+//Question 7
+int getRemainder(int num1, int num2){
+  return num1 % num2;
+}
+
+int getQuotient(int num1, int num2){
+  return num1 ~/ num2;
+}
+
+//Question 
