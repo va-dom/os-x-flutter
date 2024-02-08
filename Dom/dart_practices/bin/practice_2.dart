@@ -6,7 +6,7 @@ void main(){
   // Write a dart program to check whether a character is a vowel or consonant.
   checkIfVowel(Random().nextInt(26)+97);
   // Write a dart program to check whether a number is positive, negative, or zero.
-  checkIfPositive(Random().nextInt(100), Random().nextInt(2));
+  checkIfPositive(Random().nextInt(100), Random().nextBool());
   // Write a dart program to print your name 100 times.
   printName100();
   // Write a dart program to calculate the sum of natural numbers.
@@ -37,16 +37,16 @@ void checkIfVowel(int x){
   }
 }
 
-void checkIfPositive(num x, int y){
+void checkIfPositive(num x, bool y){
   if(x == 0){
     print("$x is 0");
   }
-  else if(y == 0){
-    x = convertToNegative(x);
-    print("$y $x is negative");
+  else if(y){
+    print("$x is positive");
   }
   else{
-    print("$y $x is positive");
+    x = convertToNegative(x);
+    print("$x is positive");
   }
 }
 
