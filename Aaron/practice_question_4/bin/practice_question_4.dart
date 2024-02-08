@@ -1,7 +1,4 @@
-import 'package:practice_question_4/practice_question_4.dart' as practice_question_4;
 import 'dart:io';
-
-import 'package:test/test.dart';
 
 void main(List<String> arguments) {
 
