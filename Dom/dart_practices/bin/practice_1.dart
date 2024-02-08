@@ -33,6 +33,7 @@ void main() {
   double? distance = double.parse(stdin.readLineSync()!);
   print("enter speed in km/h: ");
   double? speed = double.parse(stdin.readLineSync()!);
+  print("");
   getTime(distance, speed);
 }
 
@@ -98,5 +99,5 @@ void splitTheBill(double total, double pax) {
 
 void getTime(double distance, double speed) {
   double time = distance / speed;
-  print("/nyou'll be in the office in $time hour(s)");
+print("you'll be in the office in $time hour(s)");
 }
