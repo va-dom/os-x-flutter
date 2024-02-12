@@ -156,7 +156,8 @@ getTotalBill() {
   }
 
   double totalShare = double.parse(bill) / int.parse(pax);
-  print("Ang ambagan niyo po ay: $totalShare");
+  String trimmedBill = totalShare.toStringAsFixed(2);
+  print("Ang ambagan niyo po ay: $trimmedBill");
 }
 
 double calculateTime(double distanceKm, double speedKmPerHour) {

@@ -39,5 +39,5 @@ void runPractice(){
   lib.getTotalBill();
 
   print("[12] Suppose, your distance to office from home is 25 km and you travel 40 km per hour. Write a program to calculate time taken to reach office in minutes. Formula= (distance) / (speed)");
-  lib.calculateTime(25, 40);
+  print("Time taken to reach office: ${lib.calculateTime(25, 40).toStringAsFixed(2)} minutes");
 }
