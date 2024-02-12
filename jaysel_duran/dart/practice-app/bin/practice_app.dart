@@ -8,25 +8,21 @@ import 'practices/practice_5.dart' as practice5;
 import 'practices/practice_6.dart' as practice6;
 import 'practices/practice_7.dart' as practice7;
 import 'practices/practice_8.dart' as practice8;
-import '../lib/practice_app.dart' as mainFunctions;
+import '../lib/practice_app.dart' as lib;
 
 void main(List<String> arguments) {
-  print(mainFunctions.getMenu());
+  print(lib.getMenu());
 
 
-  String inSelectedexercise = stdin.readLineSync()!;
+  String inSelectedPractice = stdin.readLineSync()!;
 
   // Checks if input value is valid. (not empty, is numeric, is existing exercise)
-  while (
-    inSelectedexercise.isEmpty ||
-    !(mainFunctions.isNumeric(inSelectedexercise)) ||
-    int.parse(inSelectedexercise) > 8
-  ) {
+  while (!lib.isInputValidNumeric(inSelectedPractice) || int.parse(inSelectedPractice) > 8) {
     print("Exercise not found. What exercise do you want to check?");
-    inSelectedexercise = stdin.readLineSync()!;
+    inSelectedPractice = stdin.readLineSync()!;
   }
 
-  int selectedExercise = int.parse(inSelectedexercise);
+  int selectedExercise = int.parse(inSelectedPractice);
   switch (selectedExercise) {
     case 1:
       practice1.runPractice();
