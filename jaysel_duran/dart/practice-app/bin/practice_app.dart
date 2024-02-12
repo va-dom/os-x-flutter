@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'practices/practice_1.dart' as practice1;
 import 'practices/practice_2.dart' as practice2;
 import 'practices/practice_3.dart' as practice3;
@@ -7,20 +8,25 @@ import 'practices/practice_5.dart' as practice5;
 import 'practices/practice_6.dart' as practice6;
 import 'practices/practice_7.dart' as practice7;
 import 'practices/practice_8.dart' as practice8;
-
+import '../lib/practice_app.dart' as mainFunctions;
 
 void main(List<String> arguments) {
-  print('Hello to Jaysel\'s playground!');
-  print("""What exercise do you want to check?
-  [1] Practice 1
-  [2] Practice 2
-  [3] Practice 3
-  [4] Practice 4
-  [5] Practice 5
-  [6] Practice 6
-  [7] Practice 7
-  [8] Practice 8""");
-  int? selectedExercise  = int.parse(stdin.readLineSync()!);
+  print(mainFunctions.getMenu());
+
+
+  String inSelectedexercise = stdin.readLineSync()!;
+
+  // Checks if input value is valid. (not empty, is numeric, is existing exercise)
+  while (
+    inSelectedexercise.isEmpty ||
+    !(mainFunctions.isNumeric(inSelectedexercise)) ||
+    int.parse(inSelectedexercise) > 8
+  ) {
+    print("Exercise not found. What exercise do you want to check?");
+    inSelectedexercise = stdin.readLineSync()!;
+  }
+
+  int selectedExercise = int.parse(inSelectedexercise);
   switch (selectedExercise) {
     case 1:
       practice1.runPractice();
@@ -47,7 +53,6 @@ void main(List<String> arguments) {
       practice8.runPractice();
       break;
     default:
-      "Exercise not found.";
       break;
   }
 }

@@ -1,8 +1,8 @@
-import 'package:practice_app/practice_app.dart';
 import 'package:test/test.dart';
+import '../lib/practice_app.dart' as mainFunctions;
 
 void main() {
   test('calculate', () {
-    expect(calculate(), 42);
+    expect(mainFunctions.getMenu(), isNotNull);
   });
 }
