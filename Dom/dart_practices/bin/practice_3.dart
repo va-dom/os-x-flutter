@@ -9,6 +9,7 @@ void main(){
   int num3 = Random().nextInt(100)+1;
   int? randomNum;
   const int passLen = 12;
+  
   //Write a program in Dart to print your own name using function.
   printAuthorName(author);
   // Write a program in Dart to print even numbers between intervals using function.
@@ -124,12 +125,12 @@ bool checkIfEven(int x){
 }
 
 Map<String, dynamic> createUser(String name, int age, {bool isActive = true}) {
-  return {
-    'name': name,
-    'age': age,
-    'isActive': isActive,
-  };
-}
+    return {
+      'name': name,
+      'age': age,
+      'isActive': isActive,
+    };
+  }
 
 void circulateArea({int len = 1, int wid = 1}){
 print("Area of $len and $len is ${len * wid}");
