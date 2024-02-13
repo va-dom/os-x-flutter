@@ -1,5 +1,3 @@
-import "dart:io";
-import "dart:math";
 
 void main(){
 // Create a list of names and print all names using list.
