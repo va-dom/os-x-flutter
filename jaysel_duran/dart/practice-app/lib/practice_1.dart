@@ -1,60 +1,24 @@
 import 'dart:io';
-
-const jaysel = "Jaysel Duran";
-const declaredNum = 7;
-
-String getMenu() {
-  return """
-  Hello to Jaysel\'s playground!
-  What exercise do you want to check?
-  [1] Practice 1
-  [2] Practice 2
-  [3] Practice 3
-  [4] Practice 4
-  [5] Practice 5
-  [6] Practice 6
-  [7] Practice 7
-  [8] Practice 8""";
-}
-
-bool isInputValidNumeric(String val) {
-  return val.isNotEmpty ||
-    isNumeric(val);
-}
-
-bool isInputValidDouble(String val) {
-  return val.isNotEmpty ||
-    isDouble(val);
-}
-
-bool isDouble(String str) {
-  RegExp _double = RegExp(r'^(-?)(0|([1-9][0-9]*))(\\.[0-9]+)?$');
-  return _double.hasMatch(str);
-}
-
-bool isNumeric(String str) {
-  RegExp _numeric = RegExp(r'^-?[0-9]+$');
-  return _numeric.hasMatch(str);
-}
+import 'main_app.dart' as lib;
 
 getInterest() {
   print("To compute the interest, please provide p, t, and r values. Enter p:");
   String p = stdin.readLineSync()!;
-  while (!isInputValidDouble(p)) {
+  while (!lib.isInputValidDouble(p)) {
     print("Input valid p:");
     p = stdin.readLineSync()!;
   }
 
   print("Enter t:");
   String t = stdin.readLineSync()!;
-  while (!isInputValidDouble(t)) {
+  while (!lib.isInputValidDouble(t)) {
     print("Input valid t:");
     t = stdin.readLineSync()!;
   }
 
   print("Enter r:");
   String r = stdin.readLineSync()!;
-  while (!isInputValidDouble(r)) {
+  while (!lib.isInputValidDouble(r)) {
     print("Input valid r:");
     r = stdin.readLineSync()!;
   }
@@ -66,7 +30,7 @@ getInterest() {
 getSquareRoot() {
   print("Enter a number:");
   String val = stdin.readLineSync()!;
-  while (!isInputValidNumeric(val)) {
+  while (!lib.isInputValidNumeric(val)) {
     print("Input a valid number:");
     val = stdin.readLineSync()!;
   }
@@ -96,7 +60,7 @@ getInputName() {
 getQuotientAndRemainder() {
   print("Enter the dividend: ");
   String dividend = stdin.readLineSync()!;
-  while (!isInputValidNumeric(dividend)) {
+  while (!lib.isInputValidNumeric(dividend)) {
     print("Input a valid dividend:");
     dividend = stdin.readLineSync()!;
   }
@@ -104,7 +68,7 @@ getQuotientAndRemainder() {
 
   print("Enter the divisor: ");
   String divisor = stdin.readLineSync()!;
-  while (!isInputValidNumeric(divisor)) {
+  while (!lib.isInputValidNumeric(divisor)) {
     print("Input a valid divisor:");
     divisor = stdin.readLineSync()!;
   }
@@ -143,14 +107,14 @@ printStringWithWhitespaces() {
 getTotalBill() {
   print("What is your total bill?: ");
   String bill = stdin.readLineSync()!;
-  while (!isInputValidDouble(bill)) {
+  while (!lib.isInputValidDouble(bill)) {
     print("Input a valid value:");
     bill = stdin.readLineSync()!;
   }
 
   print("Ilan kayong nagfoodtrip?: ");
   String pax = stdin.readLineSync()!;
-  while (!isInputValidNumeric(pax)) {
+  while (!lib.isInputValidNumeric(pax)) {
     print("Input a valid number of pax:");
     pax = stdin.readLineSync()!;
   }
