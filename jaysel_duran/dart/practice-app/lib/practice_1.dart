@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'main_app.dart' as lib;
+import 'practice_app.dart' as lib;
 
 getInterest() {
   print("To compute the interest, please provide p, t, and r values. Enter p:");

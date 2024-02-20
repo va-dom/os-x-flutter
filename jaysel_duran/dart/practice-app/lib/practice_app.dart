@@ -16,12 +16,12 @@ String getMenu() {
 }
 
 bool isInputValidNumeric(String val) {
-  return val.isNotEmpty ||
+  return val.isNotEmpty &&
     isNumeric(val);
 }
 
 bool isInputValidDouble(String val) {
-  return val.isNotEmpty ||
+  return val.isNotEmpty &&
     isDouble(val);
 }
 
@@ -33,4 +33,13 @@ bool isDouble(String str) {
 bool isNumeric(String str) {
   RegExp _numeric = RegExp(r'^-?[0-9]+$');
   return _numeric.hasMatch(str);
+}
+
+bool checkIsOddOrEvenNumber(int selectedInput) {
+  return selectedInput % 2 == 0;
+}
+
+bool isValidAlphabet(String val) {
+  RegExp alphabetRegex = RegExp(r'[a-zA-Z]');
+  return alphabetRegex.hasMatch(val);
 }

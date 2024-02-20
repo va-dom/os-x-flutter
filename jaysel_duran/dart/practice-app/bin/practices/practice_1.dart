@@ -1,4 +1,4 @@
-import 'package:practice_app/main_app.dart' as main_util;
+import 'package:practice_app/practice_app.dart' as main_util;
 import 'package:practice_app/practice_1.dart' as practice_one_utils;
 
 void runPractice(){
