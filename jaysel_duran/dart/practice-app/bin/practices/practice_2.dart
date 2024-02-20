@@ -16,7 +16,6 @@ void runPractice(){
   practice_two_utils.printName(100);
 
   print("Write a dart program to calculate the sum of natural numbers.");
-  print("test");
 
   print("Write a dart program to generate multiplication tables of 5.");
 
