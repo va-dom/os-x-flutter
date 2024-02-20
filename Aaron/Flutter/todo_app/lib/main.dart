@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/todo_list.dart';
+import 'package:my_app/services/todo_service.dart';
+import 'package:my_app/widgets/todo_list.dart';
 
 void main() {
   runApp(const ToDoApp());
@@ -17,7 +18,7 @@ class ToDoApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 0, 128, 255)),
         useMaterial3: true,
       ),
-      home: const ToDoList(title: 'ToDo Manager'),
+      home: TodoList(todoService: TodoService()),
     );
   }
 }
