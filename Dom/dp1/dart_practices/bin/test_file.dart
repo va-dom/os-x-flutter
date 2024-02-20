@@ -4,35 +4,49 @@ void main() {
   const con = 7;
   const word = "HA HA HA HA HA HA";
   printName();
+
   printRawString();
+
   print("constant value = $con");
+
   print("${calculate(con.toDouble(), 10, 100)}\n");
+
   print("enter number: ");
   int? toMultiply = int.parse(stdin.readLineSync()!);
   getSquareRoot(toMultiply);
+
   print("enter first name: ");
   String? firstName = stdin.readLineSync()!;
   print("\nenter first lastname: ");
   String? lastName = stdin.readLineSync()!;
   printFullName(firstName, lastName);
+
   print("enter dividend: ");
   double? dividend = double.parse(stdin.readLineSync()!);
   print("enter number: ");
   double? divisor = double.parse(stdin.readLineSync()!);
+
   getQuotient(dividend, divisor);
+
   getRemainder(dividend, divisor);
+
   print("enter first number: ");
   int? firstNumber = int.parse(stdin.readLineSync()!);
   print("enter second number: ");
   int? secondNumber = int.parse(stdin.readLineSync()!);
   swapNumber(firstNumber, secondNumber);
+
   removeWhiteSpaces(word);
+
   intToString(con.toString());
+
   splitTheBill(1000, 5);
+
   print("enter distance in km: ");
   double? distance = double.parse(stdin.readLineSync()!);
   print("enter speed in km/h: ");
   double? speed = double.parse(stdin.readLineSync()!);
+
   getTime(distance, speed);
 }
 
