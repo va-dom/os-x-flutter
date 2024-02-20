@@ -29,10 +29,17 @@ void runPractice(){
   print("\n---------------------------------------------------------------------------------------------------------------\n");
 
   print("Write a dart program to generate multiplication tables of 5.");
+  practice_two_utils.generateMultiplicationTable(5);
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
 
   print("Write a dart program to generate multiplication tables of 1-9.");
+  int multiplicationTableCounter = 1;
+  while(multiplicationTableCounter <= 9) {
+    practice_two_utils.generateMultiplicationTable(multiplicationTableCounter);
+    multiplicationTableCounter++;
+    print("\n---------------------------------------------------------------\n");
+  }
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
 

@@ -80,3 +80,10 @@ int calculateSum(int n) {
   }
   return sum;
 }
+
+generateMultiplicationTable(int selectedNum, [int max = 10]) {
+  print('Multiplication Table of $selectedNum:');
+  for (int i = 1; i <= max; i++) {
+    print('$selectedNum * $i = ${selectedNum * i}');
+  }
+}
