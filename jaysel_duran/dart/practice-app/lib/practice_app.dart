@@ -25,14 +25,20 @@ bool isInputValidDouble(String val) {
     isDouble(val);
 }
 
+bool isInputValidPositiveNumber(String val) {
+  return val.isNotEmpty ||
+    int.parse(val) != 0 ||
+    isValidPositiveNumber(val);
+}
+
 bool isDouble(String str) {
-  RegExp _double = RegExp(r'^(-?)(0|([1-9][0-9]*))(\\.[0-9]+)?$');
-  return _double.hasMatch(str);
+  RegExp doubleNumeric = RegExp(r'^(-?)(0|([1-9][0-9]*))(\\.[0-9]+)?$');
+  return doubleNumeric.hasMatch(str);
 }
 
 bool isNumeric(String str) {
-  RegExp _numeric = RegExp(r'^-?[0-9]+$');
-  return _numeric.hasMatch(str);
+  RegExp numericRegex = RegExp(r'^-?[0-9]+$');
+  return numericRegex.hasMatch(str);
 }
 
 bool checkIsOddOrEvenNumber(int selectedInput) {
@@ -42,4 +48,9 @@ bool checkIsOddOrEvenNumber(int selectedInput) {
 bool isValidAlphabet(String val) {
   RegExp alphabetRegex = RegExp(r'[a-zA-Z]');
   return alphabetRegex.hasMatch(val);
+}
+
+bool isValidPositiveNumber(String val) {
+  RegExp positiveRegex = RegExp(r'^[1-9]\d*$');
+  return positiveRegex.hasMatch(val);
 }

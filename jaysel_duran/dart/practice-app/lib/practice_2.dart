@@ -52,9 +52,31 @@ printName(int count) {
   int counter = 0;
   String toPrint = "";
   while(counter <= count) {
-    toPrint = toPrint + (main_util.jaysel == "" ? " " : "") + main_util.jaysel;
+    toPrint = "$toPrint * ${main_util.jaysel}";
     counter++;
   }
 
   print(toPrint);
+}
+
+getSumOfNaturalNumberPractice() {
+  stdout.write('Enter a positive integer: ');
+  String input = stdin.readLineSync()!;
+
+  while (!main_util.isInputValidNumeric(input)) {
+    print("Input a valid number:");
+    input = stdin.readLineSync()!;
+  }
+  
+  int sum = calculateSum(int.parse(input));
+  
+  print('The sum of natural numbers up to $input is: $sum');
+}
+
+int calculateSum(int n) {
+  int sum = 0;
+  for (int i = 1; i <= n; i++) {
+    sum += i;
+  }
+  return sum;
 }
