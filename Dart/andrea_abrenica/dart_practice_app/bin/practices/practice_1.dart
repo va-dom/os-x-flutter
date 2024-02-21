@@ -2,7 +2,7 @@ import 'package:dart_practice_app/dart_practice_app.dart' as main_func;
 import 'package:dart_practice_app/dart_practice_1.dart' as practice_one_func;
 
 void runPractice() {
-  print("**************** PRACTICE 1 ****************");
+  print(" PRACTICE 1 ");
 
   print("1. Write a program to print your name in Dart:");
   print("= Hi, I'm ${main_func.fullName} <3");

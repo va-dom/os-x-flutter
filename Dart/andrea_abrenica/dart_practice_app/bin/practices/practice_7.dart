@@ -1,4 +1,3 @@
-
 void runPractice() {
-  print("**************** PRACTICE 7 ****************");
+  print(" PRACTICE 7 ");
 }
