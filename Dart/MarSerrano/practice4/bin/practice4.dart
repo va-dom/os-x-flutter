@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:practice4/practice4.dart' as practice4;
 
+//function that add numbers from a list
 void addList (String expensesInput) {
   List<String> expensesInString = expensesInput.split(",");
   List<double> expenses = [];
@@ -20,11 +21,13 @@ void addList (String expensesInput) {
 
 void main(List<String> arguments) {
   //Question 1
+  print("==================Question 1==================");
   print("Create a list of names and print all names using list.");
   List<String> names = ["Mar", "Christian", "Serrano"];
   print(names);
 
   //Question 2
+  print("==================Question 2==================");
   print("Create a set of fruits and print all fruits using loop.");
   Set<String> fruits = {"Apples", "Banana", "Coconut"};
 
@@ -33,6 +36,7 @@ void main(List<String> arguments) {
   }
 
   //Question 3
+  print("==================Question 3==================");
   print("Create a program thats reads list of expenses amount using user input and print total.");
   print("Enter list of expenses amount (e.g 1,2,3) : ");
 
@@ -40,6 +44,7 @@ void main(List<String> arguments) {
   addList(expensesInput);
 
   //Question 4
+  print("==================Question 4==================");
   print("Create an empty list of type string called days. Use the add method to add names of 7 days and print all days.");
   List<String> days = [];
 
@@ -54,6 +59,7 @@ void main(List<String> arguments) {
   print(days);
 
   //Question 5
+  print("==================Question 5==================");
   print("Add your 7 friend names to the list. Use where to find a name that starts with alphabet a.");
   List<String> friends = ["James","Kiel","Angel","Fitz","Ian","Bren","Alain"];
   print("All friends: $friends");
@@ -62,6 +68,7 @@ void main(List<String> arguments) {
   print("Friends that start with a : $friendsA");
 
   //Question 6
+  print("==================Question 6==================");
   print("Create a map with name, address, age, country keys and store values to it. Update country name to other country and print all keys and values.");
   Map<String, dynamic> details= {};
 
@@ -82,6 +89,7 @@ void main(List<String> arguments) {
   print("Your new details: $details");
 
   //Question 7
+  print("==================Question 7==================");
   print("Create a map with name, phone keys and store some values to it. Use where to find all keys that have length 4.");
   Map<String, String> newDetails = {};
   print("Enter your name:");
@@ -94,6 +102,7 @@ void main(List<String> arguments) {
   print("Your new details : $newDetails");
 
   //Question 8
+  print("==================Question 8==================");
   print("Create a simple to-do application that allows user to add, remove, and view their task.");
   bool isContinue = true;
   List<String> tasks = [];
