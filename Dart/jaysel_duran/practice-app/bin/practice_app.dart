@@ -8,7 +8,7 @@ import 'practices/practice_5.dart' as practice5;
 import 'practices/practice_6.dart' as practice6;
 import 'practices/practice_7.dart' as practice7;
 import 'practices/practice_8.dart' as practice8;
-import '../lib/practice_app.dart' as lib;
+import 'package:practice_app/practice_app.dart' as lib;
 
 void main(List<String> arguments) {
   print(lib.getMenu());

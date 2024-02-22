@@ -5,13 +5,13 @@ void runPractice(){
   print("**************** EXERCISE 1 ****************");
 
   print("[1] Write a program to print your name in Dart:");
-  print("Hi, I\'m ${main_util.jaysel} :D");
+  print("Hi, I'm ${main_util.jaysel} :D");
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
 
   print("[2] Write a program to print Hello I am “John Doe” and Hello I’am “John Doe” with single and double quotes.");
-  print("""Hello, I am \"John Doe\"
-  Hello I\’am \“John Doe\”""");
+  print("""Hello, I am "John Doe"
+  Hello I’am “John Doe”""");
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
 

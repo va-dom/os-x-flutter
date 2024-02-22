@@ -3,7 +3,7 @@ const declaredNum = 7;
 
 String getMenu() {
   return """
-  Hello to Jaysel\'s playground!
+  Hello to Jaysel's playground!
   What exercise do you want to check?
   [1] Practice 1
   [2] Practice 2

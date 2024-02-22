@@ -76,7 +76,7 @@ getQuotientAndRemainder() {
   int quotient = int.parse(dividend) ~/ int.parse(divisor);
   int remainder = int.parse(dividend) % int.parse(divisor);
 
-  print("The quotient of $dividend\/$divisor is: $quotient with remainder of: $remainder");
+  print("The quotient of $dividend/$divisor is: $quotient with remainder of: $remainder");
 }
 
 getSwappingNumbers() {
