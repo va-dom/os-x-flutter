@@ -64,13 +64,13 @@ void main() {
   print("8. Write a program to swap two numbers..");
   int number1 = 9;
   int number2 = 1;
-  int temp_number;
+  int tempNumber;
   print("Before swapping");
   print("1st Number : $number1");
   print("2nd Number : $number2");
-  temp_number = number1;
+  tempNumber = number1;
   number1 = number2;
-  number2 = temp_number;
+  number2 = tempNumber;
   print("After swapping");
   print("1st Number : $number1");
   print("2nd Number : $number2");
@@ -85,8 +85,8 @@ void main() {
   print("\n");
 
   print("10. Write a Dart program to convert String to int.");
-  String number_text = "100";
-  int num = int.parse(number_text);
+  String numberText = "100";
+  int num = int.parse(numberText);
   print(num + 1);
   print("\n");
 
