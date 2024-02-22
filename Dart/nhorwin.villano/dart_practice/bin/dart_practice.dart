@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'practice1.dart' as practice1;
 
 void main() {
@@ -8,6 +9,33 @@ void main() {
   print("[4] Practice 4");
   print("[5] Practice 7");
   print("[6] Practice 8");
+  print("Enter Practice to run: ");
+  int? choice = int.parse(stdin.readLineSync()!);
 
-  practice1.runPractice();
+  switch (choice) {
+    case 1:
+      practice1.runPractice();
+      break;
+    case 2:
+      print("-");
+      break;
+    case 3:
+      print("-");
+      break;
+    case 4:
+      print("-");
+      break;
+    case 5:
+      print("-");
+      break;
+    case 6:
+      print("-");
+      break;
+    case 7:
+      print("-");
+      break;
+    default:
+      print("Invalid input!");
+      break;
+  }
 }
