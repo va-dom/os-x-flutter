@@ -1,6 +1,6 @@
 import 'dart:io';
 
-void main() {
+void runPractice() {
   print("---------------------------------------------------");
   print("Questions for Practice 1");
   print("---------------------------------------------------");
