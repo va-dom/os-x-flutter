@@ -87,3 +87,58 @@ generateMultiplicationTable(int selectedNum, [int max = 10]) {
     print('$selectedNum * $i = ${selectedNum * i}');
   }
 }
+
+openCalculator(){
+  print("Calculator");
+  print("Enter first number:");
+  String num1 = stdin.readLineSync()!;
+  while (!main_util.isInputValidDouble(num1)) {
+    print("Input a valid first number:");
+    num1 = stdin.readLineSync()!;
+  }
+  
+  print("Enter second number:");
+  String num2 = stdin.readLineSync()!;
+  while (!main_util.isInputValidDouble(num2.toString())) {
+    print("Input a valid second number:");
+    num2 = stdin.readLineSync()!;
+  }
+  
+  print("Enter operation (+, -, *, /):");
+  String operation = stdin.readLineSync()!;
+  
+  double result = 0;
+  
+  switch(operation) {
+    case '+':
+      result = double.parse(num1) + double.parse(num2);
+      break;
+    case '-':
+      result = double.parse(num1) - double.parse(num2);
+      break;
+    case '*':
+      result = double.parse(num1) * double.parse(num2);
+      break;
+    case '/':
+      if(double.parse(num2) != 0) {
+        result = double.parse(num1) / double.parse(num2);
+      } else {
+        print("Error: Division by zero!");
+        return;
+      }
+      break;
+    default:
+      print("Invalid operation!");
+      return;
+  }
+  
+  print("Result: $result");
+}
+
+printWithException(int max, List<int> exempted) {
+  for (int i = 1; i <= max; i++) {
+    if (!exempted.contains(i)) {
+      print(i);
+    }
+  }
+}

@@ -44,10 +44,13 @@ void runPractice(){
   print("\n---------------------------------------------------------------------------------------------------------------\n");
 
   print("Write a dart program to create a simple calculator that performs addition, subtraction, multiplication, and division.");
+  practice_two_utils.openCalculator();
+
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
 
   print("Write a dart program to print 1 to 100 but not 41.");
+  practice_two_utils.printWithException(100, [41]);
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
 }
