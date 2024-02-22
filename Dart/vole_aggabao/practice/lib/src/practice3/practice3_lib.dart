@@ -82,11 +82,3 @@ Map<String, String> createUser(String name, int age, {bool isActive = true}) {
 num calculateArea({num length = 1, num width = 1}) {
   return length * width;
 }
-
-/// Checks if string is numeric
-bool isNumeric(String s) {
-  if (s == null) {
-    return false;
-  }
-  return double.tryParse(s) != null;
-}

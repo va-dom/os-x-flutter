@@ -1,7 +1,8 @@
 import 'dart:io';
-import 'package:practice/practice3_lib.dart' as practice3_lib;
+import 'src/practice3/practice3_lib.dart' as practice3_lib;
+import 'package:practice/helpers.dart' as helpers;
 
-void main(List<String> arguments) {
+void run() {
   print("-----------------------------------------------------------------");
   print(" Questions for Practice 3");
   print(" [1] Write a program in Dart to print your own name using function.");
@@ -75,7 +76,7 @@ void question2() {
     if (numRangeList.length < 2 || numRangeList.length > 2) {
       print("Invalid number range");
     } else {
-      if (!practice3_lib.isNumeric(numRangeList[0]) || !practice3_lib.isNumeric(numRangeList[1])) {
+      if (!helpers.isNumeric(numRangeList[0]) || !helpers.isNumeric(numRangeList[1])) {
         print("Invalid number range");
       } else {
         int num1 = int.parse(numRangeList[0]);

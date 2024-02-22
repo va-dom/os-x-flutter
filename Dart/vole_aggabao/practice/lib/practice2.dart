@@ -1,6 +1,6 @@
 import 'dart:io';
 
-void main(List<String> arguments) {
+void run() {
   print("------------------------------------------------------------------------------------------------------------------------------");
   print("| Questions for Practice 2                                                                                                   |");
   print("| [1] Write a dart program to check if the number is odd or even.                                                            |");
