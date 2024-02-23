@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:math';
 import 'package:dart_practice/practice3.dart' as lib;
 
 void runPractice() {
