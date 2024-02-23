@@ -67,3 +67,18 @@ int maxNumber(int max1, int max2, int max3) {
 bool isEven(int even) {
   return even % 2 == 0;
 }
+
+Map<String, dynamic> createUser(String name, int age, {bool isActive = true}) {
+  return {'name': name, 'age': age, 'isActive': isActive};
+}
+
+double calculateArea([double length = 1, double width = 1]) {
+  return length * width;
+}
+
+create(String name, int age, {bool isActive = true}) {
+  print('User Details:');
+  print('Name: $name');
+  print('Age: $age');
+  print('Active: $isActive');
+}
