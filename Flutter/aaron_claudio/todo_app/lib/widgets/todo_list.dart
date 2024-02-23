@@ -6,7 +6,7 @@ import 'package:my_app/widgets/todo_item.dart';
 class TodoList extends StatefulWidget {
   final TodoService todoService;
 
-  const TodoList({Key? key, required this.todoService}) : super(key: key);
+  const TodoList({super.key, required this.todoService});
 
   @override
   State<TodoList> createState() => _TodoListState();
