@@ -2,6 +2,7 @@ import 'dart:io';
 import 'practice1.dart' as practice1;
 import 'practice2.dart' as practice2;
 import 'practice2_8.dart' as practice2_8;
+import 'practice3.dart' as practice3;
 
 void main() {
   print("----Select----");
@@ -25,7 +26,7 @@ void main() {
       practice2_8.runPractice();
       break;
     case 4:
-      practice1.runPractice();
+      practice3.runPractice();
       break;
     case 5:
       practice1.runPractice();
