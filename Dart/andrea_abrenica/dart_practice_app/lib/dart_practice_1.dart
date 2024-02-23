@@ -1,24 +1,24 @@
 import 'dart:io';
-import 'dart_practice_app.dart' as lib;
+import 'dart_practice_app.dart' as main_func;
 
 getInterest() {
   print("To compute the interest, please provide p, t, and r values. Enter p:");
   String p = stdin.readLineSync()!;
-  while (!lib.isInputValidDouble(p)) {
+  while (!main_func.isInputValidDouble(p)) {
     print("Input valid p:");
     p = stdin.readLineSync()!;
   }
 
   print("Enter t:");
   String t = stdin.readLineSync()!;
-  while (!lib.isInputValidDouble(t)) {
+  while (!main_func.isInputValidDouble(t)) {
     print("Input valid t:");
     t = stdin.readLineSync()!;
   }
 
   print("Enter r:");
   String r = stdin.readLineSync()!;
-  while (!lib.isInputValidDouble(r)) {
+  while (!main_func.isInputValidDouble(r)) {
     print("Input valid r:");
     r = stdin.readLineSync()!;
   }
@@ -30,7 +30,7 @@ getInterest() {
 getSquareRoot() {
   print("Enter a number:");
   String val = stdin.readLineSync()!;
-  while (!lib.isInputValidNumeric(val)) {
+  while (!main_func.isInputValidNumeric(val)) {
     print("Input a valid number:");
     val = stdin.readLineSync()!;
   }
@@ -60,14 +60,14 @@ getInputName() {
 getQuotientAndRemainder() {
   print("Enter the dividend: ");
   String dividend = stdin.readLineSync()!;
-  while (!lib.isInputValidNumeric(dividend)) {
+  while (!main_func.isInputValidNumeric(dividend)) {
     print("Input a valid dividend:");
     dividend = stdin.readLineSync()!;
   }
 
   print("Enter the divisor: ");
   String divisor = stdin.readLineSync()!;
-  while (!lib.isInputValidNumeric(divisor)) {
+  while (!main_func.isInputValidNumeric(divisor)) {
     print("Input a valid divisor:");
     divisor = stdin.readLineSync()!;
   }
@@ -107,14 +107,14 @@ printStringWithWhitespaces() {
 getTotalBill() {
   print("Enter the total bill amount: ");
   String bill = stdin.readLineSync()!;
-  while (!lib.isInputValidDouble(bill)) {
+  while (!main_func.isInputValidDouble(bill)) {
     print("Input a valid value:");
     bill = stdin.readLineSync()!;
   }
 
   print("Enter the number of people: ");
   String pax = stdin.readLineSync()!;
-  while (!lib.isInputValidNumeric(pax)) {
+  while (!main_func.isInputValidNumeric(pax)) {
     print("Input a valid number of pax:");
     pax = stdin.readLineSync()!;
   }
