@@ -48,17 +48,6 @@ getInputIsPositiveNegativeOrZeroPractice() {
   }
 }
 
-printName(int count) {
-  int counter = 0;
-  String toPrint = "";
-  while(counter <= count) {
-    toPrint = "$toPrint * ${main_util.jaysel}";
-    counter++;
-  }
-
-  print(toPrint);
-}
-
 getSumOfNaturalNumberPractice() {
   stdout.write('Enter a positive integer: ');
   String input = stdin.readLineSync()!;
@@ -133,12 +122,4 @@ openCalculator(){
   }
   
   print("Result: $result");
-}
-
-printWithException(int max, List<int> exempted) {
-  for (int i = 1; i <= max; i++) {
-    if (!exempted.contains(i)) {
-      print(i);
-    }
-  }
 }

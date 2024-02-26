@@ -54,3 +54,31 @@ bool isValidPositiveNumber(String val) {
   RegExp positiveRegex = RegExp(r'^[1-9]\d*$');
   return positiveRegex.hasMatch(val);
 }
+
+printName(int count) {
+  int counter = 1;
+  String toPrint = "";
+  while(counter <= count) {
+    toPrint = toPrint.isEmpty ? jaysel : "$toPrint * $jaysel";
+    counter++;
+  }
+
+  print(toPrint);
+}
+
+printNumListWithException({int fromVal = 1, required int toVal,List<int>? except, bool evenOnly = false, bool oddOnly = false}) {
+  for (int i = fromVal; i <= toVal; i++) {
+    if (except!.isEmpty || !except.contains(i)) {
+      if(evenOnly || oddOnly) {
+        if (evenOnly && i % 2 == 0) {
+          print(i); // prints event numbers only
+        } else if (oddOnly && i % 2 > 0) {
+          print(i); // prints odd numbers only
+        }
+      } else {
+        print(i); // default
+      }
+    }
+  }
+}
+

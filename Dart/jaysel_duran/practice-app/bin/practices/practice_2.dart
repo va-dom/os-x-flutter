@@ -1,7 +1,8 @@
+import 'package:practice_app/practice_app.dart' as main_util;
 import 'package:practice_app/practice_2.dart' as practice_two_utils;
 
 void runPractice(){
-  print("**************** EXERCISE 2 ****************");
+  print("**************** EXERCISE 2 ****************\n");
 
   print("Write a dart program to check if the number is odd or even.");
   practice_two_utils.getOddOrEvenNumberPractice();
@@ -19,7 +20,7 @@ void runPractice(){
   print("\n---------------------------------------------------------------------------------------------------------------\n");
 
   print("Write a dart program to print your name 100 times.");
-  practice_two_utils.printName(100);
+  main_util.printName(100);
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
 
@@ -50,7 +51,7 @@ void runPractice(){
   print("\n---------------------------------------------------------------------------------------------------------------\n");
 
   print("Write a dart program to print 1 to 100 but not 41.");
-  practice_two_utils.printWithException(100, [41]);
+  main_util.printNumListWithException(toVal: 100, except: [41]);
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
 }
