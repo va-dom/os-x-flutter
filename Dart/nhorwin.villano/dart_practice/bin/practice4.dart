@@ -66,7 +66,7 @@ void runPractice() {
     'Anna',
     'Chris',
     'Leo',
-    'Michael'
+    'Angel'
   ];
   List<String> startWithA =
       friendNames.where((element) => element.startsWith("A")).toList();
