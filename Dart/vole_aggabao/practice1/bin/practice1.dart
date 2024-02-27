@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 
-void run() {
+void main(List<String> arguments) {
   // Question 1
   print("1. Write a program to print your name in Dart.");
   question1();

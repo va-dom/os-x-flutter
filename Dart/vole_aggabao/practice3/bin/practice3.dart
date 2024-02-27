@@ -1,8 +1,8 @@
 import 'dart:io';
-import 'src/practice3/practice3_lib.dart' as practice3_lib;
-import 'package:practice/helpers.dart' as helpers;
+import 'package:practice3/practice3.dart' as practice3;
+import 'package:practice3/helpers.dart' as helpers;
 
-void run() {
+void main(List<String> arguments) {
   print("-----------------------------------------------------------------");
   print(" Questions for Practice 3");
   print(" [1] Write a program in Dart to print your own name using function.");
@@ -64,7 +64,7 @@ void run() {
 
 void question1() {
   print(" [1] Write a program in Dart to print your own name using function.");
-  print(practice3_lib.getName());
+  print(practice3.getName());
 }
 
 void question2() {
@@ -81,7 +81,7 @@ void question2() {
       } else {
         int num1 = int.parse(numRangeList[0]);
         int num2 = int.parse(numRangeList[1]);
-        print(practice3_lib.getEvenNumbersInRange(num1, num2));
+        print(practice3.getEvenNumbersInRange(num1, num2));
       }
     }
   }
@@ -91,7 +91,7 @@ void question3() {
   print(" [3] Create a function called greet that takes a name as an argument and prints a greeting message. For example, greet(“John”) should print “Hello, John”.");
   String? name = stdin.readLineSync();
   if (name != null) {
-    practice3_lib.printGreeting(name);
+    practice3.printGreeting(name);
   }
 }
 
@@ -99,20 +99,20 @@ void question4() {
   print(" [4] Write a program in Dart that generates random password.");
   print("Enter password length");
   int passLength = int.parse(stdin.readLineSync()!);
-  print("Generated Password: ${practice3_lib.generatePassword(length: passLength)}");
+  print("Generated Password: ${practice3.generatePassword(length: passLength)}");
 }
 
 void question5() {
   print(" [5] Write a program in Dart that find the area of a circle using function. Formula: pi * r * r");
   print("Enter Radius");
   double r = double.parse(stdin.readLineSync()!);
-  print("Area = ${practice3_lib.getCircleArea(r)}");
+  print("Area = ${practice3.getCircleArea(r)}");
 }
 
 void question6() {
   print(" [6] Write a program in Dart to reverse a String using function.");
   String text = " [6] Write a program in Dart to reverse a String using function.";
-  print("Reversed Text: ${practice3_lib.reverseText(text)}");
+  print("Reversed Text: ${practice3.reverseText(text)}");
 }
 
 void question7() {
@@ -121,7 +121,7 @@ void question7() {
   int num = int.parse(stdin.readLineSync()!);
   print("Exponent");
   int exponent = int.parse(stdin.readLineSync()!);
-  print("$num ^ $exponent = ${practice3_lib.getPower(num, exponent)}");
+  print("$num ^ $exponent = ${practice3.getPower(num, exponent)}");
 }
 
 void question8() {
@@ -130,7 +130,7 @@ void question8() {
   num num1 = num.parse(stdin.readLineSync()!);
   print("Enter number 2");
   num num2 = num.parse(stdin.readLineSync()!);
-  print("$num1 + $num2 = ${practice3_lib.add(num1, num2)}");
+  print("$num1 + $num2 = ${practice3.add(num1, num2)}");
 }
 
 void question9() {
@@ -138,13 +138,13 @@ void question9() {
   int num1 = 76;
   int num2 = 99;
   int num3 = -16;
-  print("Largest number is ${practice3_lib.maxNumber(num1, num2, num3)}");
+  print("Largest number is ${practice3.maxNumber(num1, num2, num3)}");
 }
 
 void question10() {
   print(" [10] Write a function in Dart called isEven that takes a number as an argument and returns True if the number is even, and False otherwise.");
   int num = 73;
-  print("$num is Even: ${practice3_lib.isEven(num)}");
+  print("$num is Even: ${practice3.isEven(num)}");
 }
 
 void question11() {
@@ -154,7 +154,7 @@ void question11() {
   String name = stdin.readLineSync()!;
   print("Age");
   int age = int.parse(stdin.readLineSync()!);
-  print(practice3_lib.createUser(name, age));
+  print(practice3.createUser(name, age));
 }
 
 void question12() {
@@ -163,5 +163,5 @@ void question12() {
   num length = num.parse(stdin.readLineSync()!);
   print("Width");
   num width = num.parse(stdin.readLineSync()!);
-  print("Area = ${practice3_lib.calculateArea(length: length, width: width)}");
+  print("Area = ${practice3.calculateArea(length: length, width: width)}");
 }

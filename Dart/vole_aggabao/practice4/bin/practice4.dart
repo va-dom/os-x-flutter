@@ -1,8 +1,9 @@
 import 'dart:io';
-import 'package:practice/helpers.dart' as helpers;
-import 'src/practice4/todo/todo.dart' as todo;
+import 'package:practice4/practice4.dart' as practice4;
+import 'package:practice4/todo.dart' as todo;
+import 'package:practice4/helpers.dart' as helpers;
 
-void run() {
+void main(List<String> arguments) {
   print("-----------------------------------------------------------------");
   print(" Questions for Practice 4");
   print(" [1] Create a list of names and print all names using list.");
@@ -86,7 +87,7 @@ void question3() {
       }
     }
   } while(addExpense);
-  print("Total Expenses = ${expenses.fold(0, (num a, num b) => a + b)}");
+  print("Total Expenses = ${practice4.calculateTotalFromList(expenses)}");
 }
 
 void question4() {
