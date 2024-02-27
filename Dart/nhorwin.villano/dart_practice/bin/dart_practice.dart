@@ -4,6 +4,8 @@ import 'practice2.dart' as practice2;
 import 'practice2_8.dart' as practice2_8;
 import 'practice3.dart' as practice3;
 import 'practice4.dart' as practice4;
+import 'practice7_null_safety.dart' as practice7_null_safety;
+import 'practice7.dart' as practice7;
 
 void main() {
   print("----Select----");
@@ -12,7 +14,8 @@ void main() {
   print("[3] Practice 2-8");
   print("[4] Practice 3");
   print("[5] Practice 4");
-  print("[6] Practice 5");
+  print("[6] Practice 7 Null Safety Exercise");
+  print("[7] Practice 7");
   print("Enter Practice to run: ");
   int? choice = int.parse(stdin.readLineSync()!);
 
@@ -33,10 +36,10 @@ void main() {
       practice4.runPractice();
       break;
     case 6:
-      practice1.runPractice();
+      practice7_null_safety.runPractice();
       break;
     case 7:
-      practice1.runPractice();
+      practice7.runPractice();
       break;
     default:
       print("Invalid input!");

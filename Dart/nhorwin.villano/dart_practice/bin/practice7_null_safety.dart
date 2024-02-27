@@ -23,7 +23,7 @@ class Person {
   String get name => _name;
 }
 
-void main() {
+void runPractice() {
   print("---------------------------------------------------");
   print("Questions for Practice 7");
   print("---------------------------------------------------");
