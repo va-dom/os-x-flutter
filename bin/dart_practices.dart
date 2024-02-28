@@ -6,5 +6,5 @@
 import 'practice_8/index.dart' as p8;
 
 void main(List<String> arguments) {
-  p8.readCsvFile();
+  p8.reverseString('racecar');
 }
