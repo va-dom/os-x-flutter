@@ -46,6 +46,8 @@ void checkNumber() {
     } else {
       print('$num is zero');
     }
+  } else {
+    throw Exception('Invalid input');
   }
 }
 
@@ -65,11 +67,9 @@ void calculateSumOfNaturalNumbers() {
   String? number = stdin.readLineSync();
 
   if (number != null) {
-    int num = int.parse(number);
+    int newNumber = int.parse(number), sum = 0;
 
-    int sum = 0;
-
-    for (var i = 1; i <= num; i++) {
+    for (var i = 1; i <= newNumber; i++) {
       sum += i;
 
       print(sum);
@@ -81,7 +81,7 @@ void calculateSumOfNaturalNumbers() {
 
 // Write a dart program to generate multiplication tables of 5.
 void multiplicationOf5() {
-  const count = 5;
+  const count = 10;
   for (int i = 1; i <= count; i++) {
     int product = 5 * i;
 
@@ -105,17 +105,17 @@ void simpleCalculator() {
   String? userInput = stdin.readLineSync();
 
   if (userInput != null) {
-    int num = int.parse(userInput);
+    int num1 = int.parse(userInput);
 
     print("Enter second number: ");
     String? userInput2 = stdin.readLineSync();
     if (userInput2 != null) {
       int num2 = int.parse(userInput2);
 
-      print("Addition: ${num + num2}");
-      print("Subtraction: ${num - num2}");
-      print("Multiplication: ${num * num2}");
-      print("Division: ${num / num2}");
+      print("Addition: ${num1 + num2}");
+      print("Subtraction: ${num1 - num2}");
+      print("Multiplication: ${num1 * num2}");
+      print("Division: ${num1 / num2}");
     } else {
       throw Exception('Invalid input');
     }

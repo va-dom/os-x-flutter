@@ -17,19 +17,22 @@ void printEvenNumbers() {
   }
 }
 
-// Create a function called greet that takes a name as an argument and prints a greeting message. For example, greet(“John”) should print “Hello, John”.
+// Create a function called greet that takes a name as an argument and prints a greeting message.
+// For example, greet(“John”) should print “Hello, John”.
 void greet(String name) {
   print("Hello, $name");
 }
 
 // Write a program in Dart that generates random password.
-void generateRandomPassword() {
-  const passwordLength = 8, intRange = 10;
+void generateRandomPassword(int passwordLength) {
+  int intRange = 26;
   Random random = Random();
   List<int> password =
-      List.generate(passwordLength, (_) => random.nextInt(intRange));
+      List.generate(passwordLength, (_) => random.nextInt(intRange) + 97);
 
-  print(password.join(''));
+  final passwordString = String.fromCharCodes(password).toUpperCase();
+
+  print(passwordString);
 }
 
 // Write a program in Dart that find the area of a circle using function. Formula: pi * r * r

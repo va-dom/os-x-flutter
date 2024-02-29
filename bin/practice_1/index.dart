@@ -1,10 +1,6 @@
 import 'dart:io';
 import 'package:dart_practices/calculation.dart' as calculation;
 
-void main(List<String> arguments) {
-  printName();
-}
-
 // Write a program to print your name in Dart.
 void printName() {
   print('Robertson Morales');
@@ -20,13 +16,15 @@ void introduce() {
 // Declare constant type of int set value 7.
 void constType() {
   const int num = 7;
-
   print(num);
 }
 
 // Write a program in Dart that finds simple interest. Formula= (p * t * r) / 100
 void simpleInterest() {
-  double p = 1000, t = 2, r = 5, result = (p * t * r) / 100;
+  double p = 1000,
+      t = 2,
+      r = 5,
+      result = calculation.calcSimpleIntereset(p, t, r);
   print('The simple interest is: $result');
 }
 
@@ -36,7 +34,7 @@ void squareOfANumber() {
   String? userInput = stdin.readLineSync();
 
   if (userInput != null && int.tryParse(userInput) != null) {
-    int number = int.parse(userInput), result = number * number;
+    int number = int.parse(userInput), result = calculation.getSquare(number);
 
     print('The square of $userInput is: $result');
   } else {
@@ -60,7 +58,8 @@ void displayFullName() {
 
 // Write a program to find quotient and remainder of two integers.
 void findQuotientAndRemainder(dividend, divisor) {
-  int quotient = dividend ~/ divisor, remainder = dividend % divisor;
+  int quotient = calculation.getQuotient(dividend, divisor),
+      remainder = calculation.getRemainder(dividend, divisor);
 
   print('Quotient: $quotient');
   print('Remainder: $remainder');
@@ -104,10 +103,11 @@ void splitBill() {
   }
 }
 
-// Suppose, your distance to office from home is 25 km and you travel 40 km per hour. Write a program to calculate time taken to reach office in minutes. Formula= (distance) / (speed)
+// Suppose, your distance to office from home is 25 km and you travel 40 km per hour.
+// Write a program to calculate time taken to reach office in minutes. Formula= (distance) / (speed)
 void calculateTimeToOffice() {
-  int distance = 25; // km
-  int speed = 40; //km/h
+  const int distance = 25; // km
+  const int speed = 40; // km/h
 
   double time = calculation.calcDistanceAndSpeed(distance, speed),
       minutes = (time * 60);
