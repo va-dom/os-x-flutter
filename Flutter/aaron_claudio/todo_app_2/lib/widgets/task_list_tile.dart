@@ -27,7 +27,7 @@ class _TaskListTile extends State<TaskListTile>{
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
-            flex: 6,
+            flex: 8,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

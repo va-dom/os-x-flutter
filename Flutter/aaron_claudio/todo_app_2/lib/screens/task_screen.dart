@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app_2/models/category.dart';
 import 'package:todo_app_2/models/task.dart';
 import 'package:todo_app_2/utils/utils.dart';
 import 'package:todo_app_2/widgets/task_list_tile.dart';
@@ -11,6 +12,23 @@ class TaskScreen extends StatefulWidget{
 }
 
 class _TaskScreenState extends State<TaskScreen>{
+
+  late List<Task> tasks;
+  late List<Category> categories;
+
+  @override
+  void initState(){
+    super.initState();
+    tasks = [];
+    categories = [];
+  }
+
+  void _addCategory(String categoryName){
+    setState(() {
+      categories.add(Category(categoryName));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +49,8 @@ class _TaskScreenState extends State<TaskScreen>{
               final newTask = await openAddTaskDialog(
                 context: context,
                 task: task,
+                categories: categories,
+                onAddCategory: _addCategory
               );
               if(newTask != null){
                 tasks.removeWhere((element) => element.id == newTask.id);
@@ -43,7 +63,11 @@ class _TaskScreenState extends State<TaskScreen>{
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async{
-          final task = await openAddTaskDialog(context: context);
+          final task = await openAddTaskDialog(
+            context: context,
+            categories: categories,
+            onAddCategory: _addCategory
+          );
           if(task != null){
             tasks.add(task);
           }
