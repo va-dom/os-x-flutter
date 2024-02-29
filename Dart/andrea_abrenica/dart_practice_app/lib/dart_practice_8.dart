@@ -1,2 +1,8 @@
 import 'dart:io';
-import 'dart_practice_app.dart' as main_func;
+import 'dart:async';
+
+printTimeAfterDelay(Duration delay) {
+  Future.delayed(delay, () {
+    print('Current time after ${delay.inSeconds} seconds: ${DateTime.now()}');
+  });
+}
