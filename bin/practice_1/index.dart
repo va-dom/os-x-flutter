@@ -71,8 +71,8 @@ void swapTwoNumbers() {
   print(numbers.reversed);
 }
 
-// Write a program in Dart to remove all whitespaces from String.
-void removeWhitespacesFromString() {
+// Write a program in Dart to remove all white spaces from String.
+void removeWhiteSpacesFromString() {
   final name = '\tRobertson Morales\n'.trim();
   print(name);
 }

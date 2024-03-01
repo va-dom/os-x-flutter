@@ -1,5 +1,5 @@
 import '../practice_1/index.dart' as p1;
-import '../../lib/calculation.dart' as calculation;
+import 'package:dart_practices/calculation.dart' as calculation;
 import 'dart:math';
 
 // Write a program in Dart to print your own name using function.
