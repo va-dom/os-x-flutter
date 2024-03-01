@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:dart_practice/practice3.dart'
+    as lib; //to use the reverseString function
 
 //Function for Question 3
 Future<DateTime> currTime() async {
@@ -37,6 +39,31 @@ void getSum6(int num1, int num2) async {
 void getSum7(int num1, int num2) async {
   int sum = await add(num1, num2);
   print("Question7: Sum: $sum");
+}
+
+//Function for Question 8
+Future<List<String>> sortList(List<String> list) async {
+  list.sort();
+  return await Future.delayed(Duration(seconds: 2), () => list);
+}
+
+//Function for Question 9
+Future<List<int>> doubleList(List<int> list) async {
+  List<int> doubledList = [];
+  for (int number in list) {
+    doubledList.add(number * 2);
+  }
+  return await Future.delayed(Duration(seconds: 2), () => doubledList);
+}
+
+//Function for Question 9
+Future<List<String>> reverseList(List<String> list) async {
+  List<String> revervedList = [];
+  for (String text in list) {
+    revervedList.add(lib
+        .reverseString(text)); // lib.reverseString function from practice3 lib
+  }
+  return await Future.delayed(Duration(seconds: 2), () => revervedList);
 }
 
 void main() {
@@ -89,5 +116,28 @@ void main() {
   print("Enter Num2: ");
   int? num2 = int.parse(stdin.readLineSync()!);
   getSum7(num1, num2);
+  print("\n");
+
+  print(
+      "8. Write a Dart program that takes a list of strings as input, sorts the list asynchronously, and then prints the sorted list.");
+  List<String> stringList = ['zebra', 'lion', 'elephant', 'tiger'];
+  print('Original list: $stringList');
+  sortList(stringList).then((value) => print('Question8: Sorted list: $value'));
+  print("\n");
+
+  print(
+      "9. Write a Dart program that takes a list of integers as input, multiplies each integer by 2 asynchronously, and then prints the modified list.");
+  List<int> intList = [1, 2, 3, 4];
+  print('Original list: $intList');
+  doubleList(intList)
+      .then((value) => print('Question9: Modified list: $value'));
+  print("\n");
+
+  print(
+      "9. Write a Dart program that takes a string as input, reverses the string asynchronously, and then prints the reversed string.");
+  // Will use stringList from Question 8
+  print('Original list: $stringList');
+  reverseList(stringList)
+      .then((value) => print('Question10: Reversed list: $value'));
   print("\n");
 }
