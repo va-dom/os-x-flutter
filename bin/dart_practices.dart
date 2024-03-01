@@ -6,5 +6,5 @@ import 'practice_7/index.dart' as p7;
 import 'practice_8/index.dart' as p8;
 
 void main(List<String> arguments) {
-  p3.generateRandomPassword(10);
+  p3.calculatePower(5, 3);
 }

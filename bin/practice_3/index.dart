@@ -1,4 +1,5 @@
 import '../practice_1/index.dart' as p1;
+import '../../lib/calculation.dart' as calculation;
 import 'dart:math';
 
 // Write a program in Dart to print your own name using function.
@@ -25,20 +26,22 @@ void greet(String name) {
 
 // Write a program in Dart that generates random password.
 void generateRandomPassword(int passwordLength) {
-  int intRange = 26;
-  Random random = Random();
-  List<int> password =
-      List.generate(passwordLength, (_) => random.nextInt(intRange) + 97);
+  Random random = Random.secure();
+  List<int> alphabets = List.generate(26, (i) => 65 + i), // A-Z
+      number = List.generate(10, (i) => 48 + i); // 0-9
 
-  final passwordString = String.fromCharCodes(password).toUpperCase();
+  String password = String.fromCharCodes(alphabets).toUpperCase() +
+      String.fromCharCodes(number);
 
-  print(passwordString);
+  List<int> convertToCodeUnits = password.codeUnits.toList();
+  convertToCodeUnits.shuffle(random);
+  String newPassword = String.fromCharCodes(convertToCodeUnits);
+  print(newPassword.substring(0, passwordLength));
 }
 
 // Write a program in Dart that find the area of a circle using function. Formula: pi * r * r
 void findAreaOfCircle(double radius) {
-  double area = pi * radius * radius;
-  print(area);
+  print(calculation.getAreaOfCircle(radius));
 }
 
 // Write a program in Dart to reverse a String using function.
@@ -79,5 +82,5 @@ void createUser(String name, int age, [bool isActive = true]) {
 
 // Write a function in Dart called calculateArea that calculates the area of a rectangle. It should take length and width as arguments, with a default value of 1 for both. Formula: length * width.
 void calculateArea([int length = 1, int width = 1]) {
-  print(length * width);
+  print(calculation.getArea(length, width));
 }

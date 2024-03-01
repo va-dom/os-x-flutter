@@ -24,7 +24,7 @@ void simpleInterest() {
   double p = 1000,
       t = 2,
       r = 5,
-      result = calculation.calcSimpleIntereset(p, t, r);
+      result = calculation.calcSimpleInterest(p, t, r);
   print('The simple interest is: $result');
 }
 
