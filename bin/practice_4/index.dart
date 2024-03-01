@@ -4,7 +4,11 @@ import 'dart:io';
 void printAllNames() {
   List<String> names = ['Robertson', 'Elaine', 'Calix', 'Cookie'];
 
-  print(names);
+  for (int i = 0; i < names.length; i++) {
+    print(names[i]);
+  }
+
+  // print(names);
 }
 
 // Create a set of fruits and print all fruits using loop.
@@ -46,6 +50,7 @@ void printDays() {
   days.add('Friday');
   days.add('Saturday');
   days.add('Sunday');
+
   print(days);
 }
 
