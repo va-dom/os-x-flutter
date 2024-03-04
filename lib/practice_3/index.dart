@@ -1,4 +1,4 @@
-import '../practice_1/index.dart' as p1;
+import 'package:dart_practices/practice_1/index.dart' as p1;
 import 'package:dart_practices/calculation.dart' as calculation;
 import 'dart:math';
 

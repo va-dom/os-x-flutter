@@ -12,7 +12,7 @@ void printCurrentTime() async {
 void readCsvFile() {
   try {
     File file = File(
-        'bin\\data\\test-data.csv'); // Replace with the path to your CSV file
+        'lib\\data\\test-data.csv'); // Replace with the path to your CSV file
 
     if (!file.existsSync()) {
       print('File not found: ${file.path}');
