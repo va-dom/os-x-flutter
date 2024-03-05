@@ -47,6 +47,14 @@ class _TaskListTile extends State<TaskListTile>{
                   maxLines: 5,
                   overflow: TextOverflow.ellipsis,
                 ),
+                const SizedBox(height: 5),
+                Text(
+                  'Category: ${widget.task.category.name}',
+                  style: const TextStyle(
+                    fontStyle: FontStyle.italic,
+                    color: Colors.grey,
+                  ),
+                )
               ],
             ),
           ),
