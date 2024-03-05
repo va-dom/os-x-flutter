@@ -1,5 +1,4 @@
-import 'dart:io';
-import 'package:dart_practice/practice3.dart' as lib;
+import 'package:dart_practice/practice3.dart' as practice3_lib;
 
 void runPractice() {
   print("---------------------------------------------------");
@@ -7,37 +6,42 @@ void runPractice() {
   print("---------------------------------------------------");
 
   print("1. Write a program in Dart to print your own name using function.");
-  lib.printOwnName();
+  practice3_lib.printOwnName();
+  print("\n");
+
+  print(
+      "2. Write a program in Dart to print even numbers between intervals using function. ");
+  practice3_lib.printEvenNum(1, 10);
   print("\n");
 
   print(
       "3. Create a function called greet that takes a name as an argument and prints a greeting message. ");
-  lib.greet("Nhorwin John");
+  practice3_lib.greet("Nhorwin John");
   print("\n");
 
   print("4. Write a program in Dart that generates random password. ");
-  print(lib.generateRandomPassword());
+  print(practice3_lib.generateRandomPassword(10));
   print("\n");
 
   print(
       "5. Write a program in Dart that find the area of a circle using function. ");
   print("r = 5");
-  lib.getCircleArea(5);
+  practice3_lib.getCircleArea(5);
   print("\n");
 
   print("6. Write a program in Dart to reverse a String using function.");
   String originalString = 'Nhorwin';
-  String reversedString = lib.reverseString(originalString);
+  String reversedString = practice3_lib.reverseString(originalString);
   print('Original String: $originalString');
   print('Reversed String: $reversedString');
   print("\n");
 
   print("7. Write a program in Dart to calculate power of a certain number.");
-  print("Enter the value of base: ");
-  double base = double.parse(stdin.readLineSync()!);
-  print("Enter the value of exponent: ");
-  int exponent = int.parse(stdin.readLineSync()!);
-  double value = lib.calculatePower(base, exponent);
+  double base = 5;
+  int exponent = 6;
+  print("Base = $base");
+  print("exponent = $exponent");
+  num value = practice3_lib.calculatePower(base, exponent);
   print("The value of $base raise to the power of $exponent is $value");
   print("\n");
 
@@ -47,7 +51,7 @@ void runPractice() {
   int number2 = 6;
   print("Number1 = $number1");
   print("Number2 = $number2");
-  int sum = lib.add(number1, number2);
+  int sum = practice3_lib.add(number1, number2);
   print("Sum = $sum");
   print("\n");
 
@@ -59,7 +63,7 @@ void runPractice() {
   print("Number1 = $number1");
   print("Number2 = $number2");
   print("Number3 = $number3");
-  int maxNum = lib.getLargestNumber(number1, number2, number3);
+  int maxNum = practice3_lib.getLargestNumber(number1, number2, number3);
   print("Largest Number = $maxNum");
   print("\n");
 
@@ -68,20 +72,24 @@ void runPractice() {
   number1 = 5;
   number2 = 6;
   print("Number1 = $number1");
-  bool result = lib.isEven(number1);
+  bool result = practice3_lib.isEven(number1);
   print("$number1 : $result");
   print("Number2 = $number2");
-  result = lib.isEven(number2);
+  result = practice3_lib.isEven(number2);
   print("$number2 : $result");
   print("\n");
 
   print(
       "11. Write a function in Dart called createUser with parameters name, age, and isActive, where isActive has a default value of true.");
-  lib.createUser("Nhorwin", 27);
+  practice3_lib.createUser("Nhorwin", 27);
+  print("\n");
+  practice3_lib.createUser("Villano", 27, isActive: false);
   print("\n");
 
   print(
       "12. Write a function in Dart called calculateArea that calculates the area of a rectangle. It should take length and width as arguments, with a default value of 1 for both.");
-  lib.calculateArea(length: 3, width: 4);
+  practice3_lib.calculateArea();
+  print("\n");
+  practice3_lib.calculateArea(length: 3, width: 4);
   print("\n");
 }

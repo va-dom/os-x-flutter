@@ -5,7 +5,7 @@ void displayOptions() {
   print("[3] Multiply");
   print("[4] Divide");
   print("[5] Exit");
-  print("Please choose option");
+  print("Please choose option:");
 }
 
 double add(double num1, double num2) {

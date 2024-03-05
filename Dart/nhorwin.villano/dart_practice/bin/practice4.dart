@@ -1,17 +1,25 @@
-import 'dart:io';
+import 'package:dart_practice/practice1.dart' as practice1_lib;
+import 'package:dart_practice/practice4.dart' as practice4_lib;
 
 void runPractice() {
   print("---------------------------------------------------");
-  print("Questions for Practice 1");
+  print("Questions for Practice 4");
   print("---------------------------------------------------");
 
   print("1. Create a list of names and print all names using list.");
   List<String> names = ["Nhorwin", "John", "Villano"];
+  // using print list
   print(names);
+  print("\n");
+  //using for in
+  for (var name in names) {
+    print(name);
+  }
   print("\n");
 
   print("2. Create a set of fruits and print all fruits using loop.");
   Set<String> fruits = {"Apple", "Orange", "Mango"};
+  // using for in
   for (String fruit in fruits) {
     print(fruit);
   }
@@ -23,11 +31,12 @@ void runPractice() {
   double total = 0.0;
   print('Enter your expenses, one amount per line. Enter "done" to finish:');
   while (true) {
-    String? userInput = stdin.readLineSync();
-    if (userInput != null && userInput.toLowerCase() == 'done') {
+    String userInput = practice1_lib.inputString();
+    if (userInput.toLowerCase() == 'done') {
       break;
     }
-    double? expenseAmount = double.tryParse(userInput ?? '');
+    double? expenseAmount =
+        double.tryParse(userInput); // Check if userInput is a valid double
     if (expenseAmount != null) {
       expenses.add(expenseAmount);
       total += expenseAmount;
@@ -63,13 +72,13 @@ void runPractice() {
     'John',
     'Nhorwin',
     'Bob',
-    'Anna',
+    'anna',
     'Chris',
     'Leo',
     'Angel'
   ];
   List<String> startWithA =
-      friendNames.where((element) => element.startsWith("A")).toList();
+      friendNames.where((name) => name.toLowerCase().startsWith("a")).toList();
   print(startWithA);
   print("\n");
 
@@ -82,9 +91,15 @@ void runPractice() {
     'age': 27,
     'country': 'Philippines'
   };
+  // Print all keys and values before updating
+  print('Keys and Values:');
+  personalInfo.forEach((key, value) {
+    print('$key: $value');
+  });
+  print("\n");
   // Update country name to another country
   personalInfo['country'] = 'USA';
-  // Print all keys and values
+  // Print all keys and values after update
   print('Keys and Values:');
   personalInfo.forEach((key, value) {
     print('$key: $value');
@@ -97,15 +112,41 @@ void runPractice() {
   Map<String, String> contactInfo = {
     'John': '1234',
     'Nhorwin': '8888',
-    'Bob': '2932',
-    'Carl': '692280',
+    'Bob': '293212',
+    'Anne': '692280',
   };
   // Use 'where' to find all phone keys that have length 4
   contactInfo.removeWhere((key, value) => value.length != 4);
   // Print all phone keys with length 4
   print('Phone keys with length 4:');
-  for (var phoneKey in contactInfo.values) {
-    print(phoneKey);
+  contactInfo.forEach((key, value) {
+    print('$key: $value');
+  });
+  print("\n");
+
+  print(
+      "8. Create a simple to-do application that allows user to add, remove, and view their task.");
+  practice4_lib.ToDo toDo = practice4_lib.ToDo();
+  int? option;
+  while (option != 4) {
+    toDo.displayOption();
+    option = practice1_lib.inputInteger();
+    switch (option) {
+      case 1:
+        toDo.addTask();
+        break;
+      case 2:
+        toDo.removeTask();
+        break;
+      case 3:
+        toDo.displayTasks();
+        break;
+      case 4:
+        break;
+      default:
+        print("Invalid Input!");
+        break;
+    }
   }
   print("\n");
 }

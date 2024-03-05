@@ -1,31 +1,9 @@
-import 'dart:math';
-
-class DataProvider {
-  String? get stringorNull => Random().nextBool() ? "Hello" : null;
-
-  void myMethod() {
-    String? value = stringorNull;
-    if (value is String) {
-      print("The length of value is ${value.length}");
-    } else {
-      print("The value is not string.");
-    }
-  }
-}
-
-class Person {
-  late String _name;
-
-  void setName(String name) {
-    _name = name;
-  }
-
-  String get name => _name;
-}
+import 'package:dart_practice/practice7_null_safety.dart'
+    as practice7_null_safety;
 
 void runPractice() {
   print("---------------------------------------------------");
-  print("Questions for Practice 7");
+  print("Questions for Practice 7 Null Safety Exercise");
   print("---------------------------------------------------");
 
   print("Exercise 1: Null Safety In Dart");
@@ -99,12 +77,12 @@ void runPractice() {
 
   print("Exercise 9: Type Promotion");
   // Try to solve the error using type promotion
-  DataProvider().myMethod();
+  practice7_null_safety.DataProvider().myMethod();
   print("\n");
 
   print("Exercise 10: Late Keyword");
   // Try to solve the error using late keyword
-  Person person = Person();
+  practice7_null_safety.Person person = practice7_null_safety.Person();
   person.setName("Mark");
   print(person.name);
   print("\n");

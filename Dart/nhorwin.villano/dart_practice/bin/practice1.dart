@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'package:dart_practice/practice1.dart' as practice1_lib;
 
 void runPractice() {
   print("---------------------------------------------------");
@@ -24,18 +24,18 @@ void runPractice() {
   print(
       "4. Write a program in Dart that finds simple interest. Formula= (p * t * r) / 100");
   print("Enter the value of p: ");
-  int? p = int.parse(stdin.readLineSync()!);
+  int p = practice1_lib.inputInteger();
   print("Enter the value of t: ");
-  int? t = int.parse(stdin.readLineSync()!);
+  int t = practice1_lib.inputInteger();
   print("Enter the value of r: ");
-  int? r = int.parse(stdin.readLineSync()!);
+  int r = practice1_lib.inputInteger();
   double interest = (p * t * r) / 100;
   print("The simple interest is $interest");
   print("\n");
 
   print("5. Write a program to print a square of a number using user input.");
   print("Enter a Number: ");
-  int? number = int.parse(stdin.readLineSync()!);
+  int number = practice1_lib.inputInteger();
   int square = number * number;
   print("The square of $number is $square");
   print("\n");
@@ -43,17 +43,17 @@ void runPractice() {
   print(
       "6. Write a program to print full name of a from first name and last name using user input.");
   print("Enter a Firstname: ");
-  String? firstName = stdin.readLineSync();
+  String firstName = practice1_lib.inputString();
   print("Enter a Lastname: ");
-  String? lastName = stdin.readLineSync();
+  String lastName = practice1_lib.inputString();
   print("The full name is  $firstName $lastName");
   print("\n");
 
   print("7. Write a program to find quotient and remainder of two integers.");
   print("Enter a Dividend: ");
-  int? dividend = int.parse(stdin.readLineSync()!);
+  int dividend = practice1_lib.inputInteger();
   print("Enter a Divisor: ");
-  int? divisor = int.parse(stdin.readLineSync()!);
+  int divisor = practice1_lib.inputInteger();
   int quotient = dividend ~/ divisor;
   int remainder = dividend % divisor;
   print("The quotient is  $quotient");
@@ -76,10 +76,10 @@ void runPractice() {
   print("\n");
 
   print("9. Write a program in Dart to remove all whitespaces from String.");
-  String name = "   Nhorwin Villano";
-  print("With whitespaces");
+  String name = "   Nhorwin Villano    ";
+  print("With whitespaces:");
   print(name);
-  print("Without whitespaces");
+  print("Without whitespaces:");
   print(name.trim());
   print("\n");
 
@@ -92,9 +92,9 @@ void runPractice() {
   print(
       "11. Suppose, you often go to restaurant with friends and you have to split amount of bill. Write a program to calculate split amount of bill..");
   print("Enter the Total amount of bill: ");
-  double? totalAmountBill = double.parse(stdin.readLineSync()!);
+  double totalAmountBill = practice1_lib.inputDouble();
   print("Enter the Total number of people: ");
-  int? numberOfPeople = int.parse(stdin.readLineSync()!);
+  int numberOfPeople = practice1_lib.inputInteger();
   double splittedBill = (totalAmountBill) / numberOfPeople;
   print("The bill per person is $splittedBill");
   print("\n");
@@ -102,9 +102,9 @@ void runPractice() {
   print(
       "12. Suppose, your distance to office from home is 25 km and you travel 40 km per hour. Write a program to calculate time taken to reach office in minutes.");
   print("Enter Distance(km): ");
-  int? distance = int.parse(stdin.readLineSync()!);
+  double distance = practice1_lib.inputDouble();
   print("Enter Speed(km/h): ");
-  int? speed = int.parse(stdin.readLineSync()!);
+  double speed = practice1_lib.inputDouble();
   double time = ((distance) / speed) * 60;
   print("The time taken to reach office in minutes is $time");
   print("\n");

@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'practice1.dart' as practice1;
 import 'practice2.dart' as practice2;
 import 'practice2_8.dart' as practice2_8;
@@ -6,6 +5,8 @@ import 'practice3.dart' as practice3;
 import 'practice4.dart' as practice4;
 import 'practice7_null_safety.dart' as practice7_null_safety;
 import 'practice7.dart' as practice7;
+import 'practice8.dart' as practice8;
+import 'package:dart_practice/practice1.dart' as practice1_lib;
 
 void main() {
   print("----Select----");
@@ -16,8 +17,9 @@ void main() {
   print("[5] Practice 4");
   print("[6] Practice 7 Null Safety Exercise");
   print("[7] Practice 7");
+  print("[8] Practice 8");
   print("Enter Practice to run: ");
-  int? choice = int.parse(stdin.readLineSync()!);
+  int choice = practice1_lib.inputInteger();
 
   switch (choice) {
     case 1:
@@ -40,6 +42,9 @@ void main() {
       break;
     case 7:
       practice7.runPractice();
+      break;
+    case 8:
+      practice8.runPractice();
       break;
     default:
       print("Invalid input!");
