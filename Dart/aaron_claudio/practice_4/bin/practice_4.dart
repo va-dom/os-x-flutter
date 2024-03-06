@@ -5,7 +5,7 @@ void main(List<String> arguments) {
   
   //Question 1
   print('1. Create a list of names and print all names using list.');
-  List<String> names = ["Yamaha", "Hona", "Suzuki"];
+  List<String> names = ["Yamaha", "Honda", "Suzuki"];
   names.forEach(print);
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
@@ -27,7 +27,7 @@ void main(List<String> arguments) {
     if (input.isEmpty) {
       break;
     }
-    double? amount = double.tryParse(input)!;
+    double amount = double.tryParse(input)!; //returns null instead of throwing an exception
     expenses.add(amount);
   }
   double total = expenses.fold(0.0, (sum, amount) => sum + amount);
