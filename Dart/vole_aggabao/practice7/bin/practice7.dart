@@ -2,38 +2,51 @@ import 'dart:io';
 import 'package:practice7/practice7.dart' as practice7;
 
 void main(List<String> arguments) {
-  print("-----------------------------------------------------------------");
-  print(" Questions for Practice 4");
-  print(" [1] What is the purpose of the ? operator in Dart null safety?");
-  print(" [2] Create a late variable named address, assign a US value to it and print it.");
-  print(" [3] How do you declare a nullable type in Dart null safety?");
-  print(" [4] Write a program in a dart to create an age variable and assign a null value to it using ?.");
-  print(" [5] Write a function that accepts a nullable int parameter and returns 0 if the value is null using null coalescing operator ??.");
-  print(" [6] Write a function named generateRandom() in dart that randomly returns 100 or null. Also, assign a return value of the function to a variable named status that can\u2019t be null. Give status a default value of 0, if generateRandom() function returns null.");
-  print("-----------------------------------------------------------------");
-  stdout.write("Select a Question: ");
-  String choice = stdin.readLineSync()!;
-  switch (choice) {
-    case "1":
-      question1();
-      break;
-    case "2":
-      question2();
-      break;
-    case "3":
-      question3();
-      break;
-    case "4":
-      question4();
-      break;
-    case "5":
-      question5();
-      break;
-    case "6":
-      question6();
-      break;
-    default:
-      print("Invalid input! Choice is not in the options!!");
+  bool exit = false;
+  while (!exit) {
+    print("\x1B[2J\x1B[0;0H");
+    print("-----------------------------------------------------------------");
+    print(" Questions for Practice 7");
+    print(" [1] What is the purpose of the ? operator in Dart null safety?");
+    print(" [2] Create a late variable named address, assign a US value to it and print it.");
+    print(" [3] How do you declare a nullable type in Dart null safety?");
+    print(" [4] Write a program in a dart to create an age variable and assign a null value to it using ?.");
+    print(" [5] Write a function that accepts a nullable int parameter and returns 0 if the value is null using null coalescing operator ??.");
+    print(" [6] Write a function named generateRandom() in dart that randomly returns 100 or null. Also, assign a return value of the function to a variable named status that can\u2019t be null. Give status a default value of 0, if generateRandom() function returns null.");
+    print(" [x] To exit app");
+    print("-----------------------------------------------------------------");
+    stdout.write("Select a Question: ");
+    String choice = stdin.readLineSync()!;
+    switch (choice) {
+      case "1":
+        question1();
+        break;
+      case "2":
+        question2();
+        break;
+      case "3":
+        question3();
+        break;
+      case "4":
+        question4();
+        break;
+      case "5":
+        question5();
+        break;
+      case "6":
+        question6();
+        break;
+      case "x":
+        print("Exiting app...");
+        exit = true;
+        break;
+      default:
+        print("Invalid input! Choice is not in the options!!");
+    }
+    if (!exit) {
+      print("Press ENTER key to continue..");
+      stdin.readLineSync();
+    }
   }
 }
 

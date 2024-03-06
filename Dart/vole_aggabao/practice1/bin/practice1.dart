@@ -112,8 +112,8 @@ void question7() {
 }
 
 void question8() {
-  int a = 5;
-  int b = 7;
+  int a = 10;
+  int b = 6;
   print("a = $a");
   print("b = $b");
   a = a - b;

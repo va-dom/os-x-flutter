@@ -3,62 +3,75 @@ import 'package:practice3/practice3.dart' as practice3;
 import 'package:practice3/helpers.dart' as helpers;
 
 void main(List<String> arguments) {
-  print("-----------------------------------------------------------------");
-  print(" Questions for Practice 3");
-  print(" [1] Write a program in Dart to print your own name using function.");
-  print(" [2] Write a program in Dart to print even numbers between intervals using function.");
-  print(" [3] Create a function called greet that takes a name as an argument and prints a greeting message. For example, greet(“John”) should print “Hello, John”.");
-  print(" [4] Write a program in Dart that generates random password.");
-  print(" [5] Write a program in Dart that find the area of a circle using function. Formula: pi * r * r");
-  print(" [6] Write a program in Dart to reverse a String using function.");
-  print(" [7] Write a program in Dart to calculate power of a certain number. For e.g 5^3=125");
-  print(" [8] Write a function in Dart named add that takes two numbers as arguments and returns their sum.");
-  print(" [9] Write a function in Dart called maxNumber that takes three numbers as arguments and returns the largest number.");
-  print(" [10] Write a function in Dart called isEven that takes a number as an argument and returns True if the number is even, and False otherwise.");
-  print(" [11] Write a function in Dart called createUser with parameters name, age, and isActive, where isActive has a default value of true.");
-  print(" [12] Write a function in Dart called calculateArea that calculates the area of a rectangle. It should take length and width as arguments, with a default value of 1 for both. Formula: length * width.");
-  print("-----------------------------------------------------------------");
-  print("Select a Question");
-  String choice = stdin.readLineSync()!;
-  switch (choice) {
-    case "1":
-      question1();
-      break;
-    case "2":
-      question2();
-      break;
-    case "3":
-      question3();
-      break;
-    case "4":
-      question4();
-      break;
-    case "5":
-      question5();
-      break;
-    case "6":
-      question6();
-      break;
-    case "7":
-      question7();
-      break;
-    case "8":
-      question8();
-      break;
-    case "9":
-      question9();
-      break;
-    case "10":
-      question10();
-      break;
-    case "11":
-      question11();
-      break;
-    case "12":
-      question12();
-      break;
-    default:
-      print("Invalid input! Choice is not in the options!!");
+  bool exit = false;
+  while (!exit) {
+    print("\x1B[2J\x1B[0;0H");
+    print("-----------------------------------------------------------------");
+    print(" Questions for Practice 3");
+    print(" [1] Write a program in Dart to print your own name using function.");
+    print(" [2] Write a program in Dart to print even numbers between intervals using function.");
+    print(" [3] Create a function called greet that takes a name as an argument and prints a greeting message. For example, greet(“John”) should print “Hello, John”.");
+    print(" [4] Write a program in Dart that generates random password.");
+    print(" [5] Write a program in Dart that find the area of a circle using function. Formula: pi * r * r");
+    print(" [6] Write a program in Dart to reverse a String using function.");
+    print(" [7] Write a program in Dart to calculate power of a certain number. For e.g 5^3=125");
+    print(" [8] Write a function in Dart named add that takes two numbers as arguments and returns their sum.");
+    print(" [9] Write a function in Dart called maxNumber that takes three numbers as arguments and returns the largest number.");
+    print(" [10] Write a function in Dart called isEven that takes a number as an argument and returns True if the number is even, and False otherwise.");
+    print(" [11] Write a function in Dart called createUser with parameters name, age, and isActive, where isActive has a default value of true.");
+    print(" [12] Write a function in Dart called calculateArea that calculates the area of a rectangle. It should take length and width as arguments, with a default value of 1 for both. Formula: length * width.");
+    print(" [x] To exit app");
+    print("-----------------------------------------------------------------");
+    print("Select a Question");
+    String choice = stdin.readLineSync()!;
+    switch (choice) {
+      case "1":
+        question1();
+        break;
+      case "2":
+        question2();
+        break;
+      case "3":
+        question3();
+        break;
+      case "4":
+        question4();
+        break;
+      case "5":
+        question5();
+        break;
+      case "6":
+        question6();
+        break;
+      case "7":
+        question7();
+        break;
+      case "8":
+        question8();
+        break;
+      case "9":
+        question9();
+        break;
+      case "10":
+        question10();
+        break;
+      case "11":
+        question11();
+        break;
+      case "12":
+        question12();
+        break;
+      case "x":
+        print("Exiting app...");
+        exit = true;
+        break;
+      default:
+        print("Invalid input! Choice is not in the options!!");
+    }
+    if (!exit) {
+      print("Press ENTER key to continue..");
+      stdin.readLineSync();
+    }
   }
 }
 

@@ -1,50 +1,63 @@
 import 'dart:io';
 
 void main(List<String> arguments) {
-  print("------------------------------------------------------------------------------------------------------------------------------");
-  print("| Questions for Practice 2                                                                                                   |");
-  print("| [1] Write a dart program to check if the number is odd or even.                                                            |");
-  print("| [2] Write a dart program to check whether a character is a vowel or consonant.                                             |");
-  print("| [3] Write a dart program to check whether a number is positive, negative, or zero.                                         |");
-  print("| [4] Write a dart program to print your name 100 times.                                                                     |");
-  print("| [5] Write a dart program to calculate the sum of natural numbers.                                                          |");
-  print("| [6] Write a dart program to generate multiplication tables of 5.                                                           |");
-  print("| [7] Write a dart program to generate multiplication tables of 1-9.                                                         |");
-  print("| [8] Write a dart program to create a simple calculator that performs addition, subtraction, multiplication, and division.  |");
-  print("| [9] Write a dart program to print 1 to 100 but not 41.                                                                     |");
-  print("------------------------------------------------------------------------------------------------------------------------------");
-  print("Select a Question");
-  String choice = stdin.readLineSync()!;
-  switch (choice) {
-    case "1":
-      question1();
-      break;
-    case "2":
-      question2();
-      break;
-    case "3":
-      question3();
-      break;
-    case "4":
-      question4();
-      break;
-    case "5":
-      question5();
-      break;
-    case "6":
-      question6();
-      break;
-    case "7":
-      question7();
-      break;
-    case "8":
-      question8();
-      break;
-    case "9":
-      question9();
-      break;
-    default:
-      print("Invalid input! Choice is not in the options!!");
+  bool exit = false;
+  while (!exit) {
+    print("\x1B[2J\x1B[0;0H");
+    print("-----------------------------------------------------------------");
+    print(" Questions for Practice 2");
+    print(" [1] Write a dart program to check if the number is odd or even.");
+    print(" [2] Write a dart program to check whether a character is a vowel or consonant.");
+    print(" [3] Write a dart program to check whether a number is positive, negative, or zero.");
+    print(" [4] Write a dart program to print your name 100 times.");
+    print(" [5] Write a dart program to calculate the sum of natural numbers.");
+    print(" [6] Write a dart program to generate multiplication tables of 5.");
+    print(" [7] Write a dart program to generate multiplication tables of 1-9.");
+    print(" [8] Write a dart program to create a simple calculator that performs addition, subtraction, multiplication, and division.");
+    print(" [9] Write a dart program to print 1 to 100 but not 41.");
+    print(" [x] To exit app");
+    print("-----------------------------------------------------------------");
+    stdout.write("Select a Question: ");
+    String choice = stdin.readLineSync()!;
+    switch (choice) {
+      case "1":
+        question1();
+        break;
+      case "2":
+        question2();
+        break;
+      case "3":
+        question3();
+        break;
+      case "4":
+        question4();
+        break;
+      case "5":
+        question5();
+        break;
+      case "6":
+        question6();
+        break;
+      case "7":
+        question7();
+        break;
+      case "8":
+        question8();
+        break;
+      case "9":
+        question9();
+        break;
+      case "x":
+        print("Exiting app...");
+        exit = true;
+        break;
+      default:
+        print("Invalid input! Choice is not in the options!!");
+    }
+    if (!exit) {
+      print("Press ENTER key to continue..");
+      stdin.readLineSync();
+    }
   }
 }
 
