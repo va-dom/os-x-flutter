@@ -48,7 +48,7 @@ void main(List<String> arguments) async{
     await Future.delayed(Duration(seconds: 3));
     return num1 + num2;
   }
-
+  // print(addNumbers(1, 2)); //Instance of 'Future<int>'
   int sum = await addNumbers(15, 47);
   print("Total: $sum");
 
@@ -57,9 +57,9 @@ void main(List<String> arguments) async{
   //Question 7
   print("7. Write a Dart program that takes in two integers as input, waits for 3 seconds, and then prints the sum of the two numbers.");
   stdout.writeln("Enter first number: ");
-  int? num1 = int.parse(stdin.readLineSync()!);
+  int num1 = int.parse(stdin.readLineSync()!);
   stdout.writeln("Enter second number: ");
-  int? num2 = int.parse(stdin.readLineSync()!);
+  int num2 = int.parse(stdin.readLineSync()!);
 
   int sum1 = await addNumbers(num1, num2);
   print("Total: $sum1");
@@ -69,7 +69,7 @@ void main(List<String> arguments) async{
   //Question 8
   print("8. Write a Dart program that takes a list of strings as input, sorts the list asynchronously, and then prints the sorted list.");
   Future<List<String>> sortAsync(List<String> lists) async{
-    return Future.microtask(() => lists..sort());
+    return Future.delayed(Duration(seconds: 2), () => lists..sort());
   }
   final unsortedLists = ["lorem", "ipsum", "dolor", "sit", "amet"];
   final sortedLists = await sortAsync(unsortedLists);
@@ -80,11 +80,14 @@ void main(List<String> arguments) async{
 
   //Question 9
   print("9. Write a Dart program that takes a list of integers as input, multiplies each integer by 2 asynchronously, and then prints the modified list.");
-  Future<List<int>> multiplyByTwoAsync(List<int> numbers) async{
-    final product = await Future.wait(numbers.map((e) => Future.microtask(() => e * 2)).toList());
-
-    return product;
+  Future<List<int>> multiplyByTwoAsync(List<int> numbers) async {
+  List<int> products = [];
+  for (int number in numbers) {
+    int product = await Future(() => number * 2);
+    products.add(product);
   }
+  return products;
+}
   final numbers = [1, 2, 3, 4, 5, 6];
   final products = await multiplyByTwoAsync(numbers);
 
@@ -95,7 +98,7 @@ void main(List<String> arguments) async{
   //Question 10
   print("10. Write a Dart program that takes a string as input, reverses the string asynchronously, and then prints the reversed string.");
   Future<String> reverseStringAsync(String text) async{
-    return Future.microtask(() => text.split('').reversed.join());
+    return Future.delayed(Duration(seconds: 2), () => text.split('').reversed.join());
   }
   String text = "Lorem ipsum dolor";
   String reversedString = await reverseStringAsync(text);
