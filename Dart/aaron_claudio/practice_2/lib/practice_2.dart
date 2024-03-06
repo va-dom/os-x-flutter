@@ -1,26 +1,17 @@
 //Question 1
 String isOddOrEven(int num) {
-  if(num % 2 == 0){
-    return "The number is even.";
-  }
-  else{
-    return "The number is odd.";
-  }
-  
+  return (num % 2 == 0) ? "The number is even." : "The number is odd.";
 }
 
 //Question 2
 String isVowelOrConsonant(String letter){
   //other option for checking
-  //var lttr = letter.toLowerCase(); or .toUpperCase()
-  // if(lttr == 'a' || lttr == 'e' || lttr == 'i' || lttr == 'o' || lttr == 'u'){
-  if(letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u'
-   || letter == 'A' || letter == 'E' || letter == 'I' || letter == 'O' || letter == 'U'){
-    return "$letter is a vowel";
-   }
-   else{
-    return "$letter is a consonant";
-   }
+  var lttr = letter.toLowerCase();
+  return (lttr == 'a' ||
+          lttr == 'e' ||
+          lttr == 'i' ||
+          lttr == 'o' ||
+          lttr == 'u') ? "$lttr is a vowel" : "$lttr is a consonant";
 }
 
 //Question 3

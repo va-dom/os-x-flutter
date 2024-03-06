@@ -7,7 +7,7 @@ void main(List<String> arguments) {
   //Question 1
   print('1. Write a dart program to check if the number is odd or even.');
   print('Enter a number:');
-  int? num = int.parse(stdin.readLineSync()!);
+  int num = int.parse(stdin.readLineSync()!);
   print(practice_2.isOddOrEven(num));
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
@@ -15,7 +15,7 @@ void main(List<String> arguments) {
   //Question 2
   print('2. Write a dart program to check whether a character is a vowel or consonant.');
   print('Enter a single letter:');
-  String? lttr = stdin.readLineSync();
+  String lttr = stdin.readLineSync()!;
   print(practice_2.isVowelOrConsonant(lttr.toString()));
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
@@ -23,7 +23,7 @@ void main(List<String> arguments) {
   //Question 3
   print('3. Write a dart program to check whether a number is positive, negative, or zero.');
   print('Enter a number:');
-  int? num1 = int.parse(stdin.readLineSync()!);
+  int num1 = int.parse(stdin.readLineSync()!);
   print(practice_2.isPositiveOrNegative(num1));
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
@@ -31,15 +31,15 @@ void main(List<String> arguments) {
   //Question 4
   print('4. Write a dart program to print your name 100 times.');
   String name = "Aaron Claudio";
-  for(int i = 0; i < 100; i++){
-    print(name);
+  for(int i = 1; i <= 100; i++){
+    print('$i. $name');
   }
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
 
   //Question 5
   print('5. Write a dart program to calculate the sum of natural numbers.');
-  print('Enter a number');
+  print('Enter a natural number');
   int num2 = int.parse(stdin.readLineSync()!);
   print('The sum of natural numbers is: ${practice_2.sumOfNaturalNumbers(num2)}');
 
@@ -72,9 +72,9 @@ void main(List<String> arguments) {
   //Question 8
   print('8. Write a dart program to create a simple calculator that performs addition, subtraction, multiplication, and division.');
   print('Enter first number:');
-  int? firstNumber = int.parse(stdin.readLineSync()!);
+  int firstNumber = int.parse(stdin.readLineSync()!);
   print('Enter second number:');
-  int? secondNumber = int.parse(stdin.readLineSync()!);
+  int secondNumber = int.parse(stdin.readLineSync()!);
   print('The sum of $firstNumber and $secondNumber is: ${practice_2.add(firstNumber, secondNumber)}');
   print('The difference of $firstNumber and $secondNumber is: ${practice_2.subtract(firstNumber, secondNumber)}');
   print('The product of $firstNumber and $secondNumber is: ${practice_2.multiply(firstNumber, secondNumber)}');
