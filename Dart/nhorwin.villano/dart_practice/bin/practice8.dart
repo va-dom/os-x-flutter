@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:dart_practice/practice8.dart' as practice8_lib;
-import 'package:dart_practice/practice1.dart' as practice1_lib;
+import 'package:dart_practice/dart_practice.dart' as lib;
 
 void runPractice() {
   print("---------------------------------------------------");
@@ -30,8 +30,7 @@ void runPractice() {
   print(
       "4. Write a program in dart that reads csv file and print it's content.");
   //Create file object
-  File file = File(
-      "/Users/nhorwinvillano/Desktop/TrainingRepo/Dart/nhorwin.villano/dart_practice/assets/file.csv");
+  File file = File("assets/file.csv");
   //Read file content
   String content = file.readAsStringSync();
   print(content);
@@ -50,9 +49,9 @@ void runPractice() {
   print(
       "7. Write a Dart program that takes in two integers as input, waits for 3 seconds, and then prints the sum of the two numbers.");
   print("Enter Num1: ");
-  int num1 = practice1_lib.inputInteger();
+  int num1 = lib.inputInteger();
   print("Enter Num2: ");
-  int num2 = practice1_lib.inputInteger();
+  int num2 = lib.inputInteger();
   practice8_lib.getSum7(num1, num2);
   print("\n");
 
@@ -77,7 +76,7 @@ void runPractice() {
   print(
       "10. Write a Dart program that takes a string as input, reverses the string asynchronously, and then prints the reversed string.");
   print("Enter String: ");
-  String str = practice1_lib.inputString();
+  String str = lib.inputString();
   print('Original String: $str');
   practice8_lib
       .reverseString(str)

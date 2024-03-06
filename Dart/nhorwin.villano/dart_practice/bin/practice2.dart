@@ -1,4 +1,4 @@
-import 'package:dart_practice/practice1.dart' as practice1_lib;
+import 'package:dart_practice/dart_practice.dart' as lib;
 
 void runPractice() {
   int number;
@@ -10,7 +10,7 @@ void runPractice() {
 
   print("1. Write a dart program to check if the number is odd or even.");
   print("Enter a number");
-  number = practice1_lib.inputInteger();
+  number = lib.inputInteger();
   //Using Ternary Operator
   print('$number is ${(number % 2 == 0) ? 'even' : 'odd'}');
   print("\n");
@@ -18,7 +18,7 @@ void runPractice() {
   print(
       "2. Write a dart program to check whether a character is a vowel or consonant.");
   print("Enter a letter:");
-  String letter = practice1_lib.inputChar();
+  String letter = lib.inputChar();
   //Using Switch Case
   switch (letter) {
     case "a" || "A":
@@ -44,7 +44,7 @@ void runPractice() {
   print(
       "3. Write a dart program to check whether a number is positive, negative, or zero.");
   print("Enter a number");
-  number = practice1_lib.inputInteger();
+  number = lib.inputInteger();
   //Using if-else if-else
   if (number > 0) {
     print("$number is positive");
@@ -66,7 +66,7 @@ void runPractice() {
 
   print("5. Write a dart program to calculate the sum of natural numbers.");
   print("Enter a natural number:");
-  number = practice1_lib.inputNaturalInteger();
+  number = lib.inputNaturalInteger();
   // using do-while loop
   i = 1; //reset value of i
   int sum = 0;

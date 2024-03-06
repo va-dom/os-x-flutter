@@ -6,7 +6,7 @@ import 'practice4.dart' as practice4;
 import 'practice7_null_safety.dart' as practice7_null_safety;
 import 'practice7.dart' as practice7;
 import 'practice8.dart' as practice8;
-import 'package:dart_practice/practice1.dart' as practice1_lib;
+import 'package:dart_practice/dart_practice.dart' as lib;
 
 void main() {
   print("----Select----");
@@ -19,7 +19,7 @@ void main() {
   print("[7] Practice 7");
   print("[8] Practice 8");
   print("Enter Practice to run: ");
-  int choice = practice1_lib.inputInteger();
+  int choice = lib.inputInteger();
 
   switch (choice) {
     case 1:

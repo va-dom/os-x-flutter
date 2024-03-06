@@ -20,7 +20,7 @@ void runPractice() {
   print("\n");
 
   print("4. Write a program in Dart that generates random password. ");
-  print(practice3_lib.generateRandomPassword(10));
+  print('Password: ${practice3_lib.generateRandomPassword(10)}');
   print("\n");
 
   print(
@@ -63,7 +63,7 @@ void runPractice() {
   print("Number1 = $number1");
   print("Number2 = $number2");
   print("Number3 = $number3");
-  int maxNum = practice3_lib.getLargestNumber(number1, number2, number3);
+  int maxNum = practice3_lib.maxNumber(number1, number2, number3);
   print("Largest Number = $maxNum");
   print("\n");
 

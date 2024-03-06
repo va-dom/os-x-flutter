@@ -1,5 +1,5 @@
 import 'package:dart_practice/practice2_8.dart' as practice2_8_lib;
-import 'package:dart_practice/practice1.dart' as practice1_lib;
+import 'package:dart_practice/dart_practice.dart' as lib;
 
 void runPractice() {
   print("---------------------------------------------------");
@@ -14,12 +14,12 @@ void runPractice() {
   do {
     print("Total: $total");
     practice2_8_lib.displayOptions();
-    option = practice1_lib.inputInteger();
+    option = lib.inputInteger();
     if (option == 5) {
       break;
     }
     print("Enter value:");
-    value = practice1_lib.inputDouble();
+    value = lib.inputDouble();
 
     switch (option) {
       case 1:

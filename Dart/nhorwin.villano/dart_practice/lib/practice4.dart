@@ -1,4 +1,4 @@
-import 'package:dart_practice/practice1.dart' as practice1_lib;
+import 'package:dart_practice/dart_practice.dart' as lib;
 
 // Class for ToDO
 class ToDo {
@@ -30,7 +30,7 @@ class ToDo {
   void addTask() {
     print('\n-----Add Task----');
     print('Enter task name:');
-    String task = practice1_lib.inputString();
+    String task = lib.inputString();
     tasks.add(task);
     print("Task '$task' has been added!");
   }
@@ -38,7 +38,7 @@ class ToDo {
   void removeTask() {
     print('\n-----Remove Task----');
     print('Enter the Task Index:');
-    int index = practice1_lib.inputInteger();
+    int index = lib.inputInteger();
     if (index > 1 && index <= tasks.length) {
       tasks.removeAt(index - 1);
       print('Task $index has been removed!');

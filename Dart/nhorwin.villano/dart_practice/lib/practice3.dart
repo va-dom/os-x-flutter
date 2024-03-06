@@ -9,6 +9,7 @@ void printOwnName() {
 void printEvenNum(int start, int end) {
   for (int i = start; i <= end; i++) {
     if (isEven(i)) {
+      // isEven() from Question 10
       print(i);
     }
   }
@@ -36,8 +37,6 @@ String generateRandomPassword(int length) {
     password += allCharacters[randomIndex];
   }
   return password;
-  // int password = Random().hashCode;
-  // return password;
 }
 
 // Fuction for Question 5
@@ -53,9 +52,7 @@ String reverseString(String str) {
 }
 
 // Fuction for Question 7
-num calculatePower(num base, num exponent) {
-  return pow(base, exponent);
-}
+num calculatePower(num base, num exponent) => pow(base, exponent);
 
 // Fuction for Question 8
 int add(int num1, int num2) {
@@ -63,9 +60,9 @@ int add(int num1, int num2) {
 }
 
 // Fuction for Question 9
-int getLargestNumber(int num1, int num2, int num3) {
-  int maxnum = max(max(num1, num2), num3);
-  return maxnum;
+int maxNumber(int num1, int num2, int num3) {
+  int maxNum = max(max(num1, num2), num3);
+  return maxNum;
 }
 
 // Fuction for Question 10

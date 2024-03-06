@@ -1,4 +1,4 @@
-import 'package:dart_practice/practice1.dart' as practice1_lib;
+import 'package:dart_practice/dart_practice.dart' as lib;
 import 'package:dart_practice/practice4.dart' as practice4_lib;
 
 void runPractice() {
@@ -31,7 +31,7 @@ void runPractice() {
   double total = 0.0;
   print('Enter your expenses, one amount per line. Enter "done" to finish:');
   while (true) {
-    String userInput = practice1_lib.inputString();
+    String userInput = lib.inputString();
     if (userInput.toLowerCase() == 'done') {
       break;
     }
@@ -130,7 +130,7 @@ void runPractice() {
   int? option;
   while (option != 4) {
     toDo.displayOption();
-    option = practice1_lib.inputInteger();
+    option = lib.inputInteger();
     switch (option) {
       case 1:
         toDo.addTask();
