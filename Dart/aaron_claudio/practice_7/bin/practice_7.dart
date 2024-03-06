@@ -1,14 +1,13 @@
 import 'dart:math';
-import 'package:practice_7/practice_7.dart';
 
 void main(List<String> arguments) {
   print("-------------------Practice Question 7-------------------");
   
   //Question 2
   print("2. Create a late variable named address, assign a US value to it and print it.");
-  Address address = Address();
-  address.setName = "US";
-  print(address.getName);
+  late String address;
+  address = "US";
+  print(address);
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
 
