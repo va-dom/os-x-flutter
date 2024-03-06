@@ -5,11 +5,11 @@ String myName(){
 
 //Question 2
 String hello1(){
-  return 'Hello I am ${myName()}';
+  return 'Hello I am "John Doe"';
 }
 
 String hello2(){
-  return "Hello I'm ${myName()}";
+  return 'Hello I\'m "John Doe"';
 }
 
 //Question 3
@@ -28,7 +28,7 @@ double getInterest(){
 }
 
 //Question 5
-int getSquareRoot(int num) {
+int getSquare(int num) {
   return num * num;
 }
 
@@ -50,14 +50,15 @@ int getQuotient(int num1, int num2){
 
 
 //Question 9
-String reverseText(String? str1){
-  return str1.toString().replaceAll(' ', '');
+String reverseText(String str1){
+  return str1.replaceAll(' ', '');
 }
 
 
 //Question 11
-double splitBill(double amount, int pax){
-  return (amount) / pax;
+String splitBill(double amount, int pax){
+  double result = (amount) / pax; //00.0000000
+  return result.toStringAsFixed(2); //00.00
 }
 
 //Question 12

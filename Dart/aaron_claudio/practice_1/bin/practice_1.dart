@@ -10,9 +10,9 @@ void main(List<String> arguments) {
   print("\n---------------------------------------------------------------------------------------------------------------\n");
 
   //Question 2
-  print("2.a. Write a program to print Hello I am “John Doe” and Hello I’am “John Doe” with single and double quotes.");
+  print("2.a. Write a program to print Hello I am “John Doe” and Hello I’m “John Doe” with single and double quotes.");
   print(practice_1.hello1());
-  print("\n2.b. Write a program to print Hello I am “John Doe” and Hello I’am “John Doe” with single and double quotes.");
+  print("\n2.b. Write a program to print Hello I am “John Doe” and Hello I’m “John Doe” with single and double quotes.");
   print(practice_1.hello2());
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
@@ -32,8 +32,8 @@ void main(List<String> arguments) {
   //Question 5
   print('5. Write a program to print a square of a number using user input.');
   print("Enter a number:");
-  int? number = int.parse(stdin.readLineSync()!);
-  print("The square root of $number is ${practice_1.getSquareRoot(number)}");
+  int number = int.parse(stdin.readLineSync()!);
+  print("The square of $number is ${practice_1.getSquare(number)}");
   
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
@@ -51,10 +51,10 @@ void main(List<String> arguments) {
   //Question 7
   print('7. Write a program to find quotient and remainder of two integers.');
   print('Enter first number:');
-  int? num1 = int.parse(stdin.readLineSync()!);
+  int num1 = int.parse(stdin.readLineSync()!);
   print('Enter second number:');
-  int? num2 = int.parse(stdin.readLineSync()!);
-  print('The modulus of $num1 and $num2 is ${practice_1.getRemainder(num1, num2)}');
+  int num2 = int.parse(stdin.readLineSync()!);
+  print('The remainder of $num1 and $num2 is ${practice_1.getRemainder(num1, num2)}');
   print('The quotient of $num1 and $num2 is ${practice_1.getQuotient(num1, num2)}');
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
@@ -72,7 +72,7 @@ void main(List<String> arguments) {
   //Question 9
   print('9. Write a program in Dart to remove all whitespaces from String.');
   print('Enter some text with whitespaces:');
-  String? str1 = stdin.readLineSync();
+  String str1 = stdin.readLineSync()!;
   print(practice_1.reverseText(str1));
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
@@ -81,16 +81,16 @@ void main(List<String> arguments) {
   print('10. Write a Dart program to convert String to int.');
   String strNum = "120";
   int num = int.parse(strNum);
-  print("Converting string '120' to int: $num");
+  print('Converting string "120" to ${num.runtimeType}: $num');
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
   
   //Question 11
   print('11. Write a program to calculate split amount of bill');
   print("Enter the bill amaount");
-  double? amount = double.parse(stdin.readLineSync()!);//1500.00
+  double amount = double.parse(stdin.readLineSync()!);//1500.00
   print("Enter number of pax");
-  int? pax = int.parse(stdin.readLineSync()!);//5
+  int pax = int.parse(stdin.readLineSync()!);//5
   print('The bill amounting to $amount will be splitted into ${practice_1.splitBill(amount, pax)} per person');
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
