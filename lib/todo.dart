@@ -3,19 +3,18 @@ class Todo {
 
   void addTask(String task) {
     tasks.add(task);
-    print('Task added: $task');
+    print('Task added successfully!');
 
     viewTasks();
   }
 
   void removeTask(int index) {
     if (index >= 0 && index < tasks.length) {
-      String removedTask = tasks.removeAt(index);
-      print('Task removed: $removedTask');
-
+      tasks.removeAt(index);
       viewTasks();
+      print('Task removed successfully!');
     } else {
-      print('Not Found');
+      throw Exception('Invalid index');
     }
   }
 
