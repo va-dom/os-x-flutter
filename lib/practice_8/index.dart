@@ -4,64 +4,80 @@ import 'package:dart_practices/style.dart' as style;
 
 void runFunctions() {
   print('----- Start: Dart Practice #8: Q1 -----');
+  stdout.write(style.Style.yellowish);
   print(
       '----- Write a program to print current time after 2 seconds using Future.delayed() -----');
+  stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   printCurrentTime();
   stdout.write(style.Style.reset);
   print('----- End: Dart Practice #8: Q1 ----- \n');
 
   print('----- Start: Dart Practice #8: Q2 -----');
+  stdout.write(style.Style.yellowish);
   print(
       '----- Write a program in dart that reads csv file and print it’s content. -----');
+  stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   readCsvFile();
   stdout.write(style.Style.reset);
   print('----- End: Dart Practice #8: Q2 ----- \n');
 
   print('----- Start: Dart Practice #8: Q3 -----');
+  stdout.write(style.Style.yellowish);
   print(
       '----- Write a program to print current time after 2 seconds using Future.delayed() -----');
+  stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   performMultipleAsyncOperations();
   stdout.write(style.Style.reset);
   print('----- End: Dart Practice #8: Q3 ----- \n');
 
   print('----- Start: Dart Practice #8: Q4 -----');
+  stdout.write(style.Style.yellowish);
   print(
       '----- Write a Dart program to calculate the sum of two numbers using async/await. -----');
+  stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   calculateSum();
   stdout.write(style.Style.reset);
   print('----- End: Dart Practice #8: Q4 ----- \n');
 
   print('----- Start: Dart Practice #8: Q5 -----');
+  stdout.write(style.Style.yellowish);
   print(
       '----- Write a Dart program that takes in two integers as input, waits for 3 seconds, and then prints the sum of the two numbers. -----');
+  stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   calculateInputSum(33, 22);
   stdout.write(style.Style.reset);
   print('----- End: Dart Practice #8: Q5 ----- \n');
 
   print('----- Start: Dart Practice #8: Q6 -----');
+  stdout.write(style.Style.yellowish);
   print(
       '----- Write a Dart program that takes a list of strings as input, sorts the list asynchronously, and then prints the sorted list. -----');
+  stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   sortList(['c', 'a', 'b']);
   stdout.write(style.Style.reset);
   print('----- End: Dart Practice #8: Q6 ----- \n');
 
   print('----- Start: Dart Practice #8: Q7 -----');
+  stdout.write(style.Style.yellowish);
   print(
       '----- Write a Dart program that takes a list of strings as input, sorts the list asynchronously, and then prints the sorted list. -----');
+  stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   multiplyListBy2([3, 45, 12]);
   stdout.write(style.Style.reset);
   print('----- End: Dart Practice #8: Q7 ----- \n');
 
   print('----- Start: Dart Practice #8: Q8 -----');
+  stdout.write(style.Style.yellowish);
   print(
       '----- Write a Dart program that takes a string as input, reverses the string asynchronously, and then prints the reversed string. -----');
+  stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   reverseString('hello');
   stdout.write(style.Style.reset);

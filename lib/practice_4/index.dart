@@ -4,62 +4,78 @@ import 'package:dart_practices/todo.dart' as todo_app;
 
 void runFunctions() {
   print('----- Start: Dart Practice #4: Q1 -----');
+  stdout.write(style.Style.yellowish);
   print('----- Create a list of names and print all names using list. -----');
+  stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   printAllNames();
   stdout.write(style.Style.reset);
   print('----- End: Dart Practice #4: Q1 ----- \n');
 
   print('----- Start: Dart Practice #4: Q2 -----');
+  stdout.write(style.Style.yellowish);
   print('----- Create a set of fruits and print all fruits using loop. -----');
+  stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   printAllFruit();
   stdout.write(style.Style.reset);
   print('----- End: Dart Practice #4: Q2----- \n');
 
   print('----- Start: Dart Practice #4: Q3 -----');
+  stdout.write(style.Style.yellowish);
   print(
       '----- Create a program thats reads list of expenses amount using user input and print total. -----');
+  stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   printTotalExpenses();
   stdout.write(style.Style.reset);
   print('----- End: Dart Practice #4: Q3 ----- \n');
 
   print('----- Start: Dart Practice #4: Q4 -----');
+  stdout.write(style.Style.yellowish);
   print(
       '----- Create an empty list of type string called days. Use the add method to add names of 7 days and print all days. -----');
+  stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   printDays();
   stdout.write(style.Style.reset);
   print('----- End: Dart Practice #4: Q4 ----- \n');
 
   print('----- Start: Dart Practice #4: Q5 -----');
+  stdout.write(style.Style.yellowish);
   print(
       '----- Add your 7 friend names to the list. Use where to find a name that starts with alphabet a. -----');
+  stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   printFriendsStartingWithA();
   stdout.write(style.Style.reset);
   print('----- End: Dart Practice #4: Q5 ----- \n');
 
   print('----- Start: Dart Practice #4: Q6 -----');
+  stdout.write(style.Style.yellowish);
   print(
       '----- Create a map with name, address, age, country keys and store values to it. Update country name to other country and print all keys and values. -----');
+  stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   updateCountry();
   stdout.write(style.Style.reset);
   print('----- End: Dart Practice #4: Q6 ----- \n');
 
   print('----- Start: Dart Practice #4: Q7 -----');
+  stdout.write(style.Style.yellowish);
   print(
       '----- Create a map with name, phone keys and store some values to it. Use where to find all keys that have length 4. -----');
+  stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   findKeysWithLength4();
   stdout.write(style.Style.reset);
   print('----- End: Dart Practice #4: Q7 ----- \n');
 
   print('----- Start: Dart Practice #4: Q7 -----');
+  stdout.write(style.Style.yellowish);
   print(
       '----- Create a simple to-do application that allows user to add, remove, and view their task. -----');
+  stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   createToDo();
   stdout.write(style.Style.reset);
