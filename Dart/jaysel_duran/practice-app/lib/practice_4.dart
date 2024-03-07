@@ -3,11 +3,13 @@ import 'practice_app.dart' as lib;
 
 getPrintNamesExcercise() {
   List<String> nameList = ["Jaysel", "John Carl", "Chacha", "Cheche", "Chichi", "Chocho", "Chuchu", "Percy", "Polly", "Mochi"];
-  nameList.forEach((name) => print(name));
+  for (var name in nameList) {
+    print(name);
+  }
 }
 
 getPrintFruitsExcercise() {
-  List<String> fruits = ["Apple", "Banana", "Orange", "Grape", "Strawberry", "Mango", "Pineapple", "Watermelon", "Kiwi", "Peach"];
+  Set<String> fruits = {"Apple", "Apple", "Banana", "Orange", "Grape", "Strawberry", "Mango", "Pineapple", "Watermelon", "Kiwi", "Peach"};
   for (var fruit in fruits) {
     print(fruit);
   }
@@ -18,6 +20,7 @@ getExpenseTotalCalculatorExercise() {
 
   expenses.add(getOrder());
 
+  //to stop the program
   int hasExpense = 1;
 
   while(hasExpense == 1) {
@@ -48,7 +51,9 @@ double calculateTotalExpenses(List<double> expenses) {
 getDaysExercise() {
   List<String> weekdays = [];
   weekdays.addAll(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]);
-  weekdays.forEach((day) => print(day));
+  for (var day in weekdays) {
+    print(day);
+  }
 }
 
 bool getNameFinderExcercise(String name) {

@@ -1,8 +1,27 @@
+import 'dart:io';
+
 const jaysel = "Jaysel Duran";
 const declaredNum = 7;
 
+extension StringExtension on String {
+    String capitalize() {
+      return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
+    }
+
+    String capitalizeByWord() {
+    if (trim().isEmpty) {
+      return '';
+    }
+    return split(' ')
+        .map((element) =>
+            "${element[0].toUpperCase()}${element.substring(1).toLowerCase()}")
+        .join(" ");
+  }
+}
+
 String getMenu() {
   return """
+\n--------------------------------------------------------------\n
   Hello to Jaysel's playground!
   What exercise do you want to check?
   [1] Practice 1
@@ -12,33 +31,56 @@ String getMenu() {
   [5] Practice 5
   [6] Practice 6
   [7] Practice 7
-  [8] Practice 8""";
+  [8] Practice 8
+  [0] Exit
+\n--------------------------------------------------------------\n
+Select: """;
 }
 
-bool isInputValidNumeric(String val) {
-  return val.isNotEmpty &&
-    isNumeric(val);
+int getNumericInput ({bool hasPositiveValidation = false}) {
+  bool isValid = false;
+  int returnedValue;
+  while(!isValid) {
+    try {
+      int val = int.parse(stdin.readLineSync()!);
+      if(isNumeric(val) && hasPositiveValidation ? isValidPositiveNumber(val): true) {
+        returnedValue = val;
+        break;
+      } else {
+        throw FormatException();
+      }
+    } on FormatException {
+      stdout.write("Invalid input. Please input the valid value: ");
+    }
+  }
+
+  return returnedValue;
 }
 
-bool isInputValidDouble(String val) {
-  return val.isNotEmpty &&
-    isDouble(val);
+double getDoubleInput() {
+  bool isValid = false;
+  late double returnedValue;
+
+  while(!isValid) {
+    try {
+      returnedValue = double.parse(stdin.readLineSync()!);
+      break;
+    } on FormatException {
+      stdout.write("Invalid input. Please input the valid value: ");
+    }
+  }
+
+  return returnedValue;
 }
 
-bool isInputValidPositiveNumber(String val) {
-  return val.isNotEmpty ||
-    int.parse(val) != 0 ||
-    isValidPositiveNumber(val);
-}
-
-bool isDouble(String str) {
+bool isDouble(num val) {
   RegExp doubleNumeric = RegExp(r'^(-?)(0|([1-9][0-9]*))(\\.[0-9]+)?$');
-  return doubleNumeric.hasMatch(str);
+  return doubleNumeric.hasMatch(val.toString());
 }
 
-bool isNumeric(String str) {
+bool isNumeric(int val) {
   RegExp numericRegex = RegExp(r'^-?[0-9]+$');
-  return numericRegex.hasMatch(str);
+  return numericRegex.hasMatch(val.toString());
 }
 
 bool checkIsOddOrEvenNumber(int selectedInput) {
@@ -50,9 +92,9 @@ bool isValidAlphabet(String val) {
   return alphabetRegex.hasMatch(val);
 }
 
-bool isValidPositiveNumber(String val) {
+bool isValidPositiveNumber(int val) {
   RegExp positiveRegex = RegExp(r'^[1-9]\d*$');
-  return positiveRegex.hasMatch(val);
+  return positiveRegex.hasMatch(val.toString());
 }
 
 printName(int count) {
@@ -82,3 +124,6 @@ printNumListWithException({int fromVal = 1, required int toVal,List<int>? except
   }
 }
 
+clearTerminal() {
+  print(Process.runSync("clear", [], runInShell: true).stdout);
+}

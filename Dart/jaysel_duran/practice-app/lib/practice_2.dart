@@ -4,13 +4,9 @@ import 'practice_app.dart' as main_util;
 
 getOddOrEvenNumberPractice() {
   print("Enter a number:");
-  String val = stdin.readLineSync()!;
-  while (!main_util.isInputValidNumeric(val)) {
-    print("Input a valid number:");
-    val = stdin.readLineSync()!;
-  }
+  int val = main_util.getNumericInput();
 
-  print(main_util.checkIsOddOrEvenNumber(int.parse(val)) ? 'It is an even number!' : 'It is an odd number!');
+  print(main_util.checkIsOddOrEvenNumber(val) ? 'It is an even number!' : 'It is an odd number!');
 }
 
 getVowelCheckerPractice() {
@@ -32,32 +28,22 @@ getVowelCheckerPractice() {
 
 getInputIsPositiveNegativeOrZeroPractice() {
   print("Enter a number: ");
-  String val = stdin.readLineSync()!;
-  while (!main_util.isInputValidDouble(val)) {
-    print("Input a valid number:");
-    val = stdin.readLineSync()!;
-  }
+  double val = main_util.getDoubleInput();
 
-  double number = double.parse(val);
-  if (number > 0) {
-    print("${number.toStringAsFixed(2)} is positive.");
-  } else if (number < 0) {
-    print("${number.toStringAsFixed(2)} is negative.");
+  if (val > 0) {
+    print("${val.toStringAsFixed(2)} is positive.");
+  } else if (val < 0) {
+    print("${val.toStringAsFixed(2)} is negative.");
   } else {
-    print("$number is zero.");
+    print("$val is zero.");
   }
 }
 
 getSumOfNaturalNumberPractice() {
   stdout.write('Enter a positive integer: ');
-  String input = stdin.readLineSync()!;
-
-  while (!main_util.isInputValidNumeric(input)) {
-    print("Input a valid number:");
-    input = stdin.readLineSync()!;
-  }
+  int input = main_util.getNumericInput(hasPositiveValidation: true);
   
-  int sum = calculateSum(int.parse(input));
+  int sum = calculateSum(input);
   
   print('The sum of natural numbers up to $input is: $sum');
 }
@@ -77,49 +63,61 @@ generateMultiplicationTable(int selectedNum, [int max = 10]) {
   }
 }
 
-openCalculator(){
-  print("Calculator");
-  print("Enter first number:");
-  String num1 = stdin.readLineSync()!;
-  while (!main_util.isInputValidDouble(num1)) {
-    print("Input a valid first number:");
-    num1 = stdin.readLineSync()!;
-  }
-  
-  print("Enter second number:");
-  String num2 = stdin.readLineSync()!;
-  while (!main_util.isInputValidDouble(num2.toString())) {
-    print("Input a valid second number:");
-    num2 = stdin.readLineSync()!;
-  }
-  
-  print("Enter operation (+, -, *, /):");
-  String operation = stdin.readLineSync()!;
-  
-  double result = 0;
-  
-  switch(operation) {
-    case '+':
-      result = double.parse(num1) + double.parse(num2);
-      break;
-    case '-':
-      result = double.parse(num1) - double.parse(num2);
-      break;
-    case '*':
-      result = double.parse(num1) * double.parse(num2);
-      break;
-    case '/':
-      if(double.parse(num2) != 0) {
-        result = double.parse(num1) / double.parse(num2);
-      } else {
-        print("Error: Division by zero!");
+void openCalculator () {
+
+  double currentTotal = 0;
+  bool isContinue = true;
+  int counter = 0;
+  String operation = "";
+  double currentInput = 0;
+
+  do {
+    if(counter == 0) {
+      stdout.write("Enter number: ");
+      currentInput = main_util.getDoubleInput();
+      currentTotal = currentInput;
+      operation = 'handler';
+      counter += 1;
+      continue;
+    } else {
+      stdout.write("Enter operation (+, -, *, /) or type 'exit': ");
+      operation = stdin.readLineSync()!;
+
+      bool isExit = getCurrentTotal(currentInput, currentTotal, operation) == null;
+      if (isExit) {
         return;
       }
-      break;
-    default:
-      print("Invalid operation!");
-      return;
-  }
-  
-  print("Result: $result");
+
+      stdout.write("Enter number: ");
+      currentInput = main_util.getDoubleInput();
+
+      currentTotal = getCurrentTotal(currentInput, currentTotal, operation)!;
+
+      print("\n-----------------------------------");
+      print("Current Total: ${currentTotal.toStringAsFixed(2)}");
+      print("-----------------------------------\n");
+    }
+  } while (isContinue);
+}
+
+double? getCurrentTotal(double currentInput, double currentTotal, String operation) {
+  switch(operation.toLowerCase()) {
+        case '+':
+          return currentTotal += currentInput;
+        case '-':
+          return currentTotal -= currentInput;
+        case '*':
+          return currentTotal *= currentInput;
+        case '/':
+          return currentTotal /= currentInput;
+        case 'handler':
+          break;
+        case 'exit':
+          break;
+        default:
+          print("Invalid operation!");
+          break;
+      }
+
+      return null;
 }
