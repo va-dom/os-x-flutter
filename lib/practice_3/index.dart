@@ -5,135 +5,134 @@ import 'dart:math';
 import 'dart:io';
 
 void runFunctions() {
-  print('----- Start: Dart Practice #3: Q1 -----');
+  print('*** Start: Dart Practice #3: Q1 ***');
   stdout.write(style.Style.yellowish);
   print(
-      '----- Write a program in Dart to print your own name using function. -----');
+      '*** Write a program in Dart to print your own name using function. ***');
   stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   callPrintNameFromPractice1();
   stdout.write(style.Style.reset);
-  print('----- End: Dart Practice #3: Q1 ----- \n');
+  print('*** End: Dart Practice #3: Q1 *** \n');
 
-  print('----- Start: Dart Practice #3: Q2 -----');
+  print('*** Start: Dart Practice #3: Q2 ***');
   stdout.write(style.Style.yellowish);
   print(
-      '----- Write a program in Dart to print even numbers between intervals using function. -----');
+      '*** Write a program in Dart to print even numbers between intervals using function. ***');
   stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   printEvenNumbers();
   stdout.write(style.Style.reset);
-  print('----- End: Dart Practice #3: Q2 ----- \n');
+  print('*** End: Dart Practice #3: Q2 *** \n');
 
-  print('----- Start: Dart Practice #3: Q3 -----');
+  print('*** Start: Dart Practice #3: Q3 ***');
   stdout.write(style.Style.yellowish);
   print(
-      '----- Create a function called greet that takes a name as an argument and prints a greeting message. -----');
+      '*** Create a function called greet that takes a name as an argument and prints a greeting message. ***');
   stdout.write(style.Style.reset);
-  print('----- For example, greet(“John”) should print “Hello, John”. -----');
+  print('*** For example, greet(“John”) should print “Hello, John”. ***');
   stdout.write(style.Style.green);
   greet('Robertson Morales');
   stdout.write(style.Style.reset);
-  print('----- End: Dart Practice #3: Q3 ----- \n');
+  print('*** End: Dart Practice #3: Q3 *** \n');
 
-  print('----- Start: Dart Practice #3: Q4 -----');
+  print('*** Start: Dart Practice #3: Q4 ***');
   stdout.write(style.Style.yellowish);
-  print('----- Write a program in Dart that generates random password. -----');
+  print('*** Write a program in Dart that generates random password. ***');
   stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   generateRandomPassword(12);
   stdout.write(style.Style.reset);
-  print('----- End: Dart Practice #3: Q4 ----- \n');
+  print('*** End: Dart Practice #3: Q4 *** \n');
 
-  print('----- Start: Dart Practice #3: Q5 -----');
+  print('*** Start: Dart Practice #3: Q5 ***');
   stdout.write(style.Style.yellowish);
   print(
-      '----- Write a program in Dart that find the area of a circle using function. Formula: pi * r * r -----');
+      '*** Write a program in Dart that find the area of a circle using function. Formula: pi * r * r ***');
   stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   findAreaOfCircle(12);
   stdout.write(style.Style.reset);
-  print('----- End: Dart Practice #3: Q5 ----- \n');
+  print('*** End: Dart Practice #3: Q5 *** \n');
 
-  print('----- Start: Dart Practice #3: Q6 -----');
+  print('*** Start: Dart Practice #3: Q6 ***');
   stdout.write(style.Style.yellowish);
-  print(
-      '----- Write a program in Dart to reverse a String using function. -----');
+  print('*** Write a program in Dart to reverse a String using function. ***');
   stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   reverseString('Robertson');
   stdout.write(style.Style.reset);
-  print('----- End: Dart Practice #3: Q6 ----- \n');
+  print('*** End: Dart Practice #3: Q6 *** \n');
 
-  print('----- Start: Dart Practice #3: Q7 -----');
+  print('*** Start: Dart Practice #3: Q7 ***');
   stdout.write(style.Style.yellowish);
   print(
-      '----- Write a program in Dart to calculate power of a certain number. For e.g 5^3=125 -----');
+      '*** Write a program in Dart to calculate power of a certain number. For e.g 5^3=125 ***');
   stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   calculatePower(5, 3);
   stdout.write(style.Style.reset);
-  print('----- End: Dart Practice #3: Q7 ----- \n');
+  print('*** End: Dart Practice #3: Q7 *** \n');
 
-  print('----- Start: Dart Practice #3: Q8 -----');
+  print('*** Start: Dart Practice #3: Q8 ***');
   stdout.write(style.Style.yellowish);
   print(
-      '----- Write a function in Dart named add that takes two numbers as arguments and returns their sum. -----');
+      '*** Write a function in Dart named add that takes two numbers as arguments and returns their sum. ***');
   stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   sum(55, 45);
   stdout.write(style.Style.reset);
-  print('----- End: Dart Practice #3: Q8 ----- \n');
+  print('*** End: Dart Practice #3: Q8 *** \n');
 
-  print('----- Start: Dart Practice #3: Q9 -----');
+  print('*** Start: Dart Practice #3: Q9 ***');
   stdout.write(style.Style.yellowish);
   print(
-      '----- Write a function in Dart called maxNumber that takes three numbers as arguments and returns the largest number. -----');
+      '*** Write a function in Dart called maxNumber that takes three numbers as arguments and returns the largest number. ***');
   stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   maxNumber(1, 2, 3);
   stdout.write(style.Style.reset);
-  print('----- End: Dart Practice #3: Q9 ----- \n');
+  print('*** End: Dart Practice #3: Q9 *** \n');
 
-  print('----- Start: Dart Practice #3: Q10 -----');
+  print('*** Start: Dart Practice #3: Q10 ***');
   stdout.write(style.Style.yellowish);
   print(
-      '----- Write a function in Dart called isEven that takes a number as an argument and returns True if the number is even, and False otherwise. -----');
+      '*** Write a function in Dart called isEven that takes a number as an argument and returns True if the number is even, and False otherwise. ***');
   stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   isEven(44);
   stdout.write(style.Style.reset);
-  print('----- End: Dart Practice #3: Q10 ----- \n');
+  print('*** End: Dart Practice #3: Q10 *** \n');
 
-  print('----- Start: Dart Practice #3: Q11 -----');
+  print('*** Start: Dart Practice #3: Q11 ***');
   stdout.write(style.Style.yellowish);
   print(
-      '----- Write a function in Dart called isEven that takes a number as an argument and returns True if the number is even, and False otherwise. -----');
+      '*** Write a function in Dart called isEven that takes a number as an argument and returns True if the number is even, and False otherwise. ***');
   stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   createUser("Robertson", 25, false);
   stdout.write(style.Style.reset);
-  print('----- End: Dart Practice #3: Q11 ----- \n');
+  print('*** End: Dart Practice #3: Q11 *** \n');
 
-  print('----- Start: Dart Practice #3: Q12 -----');
+  print('*** Start: Dart Practice #3: Q12 ***');
   stdout.write(style.Style.yellowish);
   print(
-      '----- Write a function in Dart called createUser with parameters name, age, and isActive, where isActive has a default value of true. -----');
+      '*** Write a function in Dart called createUser with parameters name, age, and isActive, where isActive has a default value of true. ***');
   stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   createUser("Robertson", 25, false);
   stdout.write(style.Style.reset);
-  print('----- End: Dart Practice #3: Q12 ----- \n');
+  print('*** End: Dart Practice #3: Q12 *** \n');
 
-  print('----- Start: Dart Practice #3: Q13 -----');
+  print('*** Start: Dart Practice #3: Q13 ***');
   stdout.write(style.Style.yellowish);
   print(
-      '----- Write a function in Dart called calculateArea that calculates the area of a rectangle. It should take length and width as arguments, with a default value of 1 for both. Formula: length * width. -----');
+      '*** Write a function in Dart called calculateArea that calculates the area of a rectangle. It should take length and width as arguments, with a default value of 1 for both. Formula: length * width. ***');
   stdout.write(style.Style.reset);
   stdout.write(style.Style.green);
   calculateArea(12, 8);
   stdout.write(style.Style.reset);
-  print('----- End: Dart Practice #3: Q13 ----- \n');
+  print('*** End: Dart Practice #3: Q13 *** \n');
 }
 
 // Write a program in Dart to print your own name using function.

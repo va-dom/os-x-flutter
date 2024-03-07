@@ -182,7 +182,7 @@ void multiplicationOf5() {
 void multiplicationOf1To9() {
   const count = 9;
   for (var i = 1; i <= count; i++) {
-    for (var j = 1; j <= count; j++) {
+    for (var j = 1; j <= count + 1; j++) {
       print('$i x $j = ${i * j}');
     }
   }
