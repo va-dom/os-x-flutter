@@ -26,6 +26,6 @@ double getAreaOfCircle(double radius) {
   return pi * radius * radius;
 }
 
-double getArea(length, width) {
+double getArea(double length, double width) {
   return length * width;
 }

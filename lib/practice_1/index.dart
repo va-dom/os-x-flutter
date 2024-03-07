@@ -1,5 +1,98 @@
 import 'dart:io';
+import 'package:dart_practices/style.dart' as style;
 import 'package:dart_practices/calculation.dart' as calculation;
+
+// Main function
+void runFunctions() {
+  print('----- Start: Dart Practice #1: Q1 -----');
+  print('----- Write a program to print your name in Dart -----');
+  stdout.write(style.Style.green);
+  printName();
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #1: Q1 ----- \n');
+
+  print('----- Start: Dart Practice #1: Q2 -----');
+  print(
+      '----- Write a program to print Hello I am “John Doe” and Hello I’am “John Doe” with single and double quotes -----');
+  stdout.write(style.Style.green);
+  introduce();
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #1: Q2 ----- \n');
+
+  print('----- Start: Dart Practice #1: Q3 -----');
+  print('----- Declare constant type of int set value 7 -----');
+  stdout.write(style.Style.green);
+  constType();
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #1: Q3 ----- \n');
+
+  print('----- Start: Dart Practice #1: Q4 -----');
+  print(
+      '----- Write a program in Dart that finds simple interest. Formula= (p * t * r) / 100 -----');
+  stdout.write(style.Style.green);
+  simpleInterest();
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #1: Q4 ----- \n');
+
+  print('----- Start: Dart Practice #1: Q5 -----');
+  print(
+      '----- Write a program to print a square of a number using user input -----');
+  stdout.write(style.Style.green);
+  squareOfANumber();
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #1: Q5 ----- \n');
+
+  print('----- Start: Dart Practice #1: Q6 -----');
+  print(
+      '----- Write a program to print full name of a from first name and last name using user input -----');
+  stdout.write(style.Style.green);
+  displayFullName();
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #1: Q6 ----- \n');
+
+  print('----- Start: Dart Practice #1: Q7 -----');
+  print(
+      '----- Write a program to find quotient and remainder of two integers -----');
+  stdout.write(style.Style.green);
+  findQuotientAndRemainder(10, 5);
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #1: Q7 ----- \n');
+
+  print('----- Start: Dart Practice #1: Q8 -----');
+  print('----- Write a program to swap two numbers -----');
+  stdout.write(style.Style.green);
+  swapTwoNumbers();
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #1: Q8 ----- \n');
+
+  print('----- Start: Dart Practice #1: Q9 -----');
+  print('----- Write a program to swap two numbers -----');
+  stdout.write(style.Style.green);
+  removeWhiteSpacesFromString();
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #1: Q9 ----- \n');
+
+  print('----- Start: Dart Practice #1: Q10 -----');
+  print('----- Write a program to swap two numbers -----');
+  stdout.write(style.Style.green);
+  convertStringToInt();
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #1: Q10 ----- \n');
+
+  print('----- Start: Dart Practice #1: Q11 -----');
+  print('----- Write a program to swap two numbers -----');
+  stdout.write(style.Style.green);
+  splitBill();
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #1: Q11 ----- \n');
+
+  print('----- Start: Dart Practice #1: Q12 -----');
+  print('----- Write a program to swap two numbers -----');
+  stdout.write(style.Style.green);
+  calculateTimeToOffice();
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #1: Q12 ----- \n');
+}
 
 // Write a program to print your name in Dart.
 void printName() {

@@ -1,4 +1,77 @@
 import 'dart:io';
+import 'package:dart_practices/style.dart' as style;
+
+void runFunctions() {
+  print('----- Start: Dart Practice #2: Q1 -----');
+  print(
+      '----- Write a dart program to check if the number is odd or even. -----');
+  stdout.write(style.Style.green);
+  isEvenOrOdd();
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #2: Q1 ----- \n');
+
+  print('----- Start: Dart Practice #2: Q2 -----');
+  print(
+      '----- Write a dart program to check whether a character is a vowel or consonant. -----');
+  stdout.write(style.Style.green);
+  checkVowelOrConsonant();
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #2: Q2 ----- \n');
+
+  print('----- Start: Dart Practice #2: Q3 -----');
+  print(
+      '----- Write a dart program to check whether a number is positive, negative, or zero. -----');
+  stdout.write(style.Style.green);
+  checkNumber();
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #2: Q3 ----- \n');
+
+  print('----- Start: Dart Practice #2: Q4 -----');
+  print('----- Write a program to print your name in Dart -----');
+  stdout.write(style.Style.green);
+  printName100x();
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #2: Q4 ----- \n');
+
+  print('----- Start: Dart Practice #2: Q5 -----');
+  print(
+      '----- Write a dart program to calculate the sum of natural numbers. -----');
+  stdout.write(style.Style.green);
+  calculateSumOfNaturalNumbers();
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #2: Q5 ----- \n');
+
+  print('----- Start: Dart Practice #2: Q6 -----');
+  print(
+      '----- Write a dart program to generate multiplication tables of 5. -----');
+  stdout.write(style.Style.green);
+  multiplicationOf5();
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #2: Q6 ----- \n');
+
+  print('----- Start: Dart Practice #2: Q7 -----');
+  print(
+      '----- Write a dart program to generate multiplication tables of 1-9. -----');
+  stdout.write(style.Style.green);
+  multiplicationOf1To9();
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #2: Q7 ----- \n');
+
+  print('----- Start: Dart Practice #2: Q8 -----');
+  print(
+      '----- Write a dart program to create a simple calculator that performs addition, subtraction, multiplication, and division. -----');
+  stdout.write(style.Style.green);
+  simpleCalculator();
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #2: Q8 ----- \n');
+
+  print('----- Start: Dart Practice #2: Q9 -----');
+  print('----- Write a dart program to print 1 to 100 but not 41. -----');
+  stdout.write(style.Style.green);
+  print1To100ButNot41();
+  stdout.write(style.Style.reset);
+  print('----- End: Dart Practice #2: Q9 ----- \n');
+}
 
 // Write a dart program to check if the number is odd or even.
 void isEvenOrOdd() {
@@ -106,21 +179,21 @@ void simpleCalculator() {
 
   if (userInput != null) {
     int num1 = int.parse(userInput);
-
     print("Enter second number: ");
+
     String? userInput2 = stdin.readLineSync();
     if (userInput2 != null) {
       int num2 = int.parse(userInput2);
 
-      print("Addition: ${num1 + num2}");
-      print("Subtraction: ${num1 - num2}");
-      print("Multiplication: ${num1 * num2}");
-      print("Division: ${num1 / num2}");
+      print("Addition: $num1+$num2 = ${(num1 + num2)}");
+      print("Subtraction: $num1-$num2 = ${num1 - num2}");
+      print("Multiplication: $num1*$num2 = ${num1 * num2}");
+      print("Division: $num1/$num2 = ${num1 / num2}");
     } else {
-      throw Exception('Invalid input');
+      throw FormatException('Invalid input');
     }
   } else {
-    throw Exception('Invalid input');
+    throw FormatException('Invalid input');
   }
 }
 
