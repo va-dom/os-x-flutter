@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart_practice_app.dart' as main_func;
 
 getOddEven() {
-  print('Enter a number:');
+  print('Please enter a number:');
   int number = int.parse(stdin.readLineSync()!);
 
   if (number % 2 == 0) {
@@ -15,7 +15,7 @@ getOddEven() {
 getVowelsCons() {
   RegExp vowelRegex = RegExp(r'[aeiouAEIOU]');
 
-  print("Enter a letter:");
+  print("Please enter a letter:");
   String selectedInput = stdin.readLineSync()!;
   while (selectedInput.isEmpty ||
       selectedInput.length > 1 ||

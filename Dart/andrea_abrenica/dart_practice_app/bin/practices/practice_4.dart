@@ -28,6 +28,7 @@ void runPractice() {
   days.add("Thursday");
   days.add("Friday");
   days.add("Saturday");
+  days.add("Sunday");
   print(days);
 
   print(

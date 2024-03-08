@@ -42,14 +42,14 @@ getInputName() {
   print("Enter your first name:");
   String firstNameVal = stdin.readLineSync()!;
   while (firstNameVal.isEmpty) {
-    print("Invalid input. Enter your first name:");
+    print("Invalid input. Please enter your first name:");
     firstNameVal = stdin.readLineSync()!;
   }
 
   print("Enter your last name:");
   String lastNameVal = stdin.readLineSync()!;
   while (lastNameVal.isEmpty) {
-    print("Invalid input. Enter your last name:");
+    print("Invalid input. Please enter your last name:");
     lastNameVal = stdin.readLineSync()!;
   }
 
