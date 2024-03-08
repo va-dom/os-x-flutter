@@ -4,47 +4,47 @@ import 'package:todo_app_2/models/task.dart';
 import 'package:todo_app_2/utils/utils.dart';
 import 'package:todo_app_2/widgets/task_list_tile.dart';
 
-class TaskScreen extends StatefulWidget{
+class TaskScreen extends StatefulWidget {
   const TaskScreen({super.key});
 
   @override
   State<TaskScreen> createState() => _TaskScreenState();
 }
 
-class _TaskScreenState extends State<TaskScreen>{
-
+class _TaskScreenState extends State<TaskScreen> {
   late List<Task> tasks;
   late List<Category> categories;
   late TextEditingController _searchController;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     tasks = [];
     categories = [];
     _searchController = TextEditingController();
   }
-  
+
   @override
-  void dispose(){
+  void dispose() {
     _searchController.dispose();
     super.dispose();
   }
 
-  void _addCategory(String categoryName){
+  void _addCategory(String categoryName) {
     setState(() {
       categories.add(Category(categoryName));
     });
   }
 
-  List<Task> getFilteredTasks(String query){
-    if(query.isEmpty){
+  List<Task> getFilteredTasks(String query) {
+    if (query.isEmpty) {
       return tasks;
-    }
-    else{
+    } else {
       return tasks.where((task) {
-        final tileMatches = task.title.toLowerCase().contains(query.toLowerCase());
-        final descriptionMatches = task.description.toLowerCase().contains(query.toLowerCase());
+        final tileMatches =
+            task.title.toLowerCase().contains(query.toLowerCase());
+        final descriptionMatches =
+            task.description.toLowerCase().contains(query.toLowerCase());
         return tileMatches || descriptionMatches;
       }).toList();
     }
@@ -54,26 +54,53 @@ class _TaskScreenState extends State<TaskScreen>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  TextField(
-          controller: _searchController,
-          decoration: InputDecoration(
-            hintText: "Search Task",
-            border: InputBorder.none,
-            suffixIcon: IconButton(
-              icon: const Icon(Icons.clear),
-              onPressed: (){
-                _searchController.clear();
-                setState(() {});
-              },
+        title: Row(
+          children: [
+            const Text(
+              "ToDo App",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18),
             ),
-          ),
-          onChanged: (value) => setState(() {}),
-        ),//const Text("Task"),
+            const SizedBox(width: 20),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20)),
+                child: TextField(
+                  controller: _searchController,
+                  decoration: InputDecoration(
+                    hintText: "Search Task",
+                    border: InputBorder.none,
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.clear),
+                      onPressed: () {
+                        _searchController.clear();
+                        setState(() {});
+                      },
+                    ),
+                  ),
+                  onChanged: (value) => setState(() {}),
+                ),
+              ),
+            )
+          ],
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.blue[600],
+        shadowColor: Colors.black87,
+        elevation: 8,
       ),
       body: ListView.builder(
         itemCount: getFilteredTasks(_searchController.text).length,
-        itemBuilder: (context, index){
-          final filteredTasks = _searchController.text.isEmpty ? tasks : getFilteredTasks(_searchController.text);
+        itemBuilder: (context, index) {
+          final filteredTasks = _searchController.text.isEmpty
+              ? tasks
+              : getFilteredTasks(_searchController.text);
           final task = filteredTasks[index];
           return TaskListTile(
             task: task,
@@ -83,12 +110,11 @@ class _TaskScreenState extends State<TaskScreen>{
             },
             onEdit: () async {
               final newTask = await openAddTaskDialog(
-                context: context,
-                task: task,
-                categories: categories,
-                onAddCategory: _addCategory
-              );
-              if(newTask != null){
+                  context: context,
+                  task: task,
+                  categories: categories,
+                  onAddCategory: _addCategory);
+              if (newTask != null) {
                 tasks.removeWhere((element) => element.id == newTask.id);
                 tasks.insert(0, newTask);
               }
@@ -98,18 +124,21 @@ class _TaskScreenState extends State<TaskScreen>{
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async{
+        onPressed: () async {
           final task = await openAddTaskDialog(
-            context: context,
-            categories: categories,
-            onAddCategory: _addCategory
-          );
-          if(task != null){
+              context: context,
+              categories: categories,
+              onAddCategory: _addCategory);
+          if (task != null) {
             tasks.add(task);
           }
           setState(() {});
         },
-        child: const Icon(Icons.add),
+        backgroundColor: Colors.blue[600],
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }
