@@ -7,11 +7,11 @@ class TodoItem extends StatefulWidget {
   final void Function(Todo) removeTodo;
 
   const TodoItem({
-    Key? key,
+    super.key,
     required this.todo,
     required this.onTodoChanged,
     required this.removeTodo,
-  }) : super(key: key);
+  });
 
   @override
   State<TodoItem> createState() => _TodoItemState();
