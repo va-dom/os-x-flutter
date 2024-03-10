@@ -99,5 +99,5 @@ void splitTheBill(double total, double pax) {
 
 void getTime(double distance, double speed) {
   double time = distance / speed;
-print("you'll be in the office in $time hour(s)");
+  print("you'll be in the office in $time hour(s)");
 }
