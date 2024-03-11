@@ -1,13 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable
 
 import "package:flutter/material.dart";
-import "package:flutter/widgets.dart";
 import "package:todo_app/util/button.dart";
 
 class TaskDialogBox extends StatefulWidget {
   TextEditingController description;
   int? index;
-  String category = 'Work';
+  String category;
   final ValueChanged<String>
       onCategoryChanged; // Callback function for category change
   Function(int) onUpdate;
@@ -40,6 +39,7 @@ class _TaskDialogBoxState extends State<TaskDialogBox> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             // user inputs
+            // Input for Task Description
             TextField(
               controller: widget.description,
               decoration: InputDecoration(
@@ -88,12 +88,13 @@ class _TaskDialogBoxState extends State<TaskDialogBox> {
                 Button(
                   buttonName: 'Save',
                   onPressed: () {
-                    (widget.index == null)
-                        ? widget.onSave
-                        : widget.onUpdate(widget.index!);
+                    if (widget.index == null) {
+                      widget.onSave();
+                    } else {
+                      widget.onUpdate(widget.index!);
+                    }
                   },
                 ),
-
                 const SizedBox(width: 8),
 
                 //Cancel button
