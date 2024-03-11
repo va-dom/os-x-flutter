@@ -77,12 +77,17 @@ class _HomePageState extends State<HomePage> {
   }
 
   // Delete Task
-  void deleteClicked(int index) {
+  void deleteClicked(int id) {
+    int index = findIndexByID(db.toDoList, id);
     setState(() {
-      //db.toDoList.removeAt(index);
-      filteredList.removeAt(index);
+      db.toDoList.removeAt(index);
+      //filteredList.removeAt(index);
     });
+    loadData(keyword: _searchKeyword.text);
     db.updateDatabase();
+    print('After delete');
+    print('F: $filteredList');
+    print('DB: ${db.toDoList}');
   }
 
   // Save new task
@@ -150,7 +155,6 @@ class _HomePageState extends State<HomePage> {
   // Edit existing task
   void editTask(int id) {
     int index = findIndexByID(db.toDoList, id);
-    print(index ?? 0);
     showDialog(
       context: context,
       builder: (context) {
@@ -232,7 +236,7 @@ class _HomePageState extends State<HomePage> {
                   onClickedDescription: () {
                     editTask(filteredList[index][0]);
                   },
-                  onClickedDelete: () => deleteClicked(index),
+                  onClickedDelete: () => deleteClicked(filteredList[index][0]),
                 );
               },
             ),
