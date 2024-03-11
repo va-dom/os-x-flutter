@@ -17,23 +17,31 @@ class _HomePageState extends State<HomePage> {
   // reference the hive box
   final _myBox = Hive.box('myBox');
   ToDoDatabase db = ToDoDatabase();
+  List filteredList = [];
 
   void loadData({String? keyword}) {
     try {
       if (keyword != null && keyword.isNotEmpty) {
         setState(() {
-          db.toDoList = _myBox
+          filteredList = _myBox
               .get("TODOLIST", defaultValue: [])
-              .where((task) => task[0]
+              .where((task) => task[1]
                   .toString()
                   .toLowerCase()
                   .contains(keyword.toLowerCase()))
               .toList();
         });
+        print('with filter');
+        print('F: $filteredList');
+        print('DB: ${db.toDoList}');
       } else {
         setState(() {
           db.toDoList = _myBox.get("TODOLIST", defaultValue: []);
+          filteredList = _myBox.get("TODOLIST", defaultValue: []);
         });
+        print('without filter');
+        print('F: $filteredList');
+        print('DB: ${db.toDoList}');
       }
     } catch (e) {
       print('Error loading data: $e');
@@ -45,6 +53,7 @@ class _HomePageState extends State<HomePage> {
     // if this is the 1st time ever opening the app, then create defaukt data
     if (_myBox.get("TODOLIST") == null) {
       db.createInitialData();
+      loadData();
     } else {
       // there already existing data
       loadData();
@@ -61,7 +70,8 @@ class _HomePageState extends State<HomePage> {
   // Checkbox was tapped fuction
   void checkBoxChanged(bool? value, int index) {
     setState(() {
-      db.toDoList[index][1] = value;
+      //db.toDoList[index][2] = value;
+      filteredList[index][2] = value;
     });
     //db.updateDatabase();
   }
@@ -69,19 +79,30 @@ class _HomePageState extends State<HomePage> {
   // Delete Task
   void deleteClicked(int index) {
     setState(() {
-      db.toDoList.removeAt(index);
+      //db.toDoList.removeAt(index);
+      filteredList.removeAt(index);
     });
-    //db.updateDatabase();
+    db.updateDatabase();
   }
 
   // Save new task
   void saveNewTask() {
+    // Get the largest value in the list
+    int idNumber =
+        db.toDoList.fold(0, (max, item) => item[0] > max ? item[0] : max) + 1;
+
     setState(() {
-      db.toDoList.add([_taskDescription.text, false, _category]);
+      //db.toDoList.add([_taskDescription.text, false, _category]);
+      //filteredList.add([idNumber, _taskDescription.text, false, _category]);
+      db.toDoList.add([idNumber, _taskDescription.text, false, _category]);
       _taskDescription.clear();
     });
     Navigator.of(context).pop();
-    //db.updateDatabase();
+    db.updateDatabase();
+    loadData(keyword: _searchKeyword.text);
+    print('After save');
+    print('F: $filteredList');
+    print('DB: ${db.toDoList}');
   }
 
   // Create new task
@@ -92,7 +113,7 @@ class _HomePageState extends State<HomePage> {
         return TaskDialogBox(
           description: _taskDescription,
           category: 'Work',
-          index: null,
+          id: null,
           onSave: saveNewTask,
           onCancel: () => Navigator.of(context).pop(),
           onUpdate: (value) {},
@@ -110,8 +131,9 @@ class _HomePageState extends State<HomePage> {
   void updateTask(int index) {
     setState(() {
       db.toDoList[index] = [
+        db.toDoList[index][0],
         _taskDescription.text,
-        db.toDoList[index][1],
+        db.toDoList[index][2],
         _category
       ];
       _taskDescription.clear();
@@ -119,21 +141,27 @@ class _HomePageState extends State<HomePage> {
     });
     Navigator.of(context).pop();
     db.updateDatabase();
+    loadData(keyword: _searchKeyword.text);
+    print('After update');
+    print('F: $filteredList');
+    print('DB: ${db.toDoList}');
   }
 
   // Edit existing task
-  void editTask(int index) {
+  void editTask(int id) {
+    int index = findIndexByID(db.toDoList, id);
+    print(index ?? 0);
     showDialog(
       context: context,
       builder: (context) {
         // Initialize TextEditingController with the text from toDoList[index][0]
-        _taskDescription.text = db.toDoList[index][0];
-        _category = db.toDoList[index][2];
+        _taskDescription.text = db.toDoList[index][1];
+        _category = db.toDoList[index][3];
 
         return TaskDialogBox(
           description: _taskDescription,
           category: _category,
-          index: index,
+          id: index,
           onSave: () {},
           onCancel: () => Navigator.of(context).pop(),
           onUpdate: (value) {
@@ -147,6 +175,16 @@ class _HomePageState extends State<HomePage> {
         );
       },
     );
+  }
+
+// find index by ID
+  int findIndexByID(List toDoList, int id) {
+    for (var entry in toDoList.asMap().entries) {
+      if (entry.value[0] == id) {
+        return entry.key;
+      }
+    }
+    return -1; // ID not found
   }
 
   @override
@@ -184,15 +222,15 @@ class _HomePageState extends State<HomePage> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: db.toDoList.length,
+              itemCount: filteredList.length,
               itemBuilder: (context, index) {
                 return ToDoTile(
-                  taskDescription: db.toDoList[index][0],
-                  isTaskCompleted: db.toDoList[index][1],
-                  taskCategory: db.toDoList[index][2],
+                  taskDescription: filteredList[index][1],
+                  isTaskCompleted: filteredList[index][2],
+                  taskCategory: filteredList[index][3],
                   onChanged: (value) => checkBoxChanged(value, index),
                   onClickedDescription: () {
-                    editTask(index);
+                    editTask(filteredList[index][0]);
                   },
                   onClickedDelete: () => deleteClicked(index),
                 );

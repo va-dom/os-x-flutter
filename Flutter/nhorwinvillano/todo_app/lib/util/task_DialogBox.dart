@@ -5,7 +5,7 @@ import "package:todo_app/util/button.dart";
 
 class TaskDialogBox extends StatefulWidget {
   TextEditingController description;
-  int? index;
+  int? id;
   String category;
   final ValueChanged<String>
       onCategoryChanged; // Callback function for category change
@@ -17,7 +17,7 @@ class TaskDialogBox extends StatefulWidget {
     super.key,
     required this.description,
     required this.category,
-    required this.index,
+    required this.id,
     required this.onCategoryChanged,
     required this.onUpdate,
     required this.onSave,
@@ -88,10 +88,10 @@ class _TaskDialogBoxState extends State<TaskDialogBox> {
                 Button(
                   buttonName: 'Save',
                   onPressed: () {
-                    if (widget.index == null) {
+                    if (widget.id == null) {
                       widget.onSave();
                     } else {
-                      widget.onUpdate(widget.index!);
+                      widget.onUpdate(widget.id!);
                     }
                   },
                 ),

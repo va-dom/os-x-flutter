@@ -11,8 +11,8 @@ class ToDoDatabase {
   void createInitialData() {
     try {
       toDoList = [
-        ['TaskName1', false, 'Work'],
-        ['TaskName2', false, 'Personal'],
+        [1, 'TaskName1', false, 'Work'],
+        [2, 'TaskName2', false, 'Personal'],
       ];
       _myBox.put("TODOLIST", toDoList);
     } catch (e) {
