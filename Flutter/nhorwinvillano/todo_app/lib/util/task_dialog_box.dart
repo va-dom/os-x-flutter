@@ -1,12 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable
 
 import "package:flutter/material.dart";
-import "package:todo_app/util/button.dart";
+import "package:todo_app/util/my_button.dart";
+import "package:todo_app/util/my_dropdown.dart";
 
 class TaskDialogBox extends StatefulWidget {
   TextEditingController description;
   int? id;
-  String category;
+  String? category;
   final ValueChanged<String>
       onCategoryChanged; // Callback function for category change
   Function(int) onUpdate;
@@ -33,7 +34,7 @@ class _TaskDialogBoxState extends State<TaskDialogBox> {
   Widget build(BuildContext context) {
     return AlertDialog(
       content: SizedBox(
-        height: 400,
+        height: 250,
         width: 300,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -43,62 +44,50 @@ class _TaskDialogBoxState extends State<TaskDialogBox> {
             TextField(
               controller: widget.description,
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                  borderSide: BorderSide.none,
+                ),
                 hintText: 'Description',
               ),
             ),
             //Dropdown for Category
-            Container(
-              decoration: BoxDecoration(
-                  border: Border.all(), borderRadius: BorderRadius.circular(4)),
-              padding: EdgeInsets.only(left: 10),
-              child: DropdownButton(
-                value: widget.category,
-                isExpanded: true,
-                hint: Text('Category'),
-                dropdownColor: Colors.white,
-                focusColor: Colors.white,
-                borderRadius: BorderRadius.circular(4),
-                items: <String>[
-                  'Work',
-                  'Personal',
-                  'Health',
-                  'Finance',
-                  'Travel'
-                ].map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
+            MyDropdown(
+                category: widget.category,
                 onChanged: (value) {
                   setState(() {
-                    widget.category = value!;
+                    widget.category = value;
                     widget.onCategoryChanged(
                         value); // Notify HomePage about category change
                   });
-                },
-              ),
-            ),
+                }),
             // Buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 //Save Button
-                Button(
+                MyButton(
                   buttonName: 'Save',
                   onPressed: () {
-                    if (widget.id == null) {
-                      widget.onSave();
+                    if (widget.description.text == '' ||
+                        widget.category == '-' ||
+                        widget.category == null) {
+                      null;
                     } else {
-                      widget.onUpdate(widget.id!);
+                      if (widget.id == null) {
+                        widget.onSave();
+                      } else {
+                        widget.onUpdate(widget.id!);
+                      }
                     }
                   },
                 ),
                 const SizedBox(width: 8),
 
                 //Cancel button
-                Button(buttonName: 'Cancel', onPressed: widget.onCancel),
+                MyButton(buttonName: 'Cancel', onPressed: widget.onCancel),
               ],
             )
 

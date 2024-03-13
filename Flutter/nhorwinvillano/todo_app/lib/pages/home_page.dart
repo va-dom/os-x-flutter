@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:todo_app/data/database.dart';
-import 'package:todo_app/util/task_DialogBox.dart';
+import 'package:todo_app/util/alert_dialog.dart';
+import 'package:todo_app/util/my_dropdown.dart';
+import 'package:todo_app/util/task_dialog_box.dart';
 import 'package:todo_app/util/todo_tile.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,16 +21,31 @@ class _HomePageState extends State<HomePage> {
   ToDoDatabase db = ToDoDatabase();
   List filteredList = [];
 
-  void loadData({String? keyword}) {
+  //text controllers
+  final TextEditingController _searchKeyword = TextEditingController();
+  final TextEditingController _taskDescription = TextEditingController();
+  String? _filterCategory = '-';
+  String? _category = '-';
+
+// Load data function
+  void loadData({String? keyword, String? category}) {
     try {
-      if (keyword != null && keyword.isNotEmpty) {
+      if ((keyword != null && keyword.isNotEmpty) ||
+          (category != null && category.isNotEmpty)) {
         setState(() {
           filteredList = _myBox
               .get("TODOLIST", defaultValue: [])
-              .where((task) => task[1]
-                  .toString()
-                  .toLowerCase()
-                  .contains(keyword.toLowerCase()))
+              .where((task) =>
+                  (keyword == null ||
+                      keyword.isEmpty ||
+                      task[1]
+                          .toString()
+                          .toLowerCase()
+                          .contains(keyword.toLowerCase())) &&
+                  (category == '-' ||
+                      category!.isEmpty ||
+                      task[3].toString().toLowerCase() ==
+                          category.toLowerCase()))
               .toList();
         });
         print('with filter');
@@ -62,18 +79,31 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  //text controllers
-  final TextEditingController _searchKeyword = TextEditingController();
-  final TextEditingController _taskDescription = TextEditingController();
-  String _category = 'Work';
+  // showDialog function
+  void showAlert(String title, content) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return MyAlertDialog(
+            title: title,
+            content: content,
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          );
+        });
+  }
 
   // Checkbox was tapped fuction
-  void checkBoxChanged(bool? value, int index) {
+  void checkBoxChanged(bool? value, int id) {
+    int index = findIndexByID(db.toDoList, id);
     setState(() {
-      //db.toDoList[index][2] = value;
-      filteredList[index][2] = value;
+      db.toDoList[index][2] = value;
+      //filteredList[index][2] = value;
     });
-    //db.updateDatabase();
+    showAlert("Success", "Task status changed successfully");
+    loadData(keyword: _searchKeyword.text, category: _filterCategory);
+    db.updateDatabase();
   }
 
   // Delete Task
@@ -83,11 +113,9 @@ class _HomePageState extends State<HomePage> {
       db.toDoList.removeAt(index);
       //filteredList.removeAt(index);
     });
-    loadData(keyword: _searchKeyword.text);
+    loadData(keyword: _searchKeyword.text, category: _filterCategory);
     db.updateDatabase();
-    print('After delete');
-    print('F: $filteredList');
-    print('DB: ${db.toDoList}');
+    showAlert("Success", "Task deleted successfully");
   }
 
   // Save new task
@@ -97,17 +125,13 @@ class _HomePageState extends State<HomePage> {
         db.toDoList.fold(0, (max, item) => item[0] > max ? item[0] : max) + 1;
 
     setState(() {
-      //db.toDoList.add([_taskDescription.text, false, _category]);
-      //filteredList.add([idNumber, _taskDescription.text, false, _category]);
       db.toDoList.add([idNumber, _taskDescription.text, false, _category]);
       _taskDescription.clear();
     });
     Navigator.of(context).pop();
+    showAlert("Success", "Task added successfully");
     db.updateDatabase();
-    loadData(keyword: _searchKeyword.text);
-    print('After save');
-    print('F: $filteredList');
-    print('DB: ${db.toDoList}');
+    loadData(keyword: _searchKeyword.text, category: _filterCategory);
   }
 
   // Create new task
@@ -117,7 +141,7 @@ class _HomePageState extends State<HomePage> {
       builder: (context) {
         return TaskDialogBox(
           description: _taskDescription,
-          category: 'Work',
+          category: null,
           id: null,
           onSave: saveNewTask,
           onCancel: () => Navigator.of(context).pop(),
@@ -146,10 +170,8 @@ class _HomePageState extends State<HomePage> {
     });
     Navigator.of(context).pop();
     db.updateDatabase();
-    loadData(keyword: _searchKeyword.text);
-    print('After update');
-    print('F: $filteredList');
-    print('DB: ${db.toDoList}');
+    loadData(keyword: _searchKeyword.text, category: _filterCategory);
+    showAlert("Success", "Task updated successfully");
   }
 
   // Edit existing task
@@ -191,19 +213,74 @@ class _HomePageState extends State<HomePage> {
     return -1; // ID not found
   }
 
+// Function to build ListView
+  Widget _buildListView() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Card(
+        child: ListView.builder(
+          itemCount: filteredList.length,
+          itemBuilder: (context, index) {
+            return ToDoTile(
+              taskDescription: filteredList[index][1],
+              isTaskCompleted: filteredList[index][2],
+              taskCategory: filteredList[index][3],
+              onChanged: (value) =>
+                  checkBoxChanged(value, filteredList[index][0]),
+              onClickedDescription: () => editTask(filteredList[index][0]),
+              onClickedDelete: () => deleteClicked(filteredList[index][0]),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+// Function to build empty list indicator with image
+  Widget _buildEmptyListIndicator() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Card(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              'image_empty_list.gif',
+              width: 500,
+              height: 300,
+              // Optionally, you can add other properties like fit, alignment, etc.
+            ),
+            SizedBox(height: 20), // Adjust spacing as needed
+            Text(
+              'No ToDos',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.normal,
+                color: Colors.grey,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlue[100],
+      backgroundColor: Color(0xFFEEEFF5),
       appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: Text('TO DO'),
-        elevation: 0,
+        backgroundColor: Colors.lightBlue,
+        title: Text('TO DO APP'),
+        elevation: 20,
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
+            // Textfield for Search Tasks
             child: TextField(
               controller: _searchKeyword,
               decoration: InputDecoration(
@@ -212,7 +289,7 @@ class _HomePageState extends State<HomePage> {
                 filled: true,
                 fillColor: Colors.white,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(20.0),
                   borderSide: BorderSide.none,
                 ),
                 contentPadding:
@@ -220,26 +297,39 @@ class _HomePageState extends State<HomePage> {
                 hintStyle: TextStyle(color: Colors.grey),
               ),
               onChanged: (value) {
-                loadData(keyword: _searchKeyword.text);
+                loadData(
+                    keyword: _searchKeyword.text, category: _filterCategory);
               },
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: filteredList.length,
-              itemBuilder: (context, index) {
-                return ToDoTile(
-                  taskDescription: filteredList[index][1],
-                  isTaskCompleted: filteredList[index][2],
-                  taskCategory: filteredList[index][3],
-                  onChanged: (value) => checkBoxChanged(value, index),
-                  onClickedDescription: () {
-                    editTask(filteredList[index][0]);
-                  },
-                  onClickedDelete: () => deleteClicked(filteredList[index][0]),
-                );
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            // Dropdown for filter
+            child: MyDropdown(
+              category: _filterCategory,
+              onChanged: (value) {
+                setState(() {
+                  _filterCategory = value; // Update category in HomePage
+                });
+                loadData(
+                    keyword: _searchKeyword.text, category: _filterCategory);
               },
             ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Text(
+              'All ToDos',
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Expanded(
+            child: filteredList.isNotEmpty
+                ? _buildListView()
+                : _buildEmptyListIndicator(),
           ),
         ],
       ),
