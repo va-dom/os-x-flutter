@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app_2/models/task.dart';
 
-class TaskListTile extends StatefulWidget{
+class TaskListTile extends StatefulWidget {
   const TaskListTile({
     super.key,
     required this.task,
@@ -15,10 +15,9 @@ class TaskListTile extends StatefulWidget{
 
   @override
   State<TaskListTile> createState() => _TaskListTile();
-
 }
 
-class _TaskListTile extends State<TaskListTile>{
+class _TaskListTile extends State<TaskListTile> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,20 +35,24 @@ class _TaskListTile extends State<TaskListTile>{
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
-                    decoration: widget.task.isChecked ? TextDecoration.lineThrough : null,
+                    decoration: widget.task.isChecked
+                        ? TextDecoration.lineThrough
+                        : null,
                   ),
                 ),
                 Text(
                   widget.task.description,
                   style: TextStyle(
-                    decoration: widget.task.isChecked ? TextDecoration.lineThrough : null,
+                    decoration: widget.task.isChecked
+                        ? TextDecoration.lineThrough
+                        : null,
                   ),
                   maxLines: 5,
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  'Category: ${widget.task.category.name}',
+                  'Category: ${widget.task.categoryReference}',
                   style: const TextStyle(
                     fontStyle: FontStyle.italic,
                     color: Colors.grey,
@@ -78,7 +81,7 @@ class _TaskListTile extends State<TaskListTile>{
                 ),
                 Checkbox(
                   value: widget.task.isChecked,
-                  onChanged: (value){
+                  onChanged: (value) {
                     widget.task.isChecked = value!;
                     setState(() {});
                   },

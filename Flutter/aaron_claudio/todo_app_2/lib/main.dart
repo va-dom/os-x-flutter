@@ -4,9 +4,17 @@ import 'package:todo_app_2/firebase_options.dart';
 import 'package:todo_app_2/screens/task_screen.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  // final FirebaseFirestore db = FirebaseFirestore.instance;
+  // final CollectionReference tasks = db.collection('tasks');
+  // final QuerySnapshot snapshot = await tasks.get();
+  // snapshot.docs.forEach((DocumentSnapshot document) {
+  //   final userFields = document.data();
+  //   log(userFields.toString());
+  // });
   runApp(const MyApp());
 }
 
@@ -21,4 +29,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app_2/models/category.dart';
 import 'package:todo_app_2/models/task.dart';
+import 'package:todo_app_2/utils/firebase_service.dart';
 
-Category defaultCategory = Category("Others");
+// Category defaultCategory = Category("Others");
 
 class AddTaskDialog extends StatefulWidget {
   const AddTaskDialog(
@@ -24,7 +26,7 @@ class _AddTaskDialogState extends State<AddTaskDialog>
   late final TextEditingController _titleController;
   late final TextEditingController _descriptionController;
   late Category? _selectedCategory;
-  late List<Category> _categories;
+  late List<Category> _categoryReferences;
   late TabController _tabController;
 
   @override
@@ -32,13 +34,8 @@ class _AddTaskDialogState extends State<AddTaskDialog>
     super.initState();
     _titleController = TextEditingController();
     _descriptionController = TextEditingController();
-    // _categories = widget.categories;
-    // _selectedCategory = widget.task?.category;
-    _categories = [defaultCategory, ...(widget.categories)];
+    _categoryReferences = widget.categories.toList();
     _selectedCategory = widget.task?.category;
-    if (_selectedCategory == null && _categories.isNotEmpty) {
-      _selectedCategory = _categories.first;
-    }
     _tabController = TabController(length: 2, vsync: this);
     if (widget.task != null) {
       _titleController.text = widget.task!.title;
@@ -123,7 +120,7 @@ class _AddTaskDialogState extends State<AddTaskDialog>
             maxLines: 5,
           ),
           const SizedBox(height: 10),
-          if (_categories.isNotEmpty)
+          if (_categoryReferences.isNotEmpty)
             DropdownButtonFormField<Category>(
               value: _selectedCategory,
               hint: const Text("Select Category"),
@@ -131,11 +128,9 @@ class _AddTaskDialogState extends State<AddTaskDialog>
                   labelText: "Category",
                   border: OutlineInputBorder(),
                   floatingLabelBehavior: FloatingLabelBehavior.always),
-              items: _categories.map((Category category) {
+              items: _categoryReferences.map((category) {
                 return DropdownMenuItem<Category>(
-                  value: category,
-                  child: Text(category.name),
-                );
+                    value: category, child: Text(category.name));
               }).toList(),
               onChanged: (Category? value) {
                 setState(() {
@@ -154,14 +149,27 @@ class _AddTaskDialogState extends State<AddTaskDialog>
           SizedBox(
             width: double.infinity, // Ensure full width
             child: ElevatedButton(
-              onPressed: () {
-                Task task = Task(
-                  id: DateTime.now().toString(),
-                  title: _titleController.text,
-                  description: _descriptionController.text,
-                  dateCreated: DateTime.now(),
-                  category: _selectedCategory ?? defaultCategory,
-                );
+              onPressed: () async {
+                // Task task = Task(
+                //   id: DateTime.now().toString(),
+                //   title: _titleController.text,
+                //   description: _descriptionController.text,
+                //   dateCreated: DateTime.now(),
+                //   category: _selectedCategory ?? defaultCategory,
+                // );
+                // if (widget.task != null) {
+                //   task = Task(
+                //       id: widget.task!.id,
+                //       title: _titleController.text,
+                //       description: _descriptionController.text,
+                //       dateCreated: widget.task!.dateCreated,
+                //       isChecked: widget.task!.isChecked,
+                //       category: _selectedCategory!);
+                //   await FirebaseService.updateTask(task);
+                // }
+                // await FirebaseService.addTask(task);
+                Task task;
+                //update task
                 if (widget.task != null) {
                   task = Task(
                       id: widget.task!.id,
@@ -169,9 +177,37 @@ class _AddTaskDialogState extends State<AddTaskDialog>
                       description: _descriptionController.text,
                       dateCreated: widget.task!.dateCreated,
                       isChecked: widget.task!.isChecked,
-                      category: _selectedCategory!);
+                      categoryReference: _selectedCategory != null
+                          ? _selectedCategory!.reference
+                              as DocumentReference<Object>
+                          : null,
+                      category: widget.task!.category);
+                  await FirebaseService.updateTask(task);
                 }
-                Navigator.of(context).pop(task);
+                //add new task
+                else {
+                  task = Task(
+                    id: DateTime.now().toString(),
+                    title: _titleController.text,
+                    description: _descriptionController.text,
+                    dateCreated: DateTime.now(),
+                    categoryReference: _selectedCategory != null
+                        ? _selectedCategory!.reference
+                            as DocumentReference<Object>
+                        : null,
+                    category: _selectedCategory ??
+                        Category(
+                            name: "Default Category",
+                            reference: FirebaseFirestore.instance
+                                .collection('categories')
+                                .doc()),
+                  );
+
+                  await FirebaseService.addTask(task);
+                }
+                if (mounted) {
+                  Navigator.of(context).pop(task);
+                }
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue[600],
@@ -218,8 +254,10 @@ class _AddTaskDialogState extends State<AddTaskDialog>
                 if (newCategoryName.isNotEmpty) {
                   widget.onAddCategory(newCategoryName);
                   setState(() {
-                    _categories = [defaultCategory, ...widget.categories];
-                    _selectedCategory = defaultCategory;
+                    _categoryReferences = widget.categories.toList();
+                    _selectedCategory = _categoryReferences.isNotEmpty
+                        ? _categoryReferences.first
+                        : null;
                   });
                 }
               },

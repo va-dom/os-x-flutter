@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app_2/models/category.dart';
 import 'package:todo_app_2/models/task.dart';
+import 'package:todo_app_2/utils/firebase_service.dart';
 import 'package:todo_app_2/utils/utils.dart';
 import 'package:todo_app_2/widgets/task_list_tile.dart';
 
@@ -19,9 +20,14 @@ class _TaskScreenState extends State<TaskScreen> {
   @override
   void initState() {
     super.initState();
-    tasks = [];
-    categories = [];
     _searchController = TextEditingController();
+    fetchTasksAndCategories();
+  }
+
+  Future<void> fetchTasksAndCategories() async {
+    tasks = await FirebaseService.getTasks();
+    categories = await FirebaseService.getCategories();
+    setState(() {});
   }
 
   @override
@@ -30,10 +36,15 @@ class _TaskScreenState extends State<TaskScreen> {
     super.dispose();
   }
 
-  void _addCategory(String categoryName) {
-    setState(() {
-      categories.add(Category(categoryName));
-    });
+  Future<void> _addCategory(String categoryName) async {
+    // Create a new Category object with the provided name
+    Category newCategory = Category(name: categoryName, reference: null);
+
+    // Add the new category to Firestore
+    await FirebaseService.addCategory(newCategory);
+
+    // Refresh the tasks and categories lists
+    await fetchTasksAndCategories();
   }
 
   List<Task> getFilteredTasks(String query) {
