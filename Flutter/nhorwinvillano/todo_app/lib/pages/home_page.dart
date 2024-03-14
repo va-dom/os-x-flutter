@@ -311,9 +311,9 @@ class _HomePageState extends State<HomePage> {
               },
             ),
           ),
+          // Dropdown for filter
           Padding(
             padding: const EdgeInsets.all(20.0),
-            // Dropdown for filter
             child: MyDropdown(
               category: _filterCategory,
               onChanged: (value) {
@@ -325,6 +325,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
           ),
+          // ToDo Header
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Text(
@@ -335,6 +336,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
+          // Listview builder
           Expanded(
             child: filteredList.isNotEmpty
                 ? _buildListView()
