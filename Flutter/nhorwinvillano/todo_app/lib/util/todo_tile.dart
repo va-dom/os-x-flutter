@@ -24,47 +24,42 @@ class ToDoTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 25, left: 25, right: 25),
-      child: Container(
-        padding: EdgeInsets.all(24),
-        decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(12)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            //Checkbox
+      padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+      child: ListTile(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+        tileColor: Colors.white,
+        leading: //Checkbox
             Checkbox(value: isTaskCompleted, onChanged: onChanged),
-            // Task name
-            GestureDetector(
-              onTap: onClickedDescription,
-              child: Column(
-                children: [
-                  Text(
-                    taskDescription,
-                    style: TextStyle(
-                      decoration: isTaskCompleted
-                          ? TextDecoration.lineThrough
-                          : TextDecoration.none,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    taskCategory,
-                    style: TextStyle(
-                      fontSize: 12,
-                    ),
-                  ),
-                ],
+        title: GestureDetector(
+          onTap: onClickedDescription,
+          child: Column(
+            children: [
+              Text(
+                taskDescription,
+                style: TextStyle(
+                  decoration: isTaskCompleted
+                      ? TextDecoration.lineThrough
+                      : TextDecoration.none,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
               ),
-            ),
-            GestureDetector(
-              onTap: onClickedDelete,
-              child: Icon(
-                Icons.delete,
-                size: 20,
+              Text(
+                taskCategory,
+                style: TextStyle(
+                  fontSize: 12,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
+        ),
+        trailing: GestureDetector(
+          onTap: onClickedDelete,
+          child: Icon(
+            Icons.delete,
+            size: 20,
+          ),
         ),
       ),
     );

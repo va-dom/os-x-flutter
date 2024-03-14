@@ -39,6 +39,16 @@ class _TaskDialogBoxState extends State<TaskDialogBox> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Text(
+                (widget.id == null) ? 'Add Task' : "Edit Task",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             // user inputs
             // Input for Task Description
             TextField(

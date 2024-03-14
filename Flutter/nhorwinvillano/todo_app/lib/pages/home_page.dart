@@ -253,9 +253,9 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 20), // Adjust spacing as needed
             Text(
-              'No ToDos',
+              'Add a task to get started',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 14,
                 fontWeight: FontWeight.normal,
                 color: Colors.grey,
               ),
@@ -272,7 +272,16 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Color(0xFFEEEFF5),
       appBar: AppBar(
         backgroundColor: Colors.lightBlue,
-        title: Text('TO DO APP'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              'TO DO APP',
+              style:
+                  TextStyle(color: Colors.white, fontStyle: FontStyle.italic),
+            ),
+          ],
+        ),
         elevation: 20,
       ),
       body: Column(
@@ -335,7 +344,11 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: addNewTask,
-        child: Icon(Icons.add),
+        backgroundColor: Colors.lightBlue,
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }
