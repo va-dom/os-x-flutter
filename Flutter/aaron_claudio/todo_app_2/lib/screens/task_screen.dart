@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:todo_app_2/models/category.dart';
 import 'package:todo_app_2/models/task.dart';
