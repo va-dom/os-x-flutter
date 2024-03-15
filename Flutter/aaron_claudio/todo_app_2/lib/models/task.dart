@@ -36,9 +36,31 @@ class Task {
       id: snapshot.id,
       title: data['title'],
       description: data['description'],
-      dateCreated: data['dateCreated'],
+      dateCreated: (data['dateCreated'] as Timestamp).toDate(),
+      isChecked: data['isChecked'],
       categoryReference: categoryRef as DocumentReference<Object>,
-      category: snapshot['category'],
+      category: Category(
+          name: "Default Category",
+          reference: null), // Default category until fetched
+    );
+  }
+
+  static Future<Task> fromSnapshotWithCategory(
+      DocumentSnapshot snapshot) async {
+    final task = Task.fromSnapshot(snapshot);
+    final categorySnapshot = await task.categoryReference?.get();
+    final categoryData = categorySnapshot?.data() as Map<String, dynamic>;
+    final categoryName = categoryData['name'] as String;
+    final category =
+        Category(name: categoryName, reference: task.categoryReference);
+    return Task(
+      id: task.id,
+      title: task.title,
+      description: task.description,
+      dateCreated: task.dateCreated,
+      isChecked: task.isChecked,
+      categoryReference: task.categoryReference,
+      category: category,
     );
   }
 

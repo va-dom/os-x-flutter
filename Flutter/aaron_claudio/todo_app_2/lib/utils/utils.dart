@@ -8,16 +8,16 @@ Future<Task?> openAddTaskDialog({
   Task? task,
   required List<Category> categories,
   required Function(String) onAddCategory,
-}){
+}) {
+  final dialogContext = context;
   return showDialog<Task?>(
-    barrierDismissible: false,
-    context: context,
-    builder: (context){
-      return AddTaskDialog(
-        task: task,
-        categories: categories,
-        onAddCategory: onAddCategory,
-      );
-    }
-  );
+      barrierDismissible: false,
+      context: dialogContext,
+      builder: (context) {
+        return AddTaskDialog(
+          task: task,
+          onAddCategory: onAddCategory,
+          categories: categories,
+        );
+      });
 }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:todo_app_2/models/category.dart';
 import 'package:todo_app_2/models/task.dart';
@@ -16,6 +18,7 @@ class _TaskScreenState extends State<TaskScreen> {
   late List<Task> tasks;
   late List<Category> categories;
   late TextEditingController _searchController;
+  bool _categoriesLoaded = false;
 
   @override
   void initState() {
@@ -25,9 +28,11 @@ class _TaskScreenState extends State<TaskScreen> {
   }
 
   Future<void> fetchTasksAndCategories() async {
-    tasks = await FirebaseService.getTasks();
+    // tasks = await FirebaseService.getTasks();
     categories = await FirebaseService.getCategories();
-    setState(() {});
+    setState(() {
+      _categoriesLoaded = true;
+    });
   }
 
   @override
@@ -44,7 +49,7 @@ class _TaskScreenState extends State<TaskScreen> {
     await FirebaseService.addCategory(newCategory);
 
     // Refresh the tasks and categories lists
-    await fetchTasksAndCategories();
+    // await fetchTasksAndCategories();
   }
 
   List<Task> getFilteredTasks(String query) {
@@ -106,32 +111,48 @@ class _TaskScreenState extends State<TaskScreen> {
         shadowColor: Colors.black87,
         elevation: 8,
       ),
-      body: ListView.builder(
-        itemCount: getFilteredTasks(_searchController.text).length,
-        itemBuilder: (context, index) {
-          final filteredTasks = _searchController.text.isEmpty
-              ? tasks
-              : getFilteredTasks(_searchController.text);
-          final task = filteredTasks[index];
-          return TaskListTile(
-            task: task,
-            onDelete: () {
-              tasks.removeWhere((element) => element.id == task.id);
-              setState(() {});
-            },
-            onEdit: () async {
-              final newTask = await openAddTaskDialog(
-                  context: context,
-                  task: task,
-                  categories: categories,
-                  onAddCategory: _addCategory);
-              if (newTask != null) {
-                tasks.removeWhere((element) => element.id == newTask.id);
-                tasks.insert(0, newTask);
-              }
-              setState(() {});
-            },
-          );
+      //
+      body: StreamBuilder<List<Task>>(
+        stream: FirebaseService.getTasks(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting ||
+              !_categoriesLoaded) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else {
+            List<Task> tasks = snapshot.data ?? [];
+            List<Task> filteredTasks = tasks
+                .where((task) => task.title
+                    .toLowerCase()
+                    .contains(_searchController.text.toLowerCase()))
+                .toList();
+            return ListView.builder(
+                itemCount: filteredTasks.length,
+                itemBuilder: (context, index) {
+                  final task = filteredTasks[index];
+                  return TaskListTile(
+                    task: task,
+                    onEdit: () async {
+                      final newTask = await openAddTaskDialog(
+                        context: context,
+                        task: task,
+                        onAddCategory: _addCategory,
+                        categories: categories,
+                      );
+                      if (newTask != null) {
+                        FirebaseService.updateTask(newTask);
+                      }
+                    },
+                    onDelete: () {
+                      FirebaseService.deleteTask(task.id as String);
+                    },
+                    onComplete: (isChecked) {
+                      FirebaseService.completeTask(task.id!, isChecked);
+                    },
+                  );
+                });
+          }
         },
       ),
       floatingActionButton: FloatingActionButton(

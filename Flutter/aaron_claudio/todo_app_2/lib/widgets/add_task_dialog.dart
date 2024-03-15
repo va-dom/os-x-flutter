@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app_2/models/category.dart';
@@ -25,8 +27,8 @@ class _AddTaskDialogState extends State<AddTaskDialog>
     with SingleTickerProviderStateMixin {
   late final TextEditingController _titleController;
   late final TextEditingController _descriptionController;
-  late Category? _selectedCategory;
-  late List<Category> _categoryReferences;
+  Category? _selectedCategory;
+  late List<Category> _categories = [];
   late TabController _tabController;
 
   @override
@@ -34,12 +36,16 @@ class _AddTaskDialogState extends State<AddTaskDialog>
     super.initState();
     _titleController = TextEditingController();
     _descriptionController = TextEditingController();
-    _categoryReferences = widget.categories.toList();
-    _selectedCategory = widget.task?.category;
+    _categories = widget.categories;
     _tabController = TabController(length: 2, vsync: this);
     if (widget.task != null) {
       _titleController.text = widget.task!.title;
       _descriptionController.text = widget.task!.description;
+      _selectedCategory = _categories.firstWhere(
+        (category) => category.reference == widget.task!.category.reference,
+        orElse: () =>
+            _categories.first, // Return null if no matching category is found
+      );
     }
   }
 
@@ -50,6 +56,13 @@ class _AddTaskDialogState extends State<AddTaskDialog>
     _descriptionController.dispose();
     _tabController.dispose();
   }
+
+  // Future<void> _loadCategories() async {
+  //   final categories = await FirebaseService.getCategories();
+  //   setState(() {
+  //     _categories = categories;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +133,7 @@ class _AddTaskDialogState extends State<AddTaskDialog>
             maxLines: 5,
           ),
           const SizedBox(height: 10),
-          if (_categoryReferences.isNotEmpty)
+          if (_categories.isNotEmpty)
             DropdownButtonFormField<Category>(
               value: _selectedCategory,
               hint: const Text("Select Category"),
@@ -128,7 +141,7 @@ class _AddTaskDialogState extends State<AddTaskDialog>
                   labelText: "Category",
                   border: OutlineInputBorder(),
                   floatingLabelBehavior: FloatingLabelBehavior.always),
-              items: _categoryReferences.map((category) {
+              items: _categories.map((category) {
                 return DropdownMenuItem<Category>(
                     value: category, child: Text(category.name));
               }).toList(),
@@ -144,30 +157,13 @@ class _AddTaskDialogState extends State<AddTaskDialog>
                 return null;
               },
               isExpanded: true,
+              key: Key(_selectedCategory?.toString() ?? ""),
             ),
           const SizedBox(height: 10),
           SizedBox(
             width: double.infinity, // Ensure full width
             child: ElevatedButton(
               onPressed: () async {
-                // Task task = Task(
-                //   id: DateTime.now().toString(),
-                //   title: _titleController.text,
-                //   description: _descriptionController.text,
-                //   dateCreated: DateTime.now(),
-                //   category: _selectedCategory ?? defaultCategory,
-                // );
-                // if (widget.task != null) {
-                //   task = Task(
-                //       id: widget.task!.id,
-                //       title: _titleController.text,
-                //       description: _descriptionController.text,
-                //       dateCreated: widget.task!.dateCreated,
-                //       isChecked: widget.task!.isChecked,
-                //       category: _selectedCategory!);
-                //   await FirebaseService.updateTask(task);
-                // }
-                // await FirebaseService.addTask(task);
                 Task task;
                 //update task
                 if (widget.task != null) {
@@ -251,13 +247,12 @@ class _AddTaskDialogState extends State<AddTaskDialog>
             width: double.infinity, // Ensure full width
             child: ElevatedButton(
               onPressed: () {
-                if (newCategoryName.isNotEmpty) {
+                if (_categories.isNotEmpty) {
                   widget.onAddCategory(newCategoryName);
                   setState(() {
-                    _categoryReferences = widget.categories.toList();
-                    _selectedCategory = _categoryReferences.isNotEmpty
-                        ? _categoryReferences.first
-                        : null;
+                    _selectedCategory = _categories.first;
+                    _categories
+                        .add(Category(name: newCategoryName, reference: null));
                   });
                 }
               },
@@ -276,7 +271,7 @@ class _AddTaskDialogState extends State<AddTaskDialog>
             ),
           ),
           Column(
-            children: widget.categories.map((category) {
+            children: _categories.map((category) {
               return ListTile(
                 title: Text(category.name),
               );

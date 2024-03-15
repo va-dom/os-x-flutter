@@ -37,15 +37,22 @@ class FirebaseService {
     }
   }
 
-  static Future<List<Task>> getTasks() async {
+  static Future<void> completeTask(String taskId, bool isChecked) async {
     try {
-      final QuerySnapshot querySnapshot =
-          await _firestore.collection('tasks').get();
-      return querySnapshot.docs.map((doc) => Task.fromSnapshot(doc)).toList();
+      final DocumentReference taskRef = _tasksCollection.doc(taskId);
+      await taskRef.update({'isChecked': isChecked});
     } catch (e) {
-      log("Error getting tasks: $e");
-      return [];
+      log('Error updating task isChecked: $e');
     }
+  }
+
+  static Stream<List<Task>> getTasks() {
+    return _tasksCollection.snapshots().asyncMap((snapshot) async {
+      final tasks = await Future.wait(snapshot.docs
+          .map((doc) => Task.fromSnapshotWithCategory(doc))
+          .toList());
+      return tasks;
+    });
   }
 
   static Future<DocumentReference> addCategory(Category category) async {
@@ -73,6 +80,14 @@ class FirebaseService {
     } catch (e) {
       log("Error getting categories: $e");
       return [];
+    }
+  }
+
+  static void deleteTask(String taskId) async {
+    try {
+      await _tasksCollection.doc(taskId).delete();
+    } catch (e) {
+      log('Error deleting task: $e');
     }
   }
 }

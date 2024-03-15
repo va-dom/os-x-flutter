@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:todo_app_2/models/task.dart';
 
 class TaskListTile extends StatefulWidget {
-  const TaskListTile({
-    super.key,
-    required this.task,
-    required this.onEdit,
-    required this.onDelete,
-  });
+  const TaskListTile(
+      {super.key,
+      required this.task,
+      required this.onEdit,
+      required this.onDelete,
+      required this.onComplete});
 
   final Task task;
   final VoidCallback onEdit;
   final VoidCallback onDelete;
+  final void Function(bool isChecked) onComplete;
 
   @override
   State<TaskListTile> createState() => _TaskListTile();
@@ -52,7 +53,7 @@ class _TaskListTile extends State<TaskListTile> {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  'Category: ${widget.task.categoryReference}',
+                  'Category: ${widget.task.category.name}',
                   style: const TextStyle(
                     fontStyle: FontStyle.italic,
                     color: Colors.grey,
@@ -82,7 +83,9 @@ class _TaskListTile extends State<TaskListTile> {
                 Checkbox(
                   value: widget.task.isChecked,
                   onChanged: (value) {
-                    widget.task.isChecked = value!;
+                    // widget.task.isChecked = value!;
+                    // setState(() {});
+                    widget.onComplete(value ?? false);
                     setState(() {});
                   },
                 ),
