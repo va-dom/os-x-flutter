@@ -73,7 +73,7 @@ void main(List<String> arguments) {
   print('9. Write a program in Dart to remove all whitespaces from String.');
   print('Enter some text with whitespaces:');
   String str1 = stdin.readLineSync()!;
-  print(practice_1.reverseText(str1));
+  print(practice_1.removeWhitespace(str1));
 
   print("\n---------------------------------------------------------------------------------------------------------------\n");
 

@@ -12,9 +12,9 @@ String hello2(){
   return 'Hello I\'m "John Doe"';
 }
 
+  const num = 7;
 //Question 3
 int constNum(){
-  const num = 7;
   return num;
 }
 
@@ -50,7 +50,7 @@ int getQuotient(int num1, int num2){
 
 
 //Question 9
-String reverseText(String str1){
+String removeWhitespace(String str1){
   return str1.replaceAll(' ', '');
 }
 
@@ -66,3 +66,5 @@ double calculateTime(int distance, int speed){
   double hours = (distance) / speed;
   return hours * 60;
 }
+
+double calculate(int distance, int speed) => (distance / speed) * 60;
