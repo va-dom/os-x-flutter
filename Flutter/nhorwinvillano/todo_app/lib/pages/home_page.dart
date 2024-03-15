@@ -287,9 +287,9 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Textfield for Search Tasks
           Padding(
             padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
-            // Textfield for Search Tasks
             child: TextField(
               controller: _searchKeyword,
               decoration: InputDecoration(
@@ -311,7 +311,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
           ),
-          // Dropdown for filter
+          // Dropdown for filter Category
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: MyDropdown(
