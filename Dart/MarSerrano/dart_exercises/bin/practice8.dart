@@ -101,7 +101,7 @@ Future<String> reverseString(String inputString) {
 }
 
 
-bool executePractice8() {
+void executePractice8() {
   print("\x1B[2J\x1B[0;0H"); // clear entire screen, move cursor to 0;0
   print
   ( '''*=============================================================*
@@ -173,13 +173,5 @@ bool executePractice8() {
   print("Enter a string:");
   printReverseString(stdin.readLineSync()!);
 
-  //Continue Program
-  print("\nGo back to Main Menu? (Y/N)");
-  String mainMenu = stdin.readLineSync()!;
-  if(mainMenu == 'Y' || mainMenu == 'y') {
-    return true;
-  }
-  else {
-    return false;
-  }
+  
 }

@@ -6,8 +6,6 @@ import 'practice7.dart' as practice7;
 import 'practice8.dart' as practice8;
 import 'dart:io';
 
-
-
 void main(List<String> arguments) {
   bool isContinue = true;
   while(isContinue){
@@ -42,7 +40,9 @@ void main(List<String> arguments) {
         isContinue = practice7.executePractice7();
 
       case 'f' || 'F':
-        isContinue = practice8.executePractice8();
+        practice8.executePractice8();
+        isContinue = false;
+        break;
 
       default:
         isContinue = false;

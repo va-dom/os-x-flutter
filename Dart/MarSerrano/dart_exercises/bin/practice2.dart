@@ -112,7 +112,7 @@ bool executePractice2() {
   print("Write a dart program to generate multiplication tables of 5.");
   print("Multiplication Table of 5:");
   for(int i = 1; i <=10; i++) {
-    print("${i*5}");
+    print("5 * $i = ${i*5}");
   }
 
   //Question 7
@@ -127,7 +127,7 @@ bool executePractice2() {
     else {
       print("Multiplication Table of $x:");
       for(int i = 1; i <=10; i++) {
-        print("${i*x}");
+        print("$x * $i = ${i*x}");
       }
     }
   }
