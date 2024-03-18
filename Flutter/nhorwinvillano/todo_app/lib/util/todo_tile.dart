@@ -28,7 +28,8 @@ class ToDoTile extends StatelessWidget {
       child: ListTile(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-        tileColor: Colors.white,
+        tileColor:
+            isTaskCompleted ? Color.fromARGB(255, 219, 216, 216) : Colors.white,
         leading: //Checkbox
             Checkbox(value: isTaskCompleted, onChanged: onChanged),
         title: GestureDetector(

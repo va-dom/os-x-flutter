@@ -1,5 +1,6 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_literals_to_create_immutables, use_super_parameters, prefer_const_constructors_in_immutables
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:geolocator/geolocator.dart';
@@ -7,6 +8,10 @@ import '../services/weather_service.dart';
 import '../models/weather_model.dart';
 
 class MyHomePage extends StatefulWidget {
+  final String? cityName;
+
+  MyHomePage({Key? key, this.cityName}) : super(key: key);
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -35,18 +40,17 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   // Fetch weather from city <---- not used
-  _fetchWeatherFromCity() async {
-    // current city
-    String cityName = await _weatherService.getCurrentCity();
-
-    //get weather from city
+  Future<void> _fetchWeatherFromCity() async {
+    setState(() => _isLoading = true);
     try {
       final weather =
-          await _weatherService.getWeatherFromCity(cityName: cityName);
+          await _weatherService.getWeatherFromCity(cityName: widget.cityName!);
       setState(() {
         _weather = weather;
+        _isLoading = false;
       });
     } catch (e) {
+      setState(() => _isLoading = false);
       print(e);
     }
   }
@@ -83,7 +87,9 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
 
     // fetch weather from startup
-    _fetchWeatherFromPosition();
+    (widget.cityName == null)
+        ? _fetchWeatherFromPosition()
+        : _fetchWeatherFromCity();
   }
 
   @override
@@ -91,6 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Color(0xFFEEEFF5),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Color(0xFFEEEFF5),
         title: Center(
           child: Row(

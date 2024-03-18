@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:todo_app/data/database.dart';
 import 'package:todo_app/util/alert_dialog.dart';
+import 'package:todo_app/util/empty_list.dart';
 import 'package:todo_app/util/my_dropdown.dart';
 import 'package:todo_app/util/task_dialog_box.dart';
 import 'package:todo_app/util/todo_tile.dart';
@@ -249,9 +250,8 @@ class _HomePageState extends State<HomePage> {
               'image_empty_list.gif',
               width: 500,
               height: 300,
-              // Optionally, you can add other properties like fit, alignment, etc.
             ),
-            SizedBox(height: 20), // Adjust spacing as needed
+            SizedBox(height: 20),
             Text(
               'Add a task to get started',
               style: TextStyle(
@@ -338,9 +338,7 @@ class _HomePageState extends State<HomePage> {
           ),
           // Listview builder
           Expanded(
-            child: filteredList.isNotEmpty
-                ? _buildListView()
-                : _buildEmptyListIndicator(),
+            child: filteredList.isNotEmpty ? _buildListView() : EmptyList(),
           ),
         ],
       ),

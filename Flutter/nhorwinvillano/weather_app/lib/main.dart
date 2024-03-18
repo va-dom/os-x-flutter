@@ -2,13 +2,12 @@
 import 'package:hive_flutter/adapters.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/pages/homepage.dart';
-
 import 'pages/saved_location.dart';
 
 void main() async {
-  //init Hive
+  
+//init Hive
   await Hive.initFlutter();
-
 //open a box
   var box = await Hive.openBox('myBox');
 
@@ -24,6 +23,7 @@ class MyWeatherApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: MyHomePage(),
       routes: {
+        '/homePage': (context) => MyHomePage(),
         '/savedLocation': (context) => SavedLocation(),
       },
     );

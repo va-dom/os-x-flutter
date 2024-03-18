@@ -2,6 +2,7 @@ import 'package:hive_flutter/adapters.dart';
 
 class LocationDatabase {
   List savedLocation = [];
+  //Set<String> locations = {'Pasig', 'Makati', 'Cebu'};
 
   //referece our box
   final _myBox = Hive.box('myBox');
@@ -10,11 +11,12 @@ class LocationDatabase {
   void createInitialData() {
     try {
       savedLocation = [
-        ['Pasig', false],
-        ['Makati', false],
         ['Manila', false],
+        ['Cebu', false],
+        ['Davao', false],
         ['Batangas', false],
       ];
+      //locations.add('Pasig');
       _myBox.put("LOCATIONLIST", savedLocation);
     } catch (e) {
       print('Error creating initial data: $e');
