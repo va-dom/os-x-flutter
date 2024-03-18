@@ -1,13 +1,13 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_single_cascade_in_expression_statements
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:todo_app/data/database.dart';
-import 'package:todo_app/util/alert_dialog.dart';
-import 'package:todo_app/util/empty_list.dart';
-import 'package:todo_app/util/my_dropdown.dart';
-import 'package:todo_app/util/task_dialog_box.dart';
-import 'package:todo_app/util/todo_tile.dart';
+import 'package:todo_app/services/database.dart';
+import 'package:todo_app/widgets/empty_list.dart';
+import 'package:todo_app/widgets/my_dropdown.dart';
+import 'package:todo_app/widgets/task_dialog_box.dart';
+import 'package:todo_app/widgets/todo_tile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -82,17 +82,15 @@ class _HomePageState extends State<HomePage> {
 
   // showDialog function
   void showAlert(String title, content) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return MyAlertDialog(
-            title: title,
-            content: content,
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          );
-        });
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.success,
+      animType: AnimType.scale,
+      title: title,
+      desc: content,
+      //btnCancelOnPress: () {},
+      btnOkOnPress: () {},
+    )..show();
   }
 
   // Checkbox was tapped fuction
@@ -102,9 +100,9 @@ class _HomePageState extends State<HomePage> {
       db.toDoList[index][2] = value;
       //filteredList[index][2] = value;
     });
-    showAlert("Success", "Task status changed successfully");
     loadData(keyword: _searchKeyword.text, category: _filterCategory);
     db.updateDatabase();
+    showAlert("Success", "Task status changed successfully");
   }
 
   // Delete Task
@@ -124,15 +122,14 @@ class _HomePageState extends State<HomePage> {
     // Get the largest value in the list
     int idNumber =
         db.toDoList.fold(0, (max, item) => item[0] > max ? item[0] : max) + 1;
-
     setState(() {
       db.toDoList.add([idNumber, _taskDescription.text, false, _category]);
       _taskDescription.clear();
     });
     Navigator.of(context).pop();
-    showAlert("Success", "Task added successfully");
     db.updateDatabase();
     loadData(keyword: _searchKeyword.text, category: _filterCategory);
+    showAlert("Success", "Task added successfully");
   }
 
   // Create new task
@@ -196,7 +193,7 @@ class _HomePageState extends State<HomePage> {
           },
           onCategoryChanged: (value) {
             setState(() {
-              _category = value; // Update category in HomePage
+              _category = value;
             });
           },
         );
@@ -232,35 +229,6 @@ class _HomePageState extends State<HomePage> {
               onClickedDelete: () => deleteClicked(filteredList[index][0]),
             );
           },
-        ),
-      ),
-    );
-  }
-
-// Function to build empty list indicator with image
-  Widget _buildEmptyListIndicator() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: Card(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              'image_empty_list.gif',
-              width: 500,
-              height: 300,
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Add a task to get started',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-                color: Colors.grey,
-              ),
-            ),
-          ],
         ),
       ),
     );

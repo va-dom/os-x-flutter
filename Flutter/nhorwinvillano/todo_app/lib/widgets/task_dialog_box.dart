@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable
 
 import "package:flutter/material.dart";
-import "package:todo_app/util/my_button.dart";
-import "package:todo_app/util/my_dropdown.dart";
+import "package:todo_app/widgets/my_button.dart";
+import "package:todo_app/widgets/my_dropdown.dart";
 
 class TaskDialogBox extends StatefulWidget {
   TextEditingController description;
@@ -95,7 +95,6 @@ class _TaskDialogBoxState extends State<TaskDialogBox> {
                   },
                 ),
                 const SizedBox(width: 8),
-
                 //Cancel button
                 MyButton(buttonName: 'Cancel', onPressed: widget.onCancel),
               ],
