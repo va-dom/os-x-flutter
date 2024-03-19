@@ -8,13 +8,6 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // final FirebaseFirestore db = FirebaseFirestore.instance;
-  // final CollectionReference tasks = db.collection('tasks');
-  // final QuerySnapshot snapshot = await tasks.get();
-  // snapshot.docs.forEach((DocumentSnapshot document) {
-  //   final userFields = document.data();
-  //   log(userFields.toString());
-  // });
   runApp(const MyApp());
 }
 

@@ -16,7 +16,7 @@ class _TaskScreenState extends State<TaskScreen> {
   late List<Task> tasks;
   late List<Category> categories;
   late TextEditingController _searchController;
-  bool _categoriesLoaded = false;
+  // bool _categoriesLoaded = false;
 
   @override
   void initState() {
@@ -29,7 +29,7 @@ class _TaskScreenState extends State<TaskScreen> {
     // tasks = await FirebaseService.getTasks();
     categories = await FirebaseService.getCategories();
     setState(() {
-      _categoriesLoaded = true;
+      // _categoriesLoaded = true;
     });
   }
 
@@ -48,20 +48,6 @@ class _TaskScreenState extends State<TaskScreen> {
 
     // Refresh the tasks and categories lists
     // await fetchTasksAndCategories();
-  }
-
-  List<Task> getFilteredTasks(String query) {
-    if (query.isEmpty) {
-      return tasks;
-    } else {
-      return tasks.where((task) {
-        final tileMatches =
-            task.title.toLowerCase().contains(query.toLowerCase());
-        final descriptionMatches =
-            task.description.toLowerCase().contains(query.toLowerCase());
-        return tileMatches || descriptionMatches;
-      }).toList();
-    }
   }
 
   @override
@@ -113,18 +99,21 @@ class _TaskScreenState extends State<TaskScreen> {
       body: StreamBuilder<List<Task>>(
         stream: FirebaseService.getTasks(),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting ||
-              !_categoriesLoaded) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {
             List<Task> tasks = snapshot.data ?? [];
-            List<Task> filteredTasks = tasks
-                .where((task) => task.title
-                    .toLowerCase()
-                    .contains(_searchController.text.toLowerCase()))
-                .toList();
+            List<Task> filteredTasks = tasks.where((task) {
+              final titleMatches = task.title
+                  .toLowerCase()
+                  .contains(_searchController.text.toLowerCase());
+              final descriptionMatches = task.description
+                  .toLowerCase()
+                  .contains(_searchController.text.toLowerCase());
+              return titleMatches || descriptionMatches;
+            }).toList();
             return ListView.builder(
                 itemCount: filteredTasks.length,
                 itemBuilder: (context, index) {
@@ -132,15 +121,15 @@ class _TaskScreenState extends State<TaskScreen> {
                   return TaskListTile(
                     task: task,
                     onEdit: () async {
-                      final newTask = await openAddTaskDialog(
+                      await openAddTaskDialog(
                         context: context,
                         task: task,
                         onAddCategory: _addCategory,
                         categories: categories,
                       );
-                      if (newTask != null) {
-                        FirebaseService.updateTask(newTask);
-                      }
+                      // if (newTask != null) {
+                      //   FirebaseService.updateTask(newTask);
+                      // }
                     },
                     onDelete: () {
                       FirebaseService.deleteTask(task.id as String);
@@ -155,13 +144,13 @@ class _TaskScreenState extends State<TaskScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final task = await openAddTaskDialog(
+          await openAddTaskDialog(
               context: context,
               categories: categories,
               onAddCategory: _addCategory);
-          if (task != null) {
-            tasks.add(task);
-          }
+          // if (task != null) {
+          //   tasks.add(task);
+          // }
           setState(() {});
         },
         backgroundColor: Colors.blue[600],
