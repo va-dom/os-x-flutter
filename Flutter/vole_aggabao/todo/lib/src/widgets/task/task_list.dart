@@ -15,7 +15,6 @@ class TaskList extends StatefulWidget {
   final Function(Task) onDeleteTask;
   final void Function() onTaskUpdated;
   final void Function(StatusFilter) onFiltered;
-  final bool showSearch;
 
   const TaskList({
     super.key,
@@ -27,7 +26,6 @@ class TaskList extends StatefulWidget {
     required this.onTaskUpdated,
     required this.onDeleteTask,
     required this.onFiltered,
-    required this.showSearch,
   });
 
   @override

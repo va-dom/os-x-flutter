@@ -29,7 +29,6 @@ class _MyHomePageState extends State<MyHomePage> {
   String _searchFilter = '';
   StatusFilter _statusFilter = StatusFilter.all;
   int _categoryFilter = 0;
-  bool _showSearch = false;
 
   @override
   void initState() {
@@ -181,7 +180,6 @@ class _MyHomePageState extends State<MyHomePage> {
           onViewTask: (task) => _openEditDialog(task),
           onDeleteTask: (task) => _openDeleteDialog(task),
           onFiltered: (statusFilter) => _filterTasks(_searchFilter, statusFilter, _categoryFilter),
-          showSearch: _showSearch,
         ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _openAddDialog(context),

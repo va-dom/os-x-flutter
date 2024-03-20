@@ -105,19 +105,18 @@ class EditTaskDialogState extends State<EditTaskDialog> {
               const SizedBox(height: 8),
               DropdownButtonFormField<Category>(
                 value: _selectedCategory,
-                items: [
-                  // Add a null option at the beginning
-                  const DropdownMenuItem<Category>(
-                    value: null,
-                    child: Text('None'),
-                  ),
-                  ...widget.categories.map((category) {
-                    return DropdownMenuItem<Category>(
-                      value: category,
-                      child: Text(category.name),
-                    );
-                  }),
-                ],
+                items: widget.categories.map((category) {
+                  return DropdownMenuItem<Category>(
+                    value: category,
+                    child: Row(
+                      children: [
+                        Icon(Icons.circle, color: category.color, size: 18),
+                        const SizedBox(width: 10),
+                        Text(category.name),
+                      ],
+                    ),
+                  );
+                }).toList(),
                 onChanged: (Category? newValue) {
                   setState(() => _selectedCategory = newValue);
                 },

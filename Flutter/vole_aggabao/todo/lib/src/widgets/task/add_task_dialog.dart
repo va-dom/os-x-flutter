@@ -99,10 +99,16 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
               const SizedBox(height: 8),
               DropdownButtonFormField<Category>(
                 value: _selectedCategory,
-                items: widget.categories.map((Category category) {
+                items: widget.categories.map((category) {
                   return DropdownMenuItem<Category>(
                     value: category,
-                    child: Text(category.name),
+                    child: Row(
+                      children: [
+                        Icon(Icons.circle, color: category.color, size: 18),
+                        const SizedBox(width: 10),
+                        Text(category.name),
+                      ],
+                    ),
                   );
                 }).toList(),
                 onChanged: (Category? newValue) {
