@@ -26,43 +26,43 @@ class ToDoTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
       child: ListTile(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-        tileColor:
-            isTaskCompleted ? Color.fromARGB(255, 219, 216, 216) : Colors.white,
-        leading: //Checkbox
-            Checkbox(value: isTaskCompleted, onChanged: onChanged),
-        title: GestureDetector(
-          onTap: onClickedDescription,
-          child: Column(
-            children: [
-              Text(
-                taskDescription,
-                style: TextStyle(
-                  decoration: isTaskCompleted
-                      ? TextDecoration.lineThrough
-                      : TextDecoration.none,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+          tileColor: isTaskCompleted
+              ? Color.fromARGB(255, 219, 216, 216)
+              : Colors.white,
+          leading: //Checkbox
+              Checkbox(value: isTaskCompleted, onChanged: onChanged),
+          title: GestureDetector(
+            onTap: onClickedDescription,
+            child: Column(
+              children: [
+                Text(
+                  taskDescription,
+                  style: TextStyle(
+                    decoration: isTaskCompleted
+                        ? TextDecoration.lineThrough
+                        : TextDecoration.none,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
                 ),
-              ),
-              Text(
-                taskCategory,
-                style: TextStyle(
-                  fontSize: 12,
+                Text(
+                  taskCategory,
+                  style: TextStyle(
+                    fontSize: 12,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        trailing: GestureDetector(
-          onTap: onClickedDelete,
-          child: Icon(
-            Icons.delete,
-            size: 20,
+          trailing: IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: onClickedDelete,
+            iconSize: 20,
+          )
           ),
-        ),
-      ),
     );
   }
 }

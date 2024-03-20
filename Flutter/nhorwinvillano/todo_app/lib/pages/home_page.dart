@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:todo_app/services/database.dart';
 import 'package:todo_app/widgets/empty_list.dart';
-import 'package:todo_app/widgets/my_dropdown.dart';
+import 'package:todo_app/widgets/my_dropdown_category.dart';
 import 'package:todo_app/widgets/task_dialog_box.dart';
 import 'package:todo_app/widgets/todo_tile.dart';
 
@@ -17,19 +17,36 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // reference the hive box
+// reference the hive box
   final _myBox = Hive.box('myBox');
   ToDoDatabase db = ToDoDatabase();
   List filteredList = [];
 
-  //text controllers
+//For Filters
   final TextEditingController _searchKeyword = TextEditingController();
-  final TextEditingController _taskDescription = TextEditingController();
   String? _filterCategory = '-';
+
+// For Add/Edit dialogbox
+  final TextEditingController _taskDescription = TextEditingController();
   String? _category = '-';
 
+// init State
+  @override
+  void initState() {
+    // if this is the 1st time ever opening the app, then create defaukt data
+    if (_myBox.get("TODOLIST") == null) {
+      db.createInitialData();
+      loadTasks();
+    } else {
+      // there already existing data
+      loadTasks();
+    }
+
+    super.initState();
+  }
+
 // Load data function
-  void loadData({String? keyword, String? category}) {
+  void loadTasks({String? keyword, String? category}) {
     try {
       if ((keyword != null && keyword.isNotEmpty) ||
           (category != null && category.isNotEmpty)) {
@@ -66,33 +83,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  @override
-  void initState() {
-    // if this is the 1st time ever opening the app, then create defaukt data
-    if (_myBox.get("TODOLIST") == null) {
-      db.createInitialData();
-      loadData();
-    } else {
-      // there already existing data
-      loadData();
-    }
-
-    super.initState();
-  }
-
-  // showDialog function
-  void showAlert(String title, content) {
-    AwesomeDialog(
-      context: context,
-      dialogType: DialogType.success,
-      animType: AnimType.scale,
-      title: title,
-      desc: content,
-      //btnCancelOnPress: () {},
-      btnOkOnPress: () {},
-    )..show();
-  }
-
   // Checkbox was tapped fuction
   void checkBoxChanged(bool? value, int id) {
     int index = findIndexByID(db.toDoList, id);
@@ -100,7 +90,7 @@ class _HomePageState extends State<HomePage> {
       db.toDoList[index][2] = value;
       //filteredList[index][2] = value;
     });
-    loadData(keyword: _searchKeyword.text, category: _filterCategory);
+    loadTasks(keyword: _searchKeyword.text, category: _filterCategory);
     db.updateDatabase();
     showAlert("Success", "Task status changed successfully");
   }
@@ -112,7 +102,7 @@ class _HomePageState extends State<HomePage> {
       db.toDoList.removeAt(index);
       //filteredList.removeAt(index);
     });
-    loadData(keyword: _searchKeyword.text, category: _filterCategory);
+    loadTasks(keyword: _searchKeyword.text, category: _filterCategory);
     db.updateDatabase();
     showAlert("Success", "Task deleted successfully");
   }
@@ -128,7 +118,7 @@ class _HomePageState extends State<HomePage> {
     });
     Navigator.of(context).pop();
     db.updateDatabase();
-    loadData(keyword: _searchKeyword.text, category: _filterCategory);
+    loadTasks(keyword: _searchKeyword.text, category: _filterCategory);
     showAlert("Success", "Task added successfully");
   }
 
@@ -168,7 +158,7 @@ class _HomePageState extends State<HomePage> {
     });
     Navigator.of(context).pop();
     db.updateDatabase();
-    loadData(keyword: _searchKeyword.text, category: _filterCategory);
+    loadTasks(keyword: _searchKeyword.text, category: _filterCategory);
     showAlert("Success", "Task updated successfully");
   }
 
@@ -209,6 +199,19 @@ class _HomePageState extends State<HomePage> {
       }
     }
     return -1; // ID not found
+  }
+
+// showDialog function
+  void showAlert(String title, content) {
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.success,
+      animType: AnimType.scale,
+      title: title,
+      desc: content,
+      //btnCancelOnPress: () {},
+      btnOkOnPress: () {},
+    )..show();
   }
 
 // Function to build ListView
@@ -263,6 +266,12 @@ class _HomePageState extends State<HomePage> {
               decoration: InputDecoration(
                 hintText: 'Search tasks...',
                 prefixIcon: Icon(Icons.search),
+                suffixIcon: GestureDetector(
+                    onTap: () {
+                      _searchKeyword.clear();
+                      loadTasks();
+                    },
+                    child: Icon(Icons.close)),
                 filled: true,
                 fillColor: Colors.white,
                 border: OutlineInputBorder(
@@ -274,7 +283,7 @@ class _HomePageState extends State<HomePage> {
                 hintStyle: TextStyle(color: Colors.grey),
               ),
               onChanged: (value) {
-                loadData(
+                loadTasks(
                     keyword: _searchKeyword.text, category: _filterCategory);
               },
             ),
@@ -282,13 +291,13 @@ class _HomePageState extends State<HomePage> {
           // Dropdown for filter Category
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: MyDropdown(
+            child: MyCategory(
               category: _filterCategory,
               onChanged: (value) {
                 setState(() {
                   _filterCategory = value; // Update category in HomePage
                 });
-                loadData(
+                loadTasks(
                     keyword: _searchKeyword.text, category: _filterCategory);
               },
             ),

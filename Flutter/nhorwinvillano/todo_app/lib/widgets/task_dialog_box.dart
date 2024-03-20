@@ -2,7 +2,7 @@
 
 import "package:flutter/material.dart";
 import "package:todo_app/widgets/my_button.dart";
-import "package:todo_app/widgets/my_dropdown.dart";
+import "package:todo_app/widgets/my_dropdown_category.dart";
 
 class TaskDialogBox extends StatefulWidget {
   TextEditingController description;
@@ -64,7 +64,7 @@ class _TaskDialogBoxState extends State<TaskDialogBox> {
               ),
             ),
             //Dropdown for Category
-            MyDropdown(
+            MyCategory(
                 category: widget.category,
                 onChanged: (value) {
                   setState(() {

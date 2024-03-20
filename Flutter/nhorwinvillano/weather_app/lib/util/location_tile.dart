@@ -73,7 +73,7 @@ class _LocationTileState extends State<LocationTile> {
     return GestureDetector(
       onTap: widget.onClickedTile,
       child: Card(
-        color: Colors.white,
+        //color: Colors.white,
         margin: EdgeInsets.all(25),
         elevation: 4,
         child: Column(

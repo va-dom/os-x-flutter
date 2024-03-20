@@ -5,7 +5,6 @@ import 'package:weather_app/pages/homepage.dart';
 import 'pages/saved_location.dart';
 
 void main() async {
-  
 //init Hive
   await Hive.initFlutter();
 //open a box
@@ -21,6 +20,12 @@ class MyWeatherApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.blue,
+              //background: Color(0xFFEEEFF5),
+              brightness: Brightness.dark)),
       home: MyHomePage(),
       routes: {
         '/homePage': (context) => MyHomePage(),

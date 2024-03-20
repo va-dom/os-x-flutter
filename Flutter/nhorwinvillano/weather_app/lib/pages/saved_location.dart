@@ -32,9 +32,9 @@ class _SavedLocationState extends State<SavedLocation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFFEEEFF5),
+        //backgroundColor: Color(0xFFEEEFF5),
         appBar: AppBar(
-          backgroundColor: Color(0xFFEEEFF5),
+          //backgroundColor: Color(0xFFEEEFF5),
           title: Text('Saved Locations'),
         ),
         body: GridView.builder(
@@ -52,7 +52,7 @@ class _SavedLocationState extends State<SavedLocation> {
                     // Navigate to the page for adding a new location
                   },
                   child: Card(
-                    color: Colors.white,
+                    //color: Colors.white,
                     margin: EdgeInsets.all(25),
                     elevation: 4,
                     child: Icon(

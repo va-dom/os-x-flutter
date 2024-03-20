@@ -1,17 +1,17 @@
 // ignore_for_file: must_be_immutable, prefer_const_constructors
 import "package:flutter/material.dart";
 
-class MyDropdown extends StatefulWidget {
+class MyCategory extends StatefulWidget {
   String? category;
   final ValueChanged<String> onChanged; // Callback function for category change
 
-  MyDropdown({super.key, this.category, required this.onChanged});
+  MyCategory({super.key, this.category, required this.onChanged});
 
   @override
-  State<MyDropdown> createState() => _MyButtonState();
+  State<MyCategory> createState() => _MyButtonState();
 }
 
-class _MyButtonState extends State<MyDropdown> {
+class _MyButtonState extends State<MyCategory> {
   @override
   Widget build(BuildContext context) {
     return Container(

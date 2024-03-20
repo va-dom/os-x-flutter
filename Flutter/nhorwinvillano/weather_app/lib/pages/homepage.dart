@@ -95,18 +95,18 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFEEEFF5),
+      //backgroundColor: Color(0xFFEEEFF5),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xFFEEEFF5),
+        //backgroundColor: Color(0xFFEEEFF5),
         title: Center(
           child: Row(
             children: [
-              GestureDetector(
-                  onTap: () {
+              IconButton(
+                  onPressed: () {
                     Navigator.pushNamed(context, '/savedLocation');
                   },
-                  child: Icon(Icons.grid_view)),
+                  icon: Icon(Icons.grid_view))
             ],
           ),
         ),
@@ -150,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Card(
-                          color: Colors.white,
+                          //color: Colors.white,
                           elevation: 8,
                           child: Padding(
                             padding: const EdgeInsets.all(20.0),
