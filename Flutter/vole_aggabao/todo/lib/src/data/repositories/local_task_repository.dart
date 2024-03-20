@@ -13,7 +13,7 @@ class TaskRepository implements TaskRepositoryInterface {
   @override
   Future<List<Task>> getAll() async {
     await Future.delayed(const Duration(milliseconds: 500));
-    var items = await _db.list();
+    List<Map<String, dynamic>> items = await _db.list();
     return items.map((item) => Task.fromMap(item)).toList();
   }
 
@@ -22,7 +22,7 @@ class TaskRepository implements TaskRepositoryInterface {
   @override
   Future<Task?> getOne(String id) async {
     await Future.delayed(const Duration(milliseconds: 500));
-    var item = await _db.findOne(id);
+    Map<String, dynamic>? item = await _db.findOne(id);
     return item != null ? Task.fromMap(item) : null;
   }
 

@@ -42,6 +42,7 @@ class _TodoAppbarState extends State<TodoAppbar> {
         ),
         backgroundColor: Colors.grey[900],
         foregroundColor: Colors.grey[200],
+        scrolledUnderElevation: 0,
         actions: [
           IconButton(
             icon: !showSearch ? const Icon(Icons.search) : const Icon(Icons.search_off),

@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Tasks',
       theme: ThemeData(
         useMaterial3: true,
@@ -23,7 +24,6 @@ class MyApp extends StatelessWidget {
           seedColor: Colors.blue,
           brightness: Brightness.dark,
         ),
-        // scaffoldBackgroundColor: Colors.grey[800],
       ),
       home: const MyHomePage(),
     );

@@ -96,27 +96,6 @@ class _MyHomePageState extends State<MyHomePage> {
     _reloadList();
   }
 
-  void _loadTasks() async {
-    List<Task> tasks = await _taskRepository.getAll();
-    
-    // Sort tasks by incomplete first, then by due date
-    tasks.sort((a, b) {
-      if (a.completed && !b.completed) {
-        return 1; // a is completed, b is not, so a should come after b
-      } else if (!a.completed && b.completed) {
-        return -1; // a is not completed, b is completed, so a should come before b
-      } else {
-        return a.dueDate.compareTo(b.dueDate); // both are either completed or not, so sort by due date
-      }
-    });
-    
-    setState(() {
-      _tasks = tasks;
-      _filteredTasks = tasks;
-      _isLoading = false;
-    });
-  }
-
   void _reloadList() {
     List<Task> filteredTasks = _tasks.where((task) {
       return task.description.toLowerCase().contains(_searchFilter.toLowerCase());
@@ -153,6 +132,27 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     setState(() => _filteredTasks = filteredTasks);
+  }
+
+  void _loadTasks() async {
+    List<Task> tasks = await _taskRepository.getAll();
+    
+    // Sort tasks by incomplete first, then by due date
+    tasks.sort((a, b) {
+      if (a.completed && !b.completed) {
+        return 1; // a is completed, b is not, so a should come after b
+      } else if (!a.completed && b.completed) {
+        return -1; // a is not completed, b is completed, so a should come before b
+      } else {
+        return a.dueDate.compareTo(b.dueDate); // both are either completed or not, so sort by due date
+      }
+    });
+    
+    setState(() {
+      _tasks = tasks;
+      _filteredTasks = tasks;
+      _isLoading = false;
+    });
   }
 
   void _loadCategories() async {

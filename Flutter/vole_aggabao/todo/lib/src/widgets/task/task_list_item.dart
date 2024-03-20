@@ -19,11 +19,12 @@ class TaskListItem extends StatelessWidget {
     required this.onDeleteTask,
   });
 
+  // Return text color based on background color luminance
   Color getTextColor(Color backgroundColor) {
     // Calculate the luminance of the background color
     double luminance = backgroundColor.computeLuminance();
     // Choose a contrasting text color based on the luminance
-    return luminance > 0.5 ? Colors.black : Colors.grey;
+    return luminance > 0.5 ? Colors.black : Colors.white;
   }
 
   @override
@@ -43,7 +44,15 @@ class TaskListItem extends StatelessWidget {
           children: [
             Wrap(
               children: [
-                Text(
+                if (isDue && !task.completed) ...[
+                  Icon(
+                    Icons.error,
+                    size: 20,
+                    color: Theme.of(context).colorScheme.error,
+                  ),
+                  const SizedBox(width: 5),
+                ],
+                Text( 
                   'Until $formattedDueDate',
                   style: TextStyle(
                     decoration: task.completed ? TextDecoration.lineThrough : TextDecoration.none,
@@ -51,13 +60,6 @@ class TaskListItem extends StatelessWidget {
                     fontSize: 14,
                   ),
                 ),
-                const SizedBox(width: 5),
-                if (isDue && !task.completed)
-                  Icon(
-                    Icons.error,
-                    size: 20,
-                    color: Theme.of(context).colorScheme.error,
-                  ),
               ],
             ),
             const SizedBox(height: 5.0),

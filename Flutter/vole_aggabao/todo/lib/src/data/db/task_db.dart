@@ -25,7 +25,6 @@ class TaskDb {
   }
 
   Future<String> insert(Map<String, dynamic> item) async {
-    // item['id'] = Random().nextInt(1000);
     item['id'] = _uuid.v4();
     _items.add(item);
     return item['id'];

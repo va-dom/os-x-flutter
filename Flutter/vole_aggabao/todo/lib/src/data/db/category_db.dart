@@ -38,7 +38,7 @@ class CategoryDb {
   // Method to generate sample data
   void generateSampleData() {
     List<String> categoriesSample = ['Personal', 'Work', 'Health', 'Fitness', 'Education', 'Family', 'Travel', 'Shopping', 'Other'];
-    for (var i = 0; i < categoriesSample.length; i++) {
+    for (int i = 0; i < categoriesSample.length; i++) {
       Category item = Category(
         id: i + 1,
         name: categoriesSample[i],
@@ -50,9 +50,9 @@ class CategoryDb {
 
   Color generateColor() {
     Random rand = Random();
-    var r = rand.nextInt(16) * 16;
-    var g = rand.nextInt(16) * 16;
-    var b = rand.nextInt(16) * 16;
+    int r = rand.nextInt(16) * 16;
+    int g = rand.nextInt(16) * 16;
+    int b = rand.nextInt(16) * 16;
     return Color.fromARGB(255, r, g, b);
   }
 }

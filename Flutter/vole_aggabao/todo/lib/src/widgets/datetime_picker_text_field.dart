@@ -87,7 +87,7 @@ class _DateTimePickerTextFieldState extends State<DateTimePickerTextField> {
       decoration: InputDecoration(
         labelText: widget.labelText,
         suffixIcon: IconButton(
-          icon: Icon(Icons.calendar_today),
+          icon: const Icon(Icons.calendar_today),
           onPressed: () {
             _selectDateTime(context);
           },
