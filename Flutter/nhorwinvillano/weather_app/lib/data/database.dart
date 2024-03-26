@@ -11,12 +11,11 @@ class LocationDatabase {
   void createInitialData() {
     try {
       savedLocation = [
-        ['Manila', false],
-        ['Cebu', false],
-        ['Davao', false],
-        ['Batangas', false],
+        'Manila',
+        'Cebu',
+        'Tokyo',
+        'New York',
       ];
-      //locations.add('Pasig');
       _myBox.put("LOCATIONLIST", savedLocation);
     } catch (e) {
       print('Error creating initial data: $e');
@@ -26,6 +25,16 @@ class LocationDatabase {
   // Load data
   void loadData() {
     savedLocation = _myBox.get("LOCATIONLIST", defaultValue: []);
+  }
+
+  // add new city
+  bool addCity(String cityName) {
+    if (savedLocation.contains(cityName)) {
+      return false; // City already exists
+    }
+    savedLocation.add(cityName);
+    updateDatabase();
+    return true; // City added successfully
   }
 
   // Update the database

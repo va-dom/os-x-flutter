@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import '../models/weather_model.dart';
 import '../services/weather_service.dart';
+import '../utils/weather_animation.dart' as weather_animation;
 
 class LocationTile extends StatefulWidget {
   final String cityName;
@@ -27,37 +28,10 @@ class _LocationTileState extends State<LocationTile> {
     _fetchWeatherFromCity();
   }
 
-  // weather animations
-  String getWeatherAnimation(String? mainCondition) {
-    //mainCondition = 'rain';
-    if (mainCondition == null) return 'sun.png';
-
-    switch (mainCondition.toLowerCase()) {
-      case 'clouds':
-      case 'mist':
-      case 'smoke':
-      case 'haze':
-      case 'dust':
-      case 'fog':
-        return 'cloud.png';
-      case 'rain':
-      case 'drizzle':
-      case 'shower rain':
-        return 'rain.png';
-      case 'thunderstorm':
-        return 'storm.png';
-      case 'clear':
-        return 'sun.png';
-      default:
-        return 'sun.png';
-    }
-  }
-
   Future<void> _fetchWeatherFromCity() async {
     setState(() => _isLoading = true);
     try {
-      final weather =
-          await _weatherService.getWeatherFromCity(cityName: widget.cityName);
+      final weather = await _weatherService.getWeatherFromCity(widget.cityName);
       setState(() {
         _weather = weather;
         _isLoading = false;
@@ -105,18 +79,13 @@ class _LocationTileState extends State<LocationTile> {
                     ),
                     SizedBox(height: 10),
                     Image(
-                      image: AssetImage(
-                          getWeatherAnimation(_weather?.mainCondition)),
+                      image: AssetImage(weather_animation
+                          .getWeatherAnimation(_weather?.mainCondition)),
                       width: 100,
                       height: 100,
                     ),
                   ],
                 ),
-              ),
-            if (_weather == null)
-              Text(
-                'Failed to fetch weather data.',
-                style: TextStyle(color: Colors.red),
               ),
           ],
         ),

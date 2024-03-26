@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_literals_to_create_immutables, use_super_parameters, prefer_const_constructors_in_immutables
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:geolocator/geolocator.dart';
+import '../data/database.dart';
 import '../services/weather_service.dart';
 import '../models/weather_model.dart';
+import '../utils/weather_animation.dart' as weather_animation;
 
 class MyHomePage extends StatefulWidget {
   final String? cityName;
@@ -17,6 +17,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  LocationDatabase db = LocationDatabase();
+
   // api key
   final _weatherService = WeatherService('c6e929f0e45c5aa95b9d8d2bf5546131');
   Weather? _weather;
@@ -33,18 +35,20 @@ class _MyHomePageState extends State<MyHomePage> {
         _weather = weather;
         _isLoading = false;
       });
+      // add current city to the list
+      db.addCity(_weather!.cityName);
     } catch (e) {
       print(e);
       setState(() => _isLoading = false);
     }
   }
 
-  // Fetch weather from city <---- not used
+  // Fetch weather from city
   Future<void> _fetchWeatherFromCity() async {
     setState(() => _isLoading = true);
     try {
       final weather =
-          await _weatherService.getWeatherFromCity(cityName: widget.cityName!);
+          await _weatherService.getWeatherFromCity(widget.cityName!);
       setState(() {
         _weather = weather;
         _isLoading = false;
@@ -52,32 +56,6 @@ class _MyHomePageState extends State<MyHomePage> {
     } catch (e) {
       setState(() => _isLoading = false);
       print(e);
-    }
-  }
-
-  // weather animations
-  String getWeatherAnimation(String? mainCondition) {
-    //mainCondition = 'rain';
-    if (mainCondition == null) return 'sun.png';
-
-    switch (mainCondition.toLowerCase()) {
-      case 'clouds':
-      case 'mist':
-      case 'smoke':
-      case 'haze':
-      case 'dust':
-      case 'fog':
-        return 'cloud.png';
-      case 'rain':
-      case 'drizzle':
-      case 'shower rain':
-        return 'rain.png';
-      case 'thunderstorm':
-        return 'storm.png';
-      case 'clear':
-        return 'sun.png';
-      default:
-        return 'sun.png';
     }
   }
 
@@ -127,8 +105,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                           SizedBox(height: 20),
                           Image(
-                            image: AssetImage(
-                                getWeatherAnimation(_weather?.mainCondition)),
+                            image: AssetImage(weather_animation
+                                .getWeatherAnimation(_weather?.mainCondition)),
                             width: 200,
                             height: 200,
                           ),
